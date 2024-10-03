@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 187dda2a2eca8c245af658efbe264901, type: 3}
+  m_Name: JsonCacheManager
+  m_EditorClassIdentifier: 
+  cacheList:
+  - fileName: BeverageData
+    jsonFile: {fileID: 4900000, guid: 5b57637be0a8ef843bfd22f1ee253a46, type: 3}
+    isCached: 1
