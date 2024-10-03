@@ -13,6 +13,9 @@ using Newtonsoft.Json;
 public class ListBundle
 {
     public List<Tile> tiles = new List<Tile>();
+
+
+    
 }
 
 [System.Serializable]
@@ -137,7 +140,7 @@ public class TileController : MonoBehaviour
             yArrayTemp[i] = i;
         }
 
-        //¿òÁ÷ÀÓ ¹æÇâº¤ÅÍ
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½âº¤ï¿½ï¿½
         switch (dir)
         {
             case EMoveDirType.Up:
@@ -156,17 +159,17 @@ public class TileController : MonoBehaviour
                 break;
         }
 
-        //±×¸®µå x,y ¹Ýº¹
+        //ï¿½×¸ï¿½ï¿½ï¿½ x,y ï¿½Ýºï¿½
         foreach (int x in xArrayTemp)
         {
             foreach (int y in yArrayTemp)
             {
-                //±×¸®µå°¡ ºñ¾îÀÖÁö ¾ÊÀ¸¸é ½ÇÇà
-                //¸ðµç grid¸¦ ¼øÈ¸ÇÒ ÇÊ¿ä°¡ ÀÖ³ª?
+                //ï¿½×¸ï¿½ï¿½å°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                //ï¿½ï¿½ï¿½ gridï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ ï¿½Ê¿ä°¡ ï¿½Ö³ï¿½?
                 if (puzzleData.gridList[x].tiles[y] != null)
                 {
-                    //tile combined false·Î ½ÃÀÛ
-                    //ÃÊ±âÈ­
+                    //tile combined falseï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                    //ï¿½Ê±ï¿½È­
                     puzzleData.gridList[x].tiles[y].combined = false;
                     //current cell
                     Vector2 cell;
@@ -176,17 +179,17 @@ public class TileController : MonoBehaviour
 
                     do
                     {
-                        //ÇöÀç cellÀº next·Î ½ÃÀÛ
+                        //ï¿½ï¿½ï¿½ï¿½ cellï¿½ï¿½ nextï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                         cell = next;
 
-                        //next´Â ÇöÀç ¼¿ + ¹æÇâº¤ÅÍ
+                        //nextï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ + ï¿½ï¿½ï¿½âº¤ï¿½ï¿½
                         next = new Vector2(cell.x + vector.x, cell.y + vector.y);
 
-                        //¹üÀ§¾È¿¡ ÀÖ°í, ´ÙÀ½¼¿ÀÌ nullÀÌ ¾Æ´Ò¶§±îÁö ¹Ýº¹
-                        //do whileÀÌ±â ¶§¹®¿¡ ¹üÀ§¿¡ ¹þ¾î³ª°Å³ª ¼¿ÀÌ ÀÖ¾îµµ ÀÏ´Ü next¼¿À» °¡Áö°í ³Ñ¾î°¨
+                        //ï¿½ï¿½ï¿½ï¿½ï¿½È¿ï¿½ ï¿½Ö°ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ nullï¿½ï¿½ ï¿½Æ´Ò¶ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ýºï¿½
+                        //do whileï¿½Ì±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î³ªï¿½Å³ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾îµµ ï¿½Ï´ï¿½ nextï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾î°¨
                     } while (isInArea(next) && puzzleData.gridList[Mathf.RoundToInt(next.x)].tiles[Mathf.RoundToInt(next.y)] == null);
 
-                    //vector2°ªÀÌ¾î¼­ floatÇüÀÌ±â ¶§¹®¿¡ RoundToInt·Î Çüº¯È¯ÇØ¼­ ³Ö¾îÁÖ±â
+                    //vector2ï¿½ï¿½ï¿½Ì¾î¼­ floatï¿½ï¿½ï¿½Ì±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ RoundToIntï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È¯ï¿½Ø¼ï¿½ ï¿½Ö¾ï¿½ï¿½Ö±ï¿½
                     //
 
                     int nx = Mathf.RoundToInt(next.x);
@@ -195,9 +198,9 @@ public class TileController : MonoBehaviour
                     int cx = Mathf.RoundToInt(cell.x);
                     int cy = Mathf.RoundToInt(cell.y);
 
-                    //nx,ny´Â cx,cy¿¡¼­ ¹æÇâº¤ÅÍ¸¦ ´õÇÑ °ª
+                    //nx,nyï¿½ï¿½ cx,cyï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½âº¤ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 
-                    //next°¡ ¹üÀ§¾È¿¡ ÀÖ°í, next¿Í ½ÃÀÛ Å¸ÀÏÀÇ value°ªÀÌ °°À¸¸é ÀÌµ¿
+                    //nextï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½È¿ï¿½ ï¿½Ö°ï¿½, nextï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ valueï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
                     if (isInArea(next) && !puzzleData.gridList[nx].tiles[ny].combined && puzzleData.gridList[nx].tiles[ny].tileValue == puzzleData.gridList[x].tiles[y].tileValue)
                     {
                         StartCoroutine(MergeTile(puzzleData.gridList[nx].tiles[ny], puzzleData.gridList[x].tiles[y]));
@@ -235,20 +238,20 @@ public class TileController : MonoBehaviour
 
         if (!IsCanSwap())
         {
-            Debug.Log("½ÇÆÐ!");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½!");
         }
 
     }
 
     public bool IsCanSwap()
     {
-        //½º¿ÒÀÌ ³¡³­ ÈÄ ÀÌµ¿À» ´õ ÇÒ¼ö ÀÖ´Â °÷ÀÌ ÀÖ´ÂÁö È®ÀÎ
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ò¼ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 
         for (int y = 0; y < gridCount; y++)
         {
             for (int x = 0; x < gridCount; x++)
             {
-                //ºó °ªÀÌ ÇÏ³ª¶óµµ ÀÖÀ¸¸é swap°¡´É
+                //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ swapï¿½ï¿½ï¿½ï¿½
                 if (puzzleData.gridList[x].tiles[y] == null)
                 {
                     return true;
@@ -294,7 +297,7 @@ public class TileController : MonoBehaviour
         return 0 <= vec.x && vec.x < gridCount && 0 <= vec.y && vec.y < gridCount;
     }
 
-    //ÁÂÃø ÇÏ´ÜºÎÅÍ ½ÃÀÛ
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´Üºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public Vector2 GetWorldPositionFromGrid(Vector2 grid)
     {
         float pivotPoint = (gridSize / 2) + 10 - (wholeSize / 2);
@@ -312,7 +315,7 @@ public class TileController : MonoBehaviour
             return;
         }
 
-        //ºó °ø°£
+        //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         int ranNum = UnityEngine.Random.Range(0, emptyGrid.Count);
 
         Vector2 spawnPosition = GetWorldPositionFromGrid(emptyGrid[ranNum]);
@@ -332,7 +335,7 @@ public class TileController : MonoBehaviour
         tile.Change(2, DataManager.Instance.GetFoodSprite(eRecipeType,0));
         if (!IsCanSwap())
         {
-            Debug.Log("½ÇÆÐ!");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½!");
         }
     }
 
