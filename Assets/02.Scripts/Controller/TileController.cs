@@ -25,31 +25,28 @@ public class TileController : MonoBehaviour
 {
     private ERecipeType eRecipeType;
 
-    Stack<Tile> tilePool = new Stack<Tile>();
-    Transform poolParent;
-
     public Tile tilePrefab;
+    private Stack<Tile> tilePool = new Stack<Tile>();
+    private Transform poolParent;
 
-    public TileBundle tileBundle;
-
-    public Transform gridPanel;
-
-    int gridCount;
+    public SwapMoney moneyPrefab;
+    private Stack<SwapMoney> moneyPool = new Stack<SwapMoney>();
+    private Transform moneyParent;
 
     public PuzzleData puzzleData;
 
-    public List<Vector2> emptyGrid;
+    private List<Vector2> emptyGrid = new List<Vector2>();
 
-    public GridLayoutGroup gridLayoutGroup;
     public RectTransform contentTransform;
     public int padding;
-    public float gridSize;
-    public int wholeSize;
+    private int expandGridCount;
+    private int wholeSize;
+    private float gridSize;
 
     public void Init(RecipeLabSaveData recipeLabSaveData, ERecipeType eRecipeType)
     {
         this.eRecipeType = eRecipeType;
-        gridCount = recipeLabSaveData.expandLevel;
+        expandGridCount = recipeLabSaveData.expandLevel;
 
         wholeSize = (int)contentTransform.rect.width;
 
@@ -58,9 +55,9 @@ public class TileController : MonoBehaviour
         poolParent.transform.localPosition = Vector2.zero;
         poolParent.name = "PoolParent";
 
-        for (int i = 0; i < gridCount; i++)
+        for (int i = 0; i < expandGridCount; i++)
         {
-            for (int j = 0; j < gridCount; j++)
+            for (int j = 0; j < expandGridCount; j++)
             {
                 emptyGrid.Add(new Vector2(j, i));
             }
@@ -68,11 +65,11 @@ public class TileController : MonoBehaviour
 
         puzzleData = new PuzzleData();
 
-        for (int y = 0; y < gridCount; y++)
+        for (int y = 0; y < expandGridCount; y++)
         {
             puzzleData.gridList.Add(new ListBundle());
 
-            for (int x = 0; x < gridCount; x++)
+            for (int x = 0; x < expandGridCount; x++)
             {
                 puzzleData.gridList[y].tiles.Add(null);
             }
@@ -84,48 +81,14 @@ public class TileController : MonoBehaviour
         SpawnTile();
     }
 
-    public void SetSize()
-    {
-        gridCount++;
-        CalculateGridSize();
-
-        for (int i = 0; i < 2; i++)
-        {
-            for (int j = 0; j < gridCount; j++)
-            {
-                emptyGrid.Add(new Vector2(j, i));
-            }
-        }
-
-        puzzleData.gridList.Add(new ListBundle());
-        for (int x = 0; x < gridCount; x++)
-        {
-            puzzleData.gridList[gridCount - 1].tiles.Add(null);
-        }
-    }
-
-    public void SetTileSize()
-    {
-        for (int i = 0; i < gridCount; i++)
-        {
-            for (int j = 0; j < gridCount; j++)
-            {
-                if (puzzleData.gridList[i].tiles[j] != null)
-                {
-                    puzzleData.gridList[i].tiles[j].rectTransform.sizeDelta = new Vector2(gridSize, gridSize);
-                }
-            }
-        }
-    }
-
     public void Move(Define.EMoveDirType dir)
     {
         bool isMoved = false;
 
         Vector2 vector = Vector2.zero;
 
-        int[] xArrayTemp = new int[gridCount];
-        int[] yArrayTemp = new int[gridCount];
+        int[] xArrayTemp = new int[expandGridCount];
+        int[] yArrayTemp = new int[expandGridCount];
 
         for (int i = 0; i < xArrayTemp.Length; i++)
         {
@@ -239,14 +202,13 @@ public class TileController : MonoBehaviour
         }
 
     }
-
     public bool IsCanSwap()
     {
         //������ ���� �� �̵��� �� �Ҽ� �ִ� ���� �ִ��� Ȯ��
 
-        for (int y = 0; y < gridCount; y++)
+        for (int y = 0; y < expandGridCount; y++)
         {
-            for (int x = 0; x < gridCount; x++)
+            for (int x = 0; x < expandGridCount; x++)
             {
                 //�� ���� �ϳ��� ������ swap����
                 if (puzzleData.gridList[x].tiles[y] == null)
@@ -289,22 +251,6 @@ public class TileController : MonoBehaviour
         return false;
     }
 
-    private bool isInArea(Vector2 vec)
-    {
-        return 0 <= vec.x && vec.x < gridCount && 0 <= vec.y && vec.y < gridCount;
-    }
-
-    //���� �ϴܺ��� ����
-    public Vector2 GetWorldPositionFromGrid(Vector2 grid)
-    {
-        float pivotPoint = (gridSize / 2) + 10 - (wholeSize / 2);
-
-        float xPosition = pivotPoint + ((gridSize + padding) * grid.x);
-        float yPosition = pivotPoint + ((gridSize + padding) * grid.y);
-
-        return new Vector2(xPosition, yPosition);
-    }
-
     public void SpawnTile()
     {
         if (emptyGrid.Count == 0)
@@ -312,7 +258,6 @@ public class TileController : MonoBehaviour
             return;
         }
 
-        //�� ����
         int ranNum = UnityEngine.Random.Range(0, emptyGrid.Count);
 
         Vector2 spawnPosition = GetWorldPositionFromGrid(emptyGrid[ranNum]);
@@ -335,100 +280,12 @@ public class TileController : MonoBehaviour
             Debug.Log("����!");
         }
     }
-
-    [ContextMenu("Expand")]
-    
-    #region Puzzle Grid
-
-    //Puzzle Array(List) Init
-    public void ExpandLaboratory()
-    {
-        puzzleData.gridList.Insert(0,new List<Tile>());
-
-        for(int i = 0;i<puzzleData[i].gridList.count; i++)
-        {
-            do
-            {
-                puzzleData[i].gridList.Add(null);
-            }while(puzzleData[i].gridList.count<gridCount);
-        }
-    }
-
-    public void SetTileSize()
-    {
-
-    }
-
-    public void RePositionTile()
-    {
-
-    }
-
-    #endregion
-
-    #region Sort Tile
-    public void SortAllTile()
-    {
-
-    }
-
-    private void MergeSort(List<Tile> tileList)
-    {
-        if(tileList.count<=1)
-        {
-            return;
-        }
-
-        int midPoint = Mathf.RoundToInt(tileList.count*0.5);
-
-        List<Tile> leftList = new List<Tile>(tileList.GetRange(0,midPoint));
-        List<Tile> rightList = new List<Tile>(tileList.GetRange(midPoint,tileList.Count-midPoint));
-
-        MergeSort(leftList);
-        MergeSort(rightList);
-
-        Merge();
-
-    }
-    public void Merge(List<Tile> resultList, List<Tile> leftList, List<Tile> rightList)
-    {
-        int leftIndex = 0;
-        int rightIndex = 0;
-        int resultIndex = 0;
-
-        while(leftList.count>leftIndex && rightList.count>rightIndex)
-        {
-            if(leftList[leftIndex].tileValue >= rightList[rightIndex])
-            {
-                resultList[resultIndex++] = leftList[leftIndex++];
-            }
-            else
-            {
-                resultList[resultIndex++] = rightLIst[rightIndex++];
-            }
-        }        
-
-        //Guarantee that one side is zero
-        //Not Guarantee that both list size is same size
-
-        while(leftIndex < leftList.count)
-        {
-            resultList[resultIndex++] = leftList[leftIndex++];
-        }
-
-        while(rightIndex < rightList.count)
-        {
-            resultList[resultIndex++] = rightList[rightIndex++];
-        }
-    }
-
-    #endregion
-
     public IEnumerator CoSpawnTile()
     {
         yield return new WaitForSeconds(moveSpeed);
         SpawnTile();
     }
+    
     public void MoveTile(Vector2 destinationGrid, Tile tile)
     {
         Vector2 destinationPosition = GetWorldPositionFromGrid(destinationGrid);
@@ -440,16 +297,153 @@ public class TileController : MonoBehaviour
     public IEnumerator MergeTile(Tile tile, Tile newMovedTile)
     {
         yield return new WaitForSeconds(moveSpeed);
+
         newMovedTile.GrowTile(new Vector2(gridSize, gridSize));
         newMovedTile.Change(newMovedTile.tileValue * 2, DataManager.Instance.GetFoodSprite(eRecipeType,(int)Mathf.Log(newMovedTile.tileValue * 2, 2)));
         PushTile(tile);
+
+        SwapMoney swapMoney = PopMoney();
+        swapMoney.transform.localPosition = newMovedTile.transform.localPosition;
+        swapMoney.Init(newMovedTile.tileValue * 2);
     }
-    [ContextMenu("CalculateGridSize")]
+
+    #region Func
+
+    #region Expand Grid
+    public void ExpandLaboratory()
+    {
+        expandGridCount++;
+        puzzleData.gridList.Add(new ListBundle());
+
+        for (int i = 0;i<puzzleData.gridList.Count; i++)
+        {
+            do
+            {
+                puzzleData.gridList[i].tiles.Insert(0,null);
+
+            }while(puzzleData.gridList[i].tiles.Count<expandGridCount);
+        }
+        CalculateGridSize();
+        SetTileSize();
+        SetPositionAllTile();
+    }
+    #endregion
+
+    #region Sort Tile
+    public void SortAllTile()
+    {
+
+    }
+
+    private void MergeSort(List<Tile> tileList)
+    {
+        if(tileList.Count<=1)
+        {
+            return;
+        }
+
+        int midPoint = Mathf.RoundToInt(tileList.Count*0.5f);
+
+        List<Tile> leftList = new List<Tile>(tileList.GetRange(0,midPoint));
+        List<Tile> rightList = new List<Tile>(tileList.GetRange(midPoint,tileList.Count-midPoint));
+
+        MergeSort(leftList);
+        MergeSort(rightList);
+
+        Merge(tileList, leftList,rightList);
+    }
+
+    public void Merge(List<Tile> resultList, List<Tile> leftList, List<Tile> rightList)
+    {
+        int leftIndex = 0;
+        int rightIndex = 0;
+        int resultIndex = 0;
+
+        while(leftList.Count>leftIndex && rightList.Count>rightIndex)
+        {
+            if(leftList[leftIndex].tileValue >= rightList[rightIndex].tileValue)
+            {
+                resultList[resultIndex++] = leftList[leftIndex++];
+            }
+            else
+            {
+                resultList[resultIndex++] = rightList[rightIndex++];
+            }
+        }        
+
+        //Guarantee that one side is zero
+        //Not Guarantee that both list size is same size
+
+        while(leftIndex < leftList.Count)
+        {
+            resultList[resultIndex++] = leftList[leftIndex++];
+        }
+
+        while(rightIndex < rightList.Count)
+        {
+            resultList[resultIndex++] = rightList[rightIndex++];
+        }
+    }
+
+    #endregion
+
+    #region Remove Tile
+
+    public void RemoveTile(Vector2 tileIndex)
+    {
+
+    }
+
+    #endregion
+
+    #region Util Func
+    private bool isInArea(Vector2 vec)
+    {
+        return 0 <= vec.x && vec.x < expandGridCount && 0 <= vec.y && vec.y < expandGridCount;
+    }
+    public Vector2 GetWorldPositionFromGrid(Vector2 grid)
+    {
+        float pivotPoint = (gridSize / 2) + 10 - (wholeSize / 2);
+
+        float xPosition = pivotPoint + ((gridSize + padding) * grid.x);
+        float yPosition = pivotPoint + ((gridSize + padding) * grid.y);
+
+        return new Vector2(xPosition, yPosition);
+    }
+    public void SetTileSize()
+    {
+        for (int i = 0; i < expandGridCount; i++)
+        {
+            for (int j = 0; j < expandGridCount; j++)
+            {
+                if (puzzleData.gridList[i].tiles[j] != null)
+                {
+                    puzzleData.gridList[i].tiles[j].rectTransform.sizeDelta = new Vector2(gridSize, gridSize);
+                }
+            }
+        }
+    }
+    public void SetPositionAllTile()
+    {
+        for (int x = 0; x < puzzleData.gridList.Count; x++)
+        {
+            for (int y = 0; y < puzzleData.gridList[x].tiles.Count; y++)
+            {
+                if (puzzleData.gridList[x].tiles[y] != null)
+                {
+                    puzzleData.gridList[x].tiles[y].transform.localPosition = GetWorldPositionFromGrid(new Vector2(x,y));
+                }
+            }
+        }
+    }
     public void CalculateGridSize()
     {
-        gridSize = ((float)wholeSize - (padding * 2) - ((gridCount - 1) * padding)) / gridCount;
-        gridLayoutGroup.cellSize = new Vector3(gridSize, gridSize, 0);
+        gridSize = ((float)wholeSize - (padding * 2) - ((expandGridCount - 1) * padding)) / expandGridCount;
     }
+
+    #endregion
+
+    #endregion
 
     #region pool
     public Tile PopTile()
@@ -469,5 +463,24 @@ public class TileController : MonoBehaviour
         tile.gameObject.SetActive(false);
         tilePool.Push(tile);
     }
+
+    public SwapMoney PopMoney()
+    {
+        if (moneyPool.Count == 0)
+        {
+            SwapMoney money = Instantiate(moneyPrefab, moneyParent);
+            moneyPool.Push(money);
+        }
+
+        SwapMoney swapMoney = moneyPool.Pop();
+        swapMoney.gameObject.SetActive(true);
+        return swapMoney;
+    }
+    public void PushMoney(SwapMoney money)
+    {
+        money.gameObject.SetActive(false);
+        moneyPool.Push(money);
+    }
+
     #endregion
 }

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using static Define;
 public class InputController : MonoBehaviour
 {
@@ -13,9 +15,13 @@ public class InputController : MonoBehaviour
     //대각선 가능 여부
     public bool isCanDiagonal = true;
 
-    public TileController tileController;
+    //where is the position init?
+    private float swapMinArea;
+    private float swapMaxArea;
 
-    void Start()
+    public TileController currentTileController;
+
+    private void Start()
     {
         Camera cam = Camera.main;
         
@@ -24,21 +30,25 @@ public class InputController : MonoBehaviour
         width = height * cam.aspect;
     }
     
-    void Update()
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            startPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            GetTopUIElementUnderMouse();
+            //startPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            startPosition = Input.mousePosition;
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            endPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //endPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            endPosition = Input.mousePosition;
+
             Swipe(startPosition, endPosition, isCanDiagonal);
         }
     }
-   
-    void Swipe(Vector2 startPosition, Vector2 endPosition, bool diagonal)
+
+    private void Swipe(Vector2 startPosition, Vector2 endPosition, bool diagonal)
     {
         if (startPosition != endPosition/* && startPosition != Vector2.zero && endPosition != Vector2.zero*/)
         {
@@ -54,11 +64,11 @@ public class InputController : MonoBehaviour
                     //시작지점이 더 작다 -> 왼쪽에서 오른쪽으로 움직였다.
                     if (startPosition.x < endPosition.x)
                     {
-                        tileController.Move(EMoveDirType.Right);
+                        currentTileController.Move(EMoveDirType.Right);
                     }
                     else
                     {
-                        tileController.Move(EMoveDirType.Left);
+                        currentTileController.Move(EMoveDirType.Left);
                     }
                 }
             }
@@ -68,14 +78,60 @@ public class InputController : MonoBehaviour
                 {
                     if (startPosition.y < endPosition.y)
                     {
-                        tileController.Move(EMoveDirType.Up);
+                        currentTileController.Move(EMoveDirType.Up);
                     }
                     else
                     {
-                        tileController.Move(EMoveDirType.Down);
+                        currentTileController.Move(EMoveDirType.Down);
                     }
                 }
             }
         }
+    }
+
+    public void SwapRecipeLab()
+    {
+
+    }
+
+    public void InitSwapArea()
+    {
+        swapMinArea = 0;
+        swapMaxArea = 0;
+    }
+
+    public GraphicRaycaster raycaster; // Canvas에 부착된 GraphicRaycaster
+    public EventSystem eventSystem;    // EventSystem 오브젝트
+    void GetTopUIElementUnderMouse()
+    {
+        // 1. PointerEventData 생성: 현재 마우스 포지션을 설정
+        PointerEventData pointerData = new PointerEventData(eventSystem)
+        {
+            position = Input.mousePosition // 마우스 포지션을 입력
+        };
+
+        // 2. Raycast 결과를 저장할 리스트 생성
+        List<RaycastResult> raycastResults = new List<RaycastResult>();
+
+        // 3. GraphicRaycaster를 사용해 UI에 Raycast 수행
+        raycaster.Raycast(pointerData, raycastResults);
+
+        // 4. Raycast 결과 처리 (가장 위의 UI 요소 가져오기)
+        if (raycastResults.Count > 0)
+        {
+            // 가장 위에 있는 첫 번째 UI 요소
+            RaycastResult topResult = raycastResults[0];
+            Debug.Log("Top UI Element under mouse: " + topResult.gameObject.name);
+        }
+        else
+        {
+            Debug.Log("No UI element under mouse.");
+        }
+    }
+    public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(new Vector3(0, swapMinArea), new Vector3(1080, swapMinArea));
+        Gizmos.DrawLine(new Vector3(0, swapMaxArea), new Vector3(1080, swapMaxArea));
     }
 }

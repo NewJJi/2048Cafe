@@ -11,6 +11,7 @@ public class InGameSystem : MonoBehaviour
 
     public InGameUiController inGameUiController;
     public RecipeLabController recipeLabController;
+    public InputController inputController;
 
     public Action<int> MoneyEvent;
 
