@@ -13,9 +13,6 @@ using Newtonsoft.Json;
 public class ListBundle
 {
     public List<Tile> tiles = new List<Tile>();
-
-
-    
 }
 
 [System.Serializable]
@@ -340,10 +337,42 @@ public class TileController : MonoBehaviour
     }
 
     [ContextMenu("Expand")]
+    
+    #region Puzzle Grid
+
+    //Puzzle Array(List) Init
     public void ExpandLaboratory()
+    {
+        puzzleData.gridList.Insert(0,new List<Tile>());
+
+        for(int i = 0;i<puzzleData[i].gridList.count; i++)
+        {
+            do
+            {
+                puzzleData[i].gridList.Add(null);
+            }while(puzzleData[i].gridList.count<gridCount);
+        }
+    }
+
+    public void SetTileSize()
     {
 
     }
+
+    public void RePositionTile()
+    {
+
+    }
+
+    #endregion
+
+    #region Sort Tile
+    public void SortAllTile()
+    {
+        
+    }
+    #endregion
+
     public IEnumerator CoSpawnTile()
     {
         yield return new WaitForSeconds(moveSpeed);
