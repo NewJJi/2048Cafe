@@ -369,8 +369,59 @@ public class TileController : MonoBehaviour
     #region Sort Tile
     public void SortAllTile()
     {
-        
+
     }
+
+    private void MergeSort(List<Tile> tileList)
+    {
+        if(tileList.count<=1)
+        {
+            return;
+        }
+
+        int midPoint = Mathf.RoundToInt(tileList.count*0.5);
+
+        List<Tile> leftList = new List<Tile>(tileList.GetRange(0,midPoint));
+        List<Tile> rightList = new List<Tile>(tileList.GetRange(midPoint,tileList.Count-midPoint));
+
+        MergeSort(leftList);
+        MergeSort(rightList);
+
+        Merge();
+
+    }
+    public void Merge(List<Tile> resultList, List<Tile> leftList, List<Tile> rightList)
+    {
+        int leftIndex = 0;
+        int rightIndex = 0;
+        int resultIndex = 0;
+
+        while(leftList.count>leftIndex && rightList.count>rightIndex)
+        {
+            if(leftList[leftIndex].tileValue >= rightList[rightIndex])
+            {
+                resultList[resultIndex++] = leftList[leftIndex++];
+            }
+            else
+            {
+                resultList[resultIndex++] = rightLIst[rightIndex++];
+            }
+        }        
+
+        //Guarantee that one side is zero
+        //Not Guarantee that both list size is same size
+
+        while(leftIndex < leftList.count)
+        {
+            resultList[resultIndex++] = leftList[leftIndex++];
+        }
+
+        while(rightIndex < rightList.count)
+        {
+            resultList[resultIndex++] = rightList[rightIndex++];
+        }
+    }
+
     #endregion
 
     public IEnumerator CoSpawnTile()
