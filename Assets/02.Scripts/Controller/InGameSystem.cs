@@ -19,21 +19,18 @@ public class InGameSystem : MonoBehaviour
 
     public SaveData saveData;
 
-    #region Global Event
-    public void GetMoney(int earnMoney)
+    public int GameMoney
     {
-        saveData.haveMoney += earnMoney;
-        MoneyEvent?.Invoke(saveData.haveMoney);
-    }
-    public void UseMoney(int useMoney)
-    {
-        saveData.haveMoney -= useMoney;
-        if(saveData.haveMoney <= 0)
+        get => saveData.haveMoney;
+        set
         {
-            saveData.haveMoney = 0;
+            saveData.haveMoney += value;
+            MoneyEvent?.Invoke(saveData.haveMoney);
         }
-        MoneyEvent?.Invoke(saveData.haveMoney);
     }
+
+    #region Global Event
+
 
     #endregion
 
@@ -49,5 +46,6 @@ public class InGameSystem : MonoBehaviour
     {
         inGameUiController.Init();
         recipeLabController.Init();
+        inputController.swapEvent = recipeLabController.SwapPuzzle;
     }
 }

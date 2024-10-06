@@ -15,6 +15,8 @@ public static class Define
 
     public const float moveSpeed = 0.5f;
 
+
+
     public enum EMoveDirType
     {
         Left,

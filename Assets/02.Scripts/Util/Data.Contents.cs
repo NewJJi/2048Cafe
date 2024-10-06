@@ -72,7 +72,6 @@ public class SaveData : ILoader
         Debug.Log("Null Exception");
         return null;
     }
-
     public RecipeLabSaveData GetRecipeLabData(ERecipeType eRecipeType)
     {
         switch (eRecipeType)

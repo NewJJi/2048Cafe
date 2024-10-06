@@ -81,6 +81,12 @@ public class RecipeLabController : MonoBehaviour
         currentActiveRecipeLab.gameObject.SetActive(true);
     }
 
+    public void SwapPuzzle(EMoveDirType eMoveDirType)
+    {
+        Debug.Log(eMoveDirType);
+        currentActiveRecipeLab.tileController.Move(eMoveDirType);
+    }
+
     public void OnClickExpandButton()
     {
         Debug.Log("»Æ¿Â!");

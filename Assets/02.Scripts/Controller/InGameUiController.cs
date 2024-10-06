@@ -15,8 +15,8 @@ public class InGameUiController : MonoBehaviour
     public void Init()
     {
         popupController.Init();
-        ShowHaveMoney(InGameSystem.Instance.saveData.haveMoney);
-        InGameSystem.Instance.MoneyEvent = ShowHaveMoney;
+        ShowHaveMoney(InGameSystem.Instance.GameMoney);
+        InGameSystem.Instance.MoneyEvent += ShowHaveMoney;
     }
 
     public void ShowHaveMoney(int haveMoney)

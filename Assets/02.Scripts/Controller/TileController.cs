@@ -297,14 +297,17 @@ public class TileController : MonoBehaviour
     public IEnumerator MergeTile(Tile tile, Tile newMovedTile)
     {
         yield return new WaitForSeconds(moveSpeed);
+        int newValue = newMovedTile.tileValue * 2;
 
         newMovedTile.GrowTile(new Vector2(gridSize, gridSize));
-        newMovedTile.Change(newMovedTile.tileValue * 2, DataManager.Instance.GetFoodSprite(eRecipeType,(int)Mathf.Log(newMovedTile.tileValue * 2, 2)));
+        newMovedTile.Change(newValue, DataManager.Instance.GetFoodSprite(eRecipeType,(int)Mathf.Log(newValue, 2)));
         PushTile(tile);
 
         SwapMoney swapMoney = PopMoney();
         swapMoney.transform.localPosition = newMovedTile.transform.localPosition;
-        swapMoney.Init(newMovedTile.tileValue * 2);
+        swapMoney.Init(newValue);
+
+        InGameSystem.Instance.GameMoney = newValue;
     }
 
     #region Func

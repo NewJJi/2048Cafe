@@ -52,6 +52,8 @@ public class DataManager : MonoBehaviour
     public FoodDataInfoBundle bakeryInfoBundle;
     public FoodDataInfoBundle desertInfoBundle;
 
+    public int[] expandUpgradeCost;
+
     [ContextMenu("Food Data Init")]
     public void InitFoodData()
     {
