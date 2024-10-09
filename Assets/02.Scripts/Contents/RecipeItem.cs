@@ -9,17 +9,22 @@ using static Define;
 public class RecipeItem : MonoBehaviour, IPointerClickHandler
 {
     public GameObject[] recipeStar = new GameObject[5];
-    public Image image;
     public GameObject defaultMaterialText;
-
+    public Image image;
     public Action<int> showRecipeEvent;
     public int recipeIndex;
 
-    public void SetInfo(int recipeIndex, int level, ERecipeType recipeType, Action<int> showRecipeEvent)
+    private void Start()
+    {
+        InGameSystem.Instance.levelUpEvent += ShowRecipeItem;
+    }
+
+    public void SetInfo(int recipeIndex, int level, ERecipeType recipeType, Action<int> showRecipeEvent, bool isSpawnMaterial)
     {
         this.recipeIndex = recipeIndex;
-        this.GetComponent<Image>().sprite = DataManager.Instance.GetFoodSprite(recipeType,recipeIndex);
+        image.sprite = DataManager.Instance.GetFoodSprite(recipeType,recipeIndex);
         this.showRecipeEvent = showRecipeEvent;
+        defaultMaterialText.SetActive(isSpawnMaterial == true);
 
         for (int i = 0; i < recipeStar.Length; i++)
         {
@@ -38,5 +43,21 @@ public class RecipeItem : MonoBehaviour, IPointerClickHandler
         Debug.Log("레시피 클릭");
     }
 
-    
+    public void ShowRecipeItem(ERecipeType recipeType, int index)
+    {
+        if (index == recipeIndex)
+        {
+            int level = InGameSystem.Instance.GetRecipeLabData(recipeType).recipeItemDatas[index].level;
+
+            for (int i = 0; i < recipeStar.Length; i++)
+            {
+                recipeStar[i].gameObject.SetActive(false);
+            }
+
+            for (int i = 0; i < level; i++)
+            {
+                recipeStar[i].gameObject.SetActive(true);
+            }
+        }
+    }
 }

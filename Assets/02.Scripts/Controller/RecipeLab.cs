@@ -24,13 +24,13 @@ public class RecipeLab : MonoBehaviour
     RecipeLabSaveData recipeLabSaveData;
     public void Init()
     {
-        RecipeItemData[] recipeItems = InGameSystem.Instance.saveData.GetRecipeItemData(eRecipeType);
-        recipeViewer.Init(recipeItems, eRecipeType);
+        RecipeItemData[] recipeItems = InGameSystem.Instance.GetRecipeItemData(eRecipeType);
         recipeViewer.showRecipeEvent = ShowInfoPopup;
+        recipeViewer.Init(recipeItems, eRecipeType);
 
-        recipeLabSaveData = InGameSystem.Instance.saveData.GetRecipeLabData(eRecipeType);
+        recipeLabSaveData = InGameSystem.Instance.GetRecipeLabData(eRecipeType);
         tileController.Init(recipeLabSaveData,eRecipeType);
-
+        tileController.GetNewRecipeEvent = EnrollNewRecipe;
         InGameSystem.Instance.MoneyEvent += ActiveExpandButton;
 
         expandButton.onClick.AddListener(OnClickExpandButton);
@@ -39,6 +39,11 @@ public class RecipeLab : MonoBehaviour
         expandButtonText.text = $"{DataManager.Instance.expandUpgradeCost[costIndex]} ¿ø";
 
         ActiveExpandButton(InGameSystem.Instance.GameMoney);
+    }
+
+    public void EnrollNewRecipe(int index)
+    {
+        recipeViewer.EnrollNewRecipe(eRecipeType, index);
     }
 
     public void ShowInfoPopup(int recipeIndex)

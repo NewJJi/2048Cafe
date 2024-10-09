@@ -12,6 +12,7 @@ public class FoodDataInfo
     public string name;
     public string description;
     public float sellPrice;
+    public int starCost;
 }
 [System.Serializable]
 public class FoodDataInfoBundle
@@ -25,6 +26,31 @@ public class HaveRecipe
 }
 
 #region Save Data
+
+[System.Serializable]
+public class WealthSaveData : ILoader
+{
+    public int haveMoney;
+    public int expandItemCount;
+    public int needleItemCount;
+    public int throwOutItemCount;
+    public int sortItemCount;
+
+    public WealthSaveData()
+    {
+        haveMoney = 0;
+        expandItemCount = defaultChargedItemCount;
+        needleItemCount = defaultChargedItemCount;
+        throwOutItemCount = defaultChargedItemCount;
+        sortItemCount = defaultChargedItemCount;
+    }
+}
+public class BeverageSaveData : RecipeLabSaveData { }
+public class BakerySaveData : RecipeLabSaveData { }
+public class DesertSaveData : RecipeLabSaveData { }
+
+
+
 public class SaveData : ILoader
 {
     public int haveMoney;
@@ -88,11 +114,14 @@ public class SaveData : ILoader
     }
 }
 
-public class RecipeLabSaveData
+[System.Serializable]
+public class RecipeLabSaveData : ILoader
 {
+    public int maxValue;
+
     public int expandLevel;
 
-    public List<List<int>> gridList;
+    public List<List<int>> gridList = new List<List<int>>();
     public RecipeItemData[] recipeItemDatas = new RecipeItemData[recipeItemTotalCount];
 
     public RecipeLabSaveData()
@@ -103,6 +132,8 @@ public class RecipeLabSaveData
         {
             recipeItemDatas[i] = new RecipeItemData();
         }
+        recipeItemDatas[0].isUnlock = true;
+        recipeItemDatas[0].isSpawnMaterial = true;
     }
 }
 
@@ -110,6 +141,7 @@ public class RecipeLabSaveData
 public class RecipeItemData
 {
     public bool isUnlock = false;
+    public bool isSpawnMaterial = false;
     public int level = 0;
 }
 #endregion

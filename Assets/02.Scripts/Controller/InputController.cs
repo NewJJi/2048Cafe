@@ -25,6 +25,11 @@ public class InputController : MonoBehaviour
 
     public Action<EMoveDirType> swapEvent;
 
+    public Action<Tile> clickTileEvent;
+
+    public GraphicRaycaster raycaster;
+    public EventSystem eventSystem;
+
     private void Start()
     {
         Camera cam = Camera.main;
@@ -50,6 +55,32 @@ public class InputController : MonoBehaviour
             if (endPosition.y < swapMinArea && startPosition.y < swapMinArea)
             {
                 Swipe(startPosition, endPosition, isCanDiagonal);
+            }
+        }
+
+        ClickTile();
+    }
+
+    public void ClickTile()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            PointerEventData pointerData = new PointerEventData(eventSystem);
+            pointerData.position = Input.mousePosition;
+
+            // Raycast 결과를 저장할 리스트
+            List<RaycastResult> results = new List<RaycastResult>();
+
+            // Raycast 실행
+            raycaster.Raycast(pointerData, results);
+
+            foreach (RaycastResult result in results)
+            {
+                if (string.Equals(result.gameObject.name, "Tile(Clone)"))
+                {
+                    Debug.Log("Hit UI: " + result.gameObject.name);
+                    clickTileEvent.Invoke(result.gameObject.GetComponent<Tile>());
+                }
             }
         }
     }
@@ -86,7 +117,7 @@ public class InputController : MonoBehaviour
             if (Mathf.Abs(deltaX) > Mathf.Abs(deltaY))
             {
                 //마우스 혹은 손이 충분히 거리가 벌어져있다.
-                if (deltaX >= width / 4 || deltaX <= -width / 4)
+                if (deltaX >= width / 6 || deltaX <= -width / 6)
                 {
                     //시작지점이 더 작다 -> 왼쪽에서 오른쪽으로 움직였다.
                     if (startPosition.x < endPosition.x)
@@ -101,7 +132,7 @@ public class InputController : MonoBehaviour
             }
             else
             {
-                if (deltaY >= height / 3 || deltaY <= -height / 3)
+                if (deltaY >= height / 6 || deltaY <= -height / 6)
                 {
                     if (startPosition.y < endPosition.y)
                     {

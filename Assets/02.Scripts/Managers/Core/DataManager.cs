@@ -7,6 +7,7 @@ using System;
 using Newtonsoft.Json;
 using System.IO;
 using static Define;
+using System.Threading.Tasks;
 
 public interface ILoader
 {
@@ -62,10 +63,15 @@ public class DataManager : MonoBehaviour
         desertInfoBundle = JsonConvert.DeserializeObject<FoodDataInfoBundle>(desertInfoData.text);
     }
 
-    public void InitSaveData()
+    public async Task InitSaveData()
+    {
+        saveData = await LoadDataAsync<SaveData>("SaveData");
+    }
+    public void InitSaveData2()
     {
         saveData = LoadData<SaveData>("SaveData");
     }
+
 
     [ContextMenu("Reset Save Data")]
     public void ResetSaveData()
@@ -128,8 +134,51 @@ public class DataManager : MonoBehaviour
 
         Debug.Log($"{savePath}/{name}");
         File.WriteAllText($"{savePath}/{name}.json", encryptData);
-        //File.WriteAllText($"{savePath}/{name}.json","");
     }
+    public async Task SaveDataAsync<T>(T data, string name) where T : ILoader
+    {
+        string saveData = JsonConvert.SerializeObject(data);
+        string encryptData = Encrypt(saveData);
+
+        if (string.IsNullOrEmpty(savePath))
+        {
+            savePath = Path.Combine(Application.persistentDataPath, "Data");
+        }
+
+        if (!Directory.Exists(savePath))
+        {
+            Directory.CreateDirectory(savePath);
+        }
+
+        Debug.Log($"{savePath}/{name}");
+        await File.WriteAllTextAsync($"{savePath}/{name}.json", encryptData);
+    }
+    public async Task<T> LoadDataAsync<T>(string path) where T : ILoader, new()
+    {
+        if (string.IsNullOrEmpty(savePath))
+        {
+            savePath = Path.Combine(Application.persistentDataPath, "Data");
+        }
+
+        string filePath = $"{savePath}/{path}.json";
+
+        if (File.Exists(filePath))
+        {
+            string readData = await File.ReadAllTextAsync(filePath);
+            string decrpytData = Decrypt(readData);
+            T data = JsonConvert.DeserializeObject<T>(decrpytData);
+            return data;
+        }
+        else
+        {
+            T data = new T();
+
+            await SaveDataAsync<T>(data, name);
+
+            return data;
+        }
+    }
+
     public T LoadData<T>(string path) where T : ILoader, new()
     {
         if (string.IsNullOrEmpty(savePath))
@@ -149,6 +198,7 @@ public class DataManager : MonoBehaviour
         else
         {
             T data = new T();
+            SaveData<T>(data, name);
             return data;
         }
     }

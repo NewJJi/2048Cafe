@@ -29,6 +29,7 @@ public class RecipeLabController : MonoBehaviour
 
     public RecipeLab currentActiveRecipeLab;
 
+    public bool isRemoveMode = false;
     public void Init()
     {
         BindEvent();
@@ -87,6 +88,16 @@ public class RecipeLabController : MonoBehaviour
         currentActiveRecipeLab.tileController.Move(eMoveDirType);
     }
 
+    public void RemoveTile(Tile tile)
+    {
+        if(isRemoveMode == true)
+        {
+            currentActiveRecipeLab.tileController.RemoveTile(tile);
+            isRemoveMode = false;
+            InGameSystem.Instance.ManageWealthData(EWealthType.ThrowOut,-1);
+        }
+    }
+
     public void OnClickExpandButton()
     {
         Debug.Log("확장!");
@@ -100,6 +111,7 @@ public class RecipeLabController : MonoBehaviour
     public void OnClickThrowOutButton()
     {
         Debug.Log("버리기!");
+        isRemoveMode = true;
     }
 
     public void OnClickSortButton()
@@ -108,10 +120,10 @@ public class RecipeLabController : MonoBehaviour
     }
     public void ReInitItemUi()
     {
-        int throwOutItem = InGameSystem.Instance.saveData.throwOutItemCount;
-        int expandItem = InGameSystem.Instance.saveData.expandItemCount;
-        int neeldeItem = InGameSystem.Instance.saveData.needleItemCount;
-        int sortItem = InGameSystem.Instance.saveData.sortItemCount;
+        int throwOutItem = InGameSystem.Instance.wealthSaveData.throwOutItemCount;
+        int expandItem = InGameSystem.Instance.wealthSaveData.expandItemCount;
+        int neeldeItem = InGameSystem.Instance.wealthSaveData.needleItemCount;
+        int sortItem = InGameSystem.Instance.wealthSaveData.sortItemCount;
 
         throwOutItemCountText.text = $"X {throwOutItem}";
         expandItemCountText.text = $"X {expandItem}";
@@ -123,4 +135,5 @@ public class RecipeLabController : MonoBehaviour
         expandButton.gameObject.SetActive(expandItem == 0 ? false : true);
         sortButton.gameObject.SetActive(sortItem == 0 ? false : true);
     }
+
 }

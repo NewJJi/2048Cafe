@@ -10,15 +10,24 @@ public class RecipeViewer : MonoBehaviour
     public RecipeItem recipeItemPrefab;
     public Action<int> showRecipeEvent;
 
+    public RecipeItemData[] recipeItemDataArray;
+
     public void Init(RecipeItemData[] recipeItemDatas, ERecipeType eRecipeType)
     {
+        recipeItemDataArray = recipeItemDatas;
         for (int i = 0; i < recipeItemDatas.Length; i++)
         {
             if(recipeItemDatas[i].isUnlock == true)
             {
                 RecipeItem recipeItem = Instantiate(recipeItemPrefab,recipeParent);
-                recipeItem.SetInfo(i , recipeItemDatas[i].level, eRecipeType, showRecipeEvent);
+                recipeItem.SetInfo(i , recipeItemDatas[i].level, eRecipeType, showRecipeEvent, recipeItemDatas[i].isSpawnMaterial);
             }
         }
+    }
+
+    public void EnrollNewRecipe(ERecipeType eRecipeType, int index)
+    {
+        RecipeItem recipeItem = Instantiate(recipeItemPrefab, recipeParent);
+        recipeItem.SetInfo(index, recipeItemDataArray[index].level, eRecipeType, showRecipeEvent, recipeItemDataArray[index].isSpawnMaterial);
     }
 }

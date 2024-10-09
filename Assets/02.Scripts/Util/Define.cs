@@ -48,6 +48,15 @@ public static class Define
         Desert,
     }
 
+    public enum EWealthType
+    {
+        Money,
+        Expand,
+        Sort,
+        Needle,
+        ThrowOut
+    }
+
     public enum EBeverageData
     {
         Espresso,

@@ -92,7 +92,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8593197494706309310
 RectTransform:
   m_ObjectHideFlags: 0
@@ -306,8 +306,8 @@ MonoBehaviour:
   - {fileID: 196866425961303815}
   - {fileID: 8305264268838353535}
   - {fileID: 9174990497848859480}
-  image: {fileID: 6509762201099263060}
   defaultMaterialText: {fileID: 1335194367775696367}
+  image: {fileID: 6509762201099263060}
   recipeIndex: 0
 --- !u!1 &4867507653078916164
 GameObject:
