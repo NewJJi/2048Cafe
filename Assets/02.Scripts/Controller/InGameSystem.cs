@@ -95,6 +95,43 @@ public class InGameSystem : MonoBehaviour
         Debug.Log("Null Exception");
         return null;
     }
+
+    public List<int> GetSpawnValue(ERecipeType eRecipeType)
+    {
+        List<int> list = new List<int>();
+        switch (eRecipeType)
+        {
+            case ERecipeType.Beverage:
+                for (int i = 0; i < beverageSaveData.recipeItemDatas.Length; i++)
+                {
+                    if(beverageSaveData.recipeItemDatas[i].isSpawnMaterial == true)
+                    {
+                        list.Add(i);
+                    }
+                }
+                break;
+            case ERecipeType.Bakery:
+                for (int i = 0; i < bakerySaveData.recipeItemDatas.Length; i++)
+                {
+                    if (bakerySaveData.recipeItemDatas[i].isSpawnMaterial == true)
+                    {
+                        list.Add(i);
+                    }
+                }
+                break;
+            case ERecipeType.Desert:
+                for (int i = 0; i < desertSaveData.recipeItemDatas.Length; i++)
+                {
+                    if (desertSaveData.recipeItemDatas[i].isSpawnMaterial == true)
+                    {
+                        list.Add(i);
+                    }
+                }
+                break;
+        }
+        return list;
+    }
+
     public RecipeLabSaveData GetRecipeLabData(ERecipeType eRecipeType)
     {
         switch (eRecipeType)
@@ -115,6 +152,11 @@ public class InGameSystem : MonoBehaviour
     public void LevelUpRecipe(ERecipeType eRecipeType, int index)
     {
         GetRecipeItemData(eRecipeType)[index].level++;
+        if(GetRecipeItemData(eRecipeType)[index].level == 5)
+        {
+            GetRecipeItemData(eRecipeType)[index].isSpawnMaterial = true;
+        }
+
         levelUpEvent?.Invoke(eRecipeType, index);
 
         SaveRecipeLabData(eRecipeType);

@@ -35,13 +35,13 @@ public class InfoPopup : MonoBehaviour
         recipeType = eRecipeType;
         this.index = index;
 
-        foodImage.sprite = DataManager.Instance.GetFoodSprite(eRecipeType,index);
-        foodName.text = DataManager.Instance.GetFoodInfo(eRecipeType,index).name;
-        foodDescription.text = DataManager.Instance.GetFoodInfo(eRecipeType, index).description;
-
         RecipeLabSaveData recipeLabSaveData = InGameSystem.Instance.GetRecipeLabData(eRecipeType);
         RecipeItemData recipeItemData = recipeLabSaveData.recipeItemDatas[index];
         recipeItemData.isUnlock = true;
+
+        foodImage.sprite = DataManager.Instance.GetFoodSprite(eRecipeType,index);
+        foodName.text = DataManager.Instance.GetFoodInfo(eRecipeType,index).name + $"Lv{recipeItemData.level}\n+{recipeItemData.level*0.2}%";
+        foodDescription.text = DataManager.Instance.GetFoodInfo(eRecipeType, index).description;
 
         upgradeCost = DataManager.Instance.GetFoodInfo(eRecipeType, index).starCost * (recipeItemData.level + 1);
         costText.text = $"$ {upgradeCost}";

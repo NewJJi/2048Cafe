@@ -343,7 +343,13 @@ public class TileController : MonoBehaviour
 
         puzzleData.gridList[x].tiles[y] = tile;
         tile.SetGrid(x, y);
-        tile.Change(2, DataManager.Instance.GetFoodSprite(eRecipeType,0));
+
+        List<int> spawnValue = InGameSystem.Instance.GetSpawnValue(eRecipeType);
+
+        int ranSapwnNum = UnityEngine.Random.Range(0, spawnValue.Count);
+        int logValue = Mathf.RoundToInt(Mathf.Pow(2, ranSapwnNum+1));
+        tile.Change(logValue, DataManager.Instance.GetFoodSprite(eRecipeType, ranSapwnNum));
+        
         if (!IsCanSwap())
         {
             Debug.Log("����!");
@@ -383,9 +389,12 @@ public class TileController : MonoBehaviour
 
         SwapMoney swapMoney = PopMoney();
         swapMoney.transform.localPosition = newMovedTile.transform.localPosition;
-        swapMoney.Init(newValue,gridSize);
 
-        InGameSystem.Instance.GameMoney = newValue;
+        float multiple = InGameSystem.Instance.GetRecipeItemData(eRecipeType)[(int)Mathf.Log(newValue, 2) - 1].level * 0.2f;
+        int getCoin = newValue + Mathf.RoundToInt(newValue * multiple);
+
+        swapMoney.Init(getCoin, gridSize);
+        InGameSystem.Instance.GameMoney = getCoin;
     }
 
     #region Func
