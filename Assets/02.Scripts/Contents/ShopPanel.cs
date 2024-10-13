@@ -7,4 +7,9 @@ public class ShopPanel : MonoBehaviour
 {
     public Button adButton;
 
+    public Button buyExpandItemButton;
+    public Button buyThrowOutButton;
+    public Button buySortItemButton;
+
+    public Button buyItemPackageButton;
 }
