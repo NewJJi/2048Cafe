@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class GoogleRewardAdManager : MonoBehaviour
 {
-    public GoogleMobileAdsDemo googleMobileAdsDemo;
+    public GoogleMobileAdsController googleMobileAdsDemo;
     public Button adButton;
     public GameObject rewardObj;
 

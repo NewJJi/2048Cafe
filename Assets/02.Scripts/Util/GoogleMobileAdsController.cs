@@ -4,7 +4,7 @@ using GoogleMobileAds.Api;
 using TMPro;
 using UnityEngine;
 
-public class GoogleMobileAdsDemo : MonoBehaviour
+public class GoogleMobileAdsController
 {
     // These ad units are configured to always serve test ads.
 #if UNITY_ANDROID
@@ -15,31 +15,28 @@ public class GoogleMobileAdsDemo : MonoBehaviour
   private string _adUnitId = "unused";
 #endif
 
-    public RewardedAd _rewardedAd;
+    private RewardedAd rewardedAd;
 
-        public void Start()
+    public void Init()
+    {
+        //Initialize the Google Mobile Ads SDK.
+        MobileAds.Initialize((InitializationStatus initStatus) =>
         {
-            // Initialize the Google Mobile Ads SDK.
-            MobileAds.Initialize((InitializationStatus initStatus) =>
-            {
-                // This callback is called once the MobileAds SDK is initialized.
-                LoadRewardedAd();
-                
-            });
-        }
-    
+            //This callback is called once the MobileAds SDK is initialized.
+            LoadRewardedAd();
+        });
+    }
 
     /// <summary>
     /// Loads the rewarded ad.
     /// </summary>
-    [ContextMenu("Load")]
     public void LoadRewardedAd()
     {
         // Clean up the old ad before loading a new one.
-        if (_rewardedAd != null)
+        if (rewardedAd != null)
         {
-            _rewardedAd.Destroy();
-            _rewardedAd = null;
+            rewardedAd.Destroy();
+            rewardedAd = null;
         }
 
         Debug.Log("Loading the rewarded ad.");
@@ -51,36 +48,33 @@ public class GoogleMobileAdsDemo : MonoBehaviour
         RewardedAd.Load(_adUnitId, adRequest,
             (RewardedAd ad, LoadAdError error) =>
             {
-              // if error is not null, the load request failed.
-              if (error != null || ad == null)
+                // if error is not null, the load request failed.
+                if (error != null || ad == null)
                 {
-                    Debug.LogError("Rewarded ad failed to load an ad " +
-                                   "with error : " + error);
+                    Debug.LogError("Rewarded ad failed to load an ad with error : " + error);
                     return;
                 }
 
-                Debug.Log("Rewarded ad loaded with response : "
-                          + ad.GetResponseInfo());
+                Debug.Log("Rewarded ad loaded with response : " + ad.GetResponseInfo());
 
-                _rewardedAd = ad;
+                rewardedAd = ad;
 
-                RegisterEventHandlers(ad);
-                RegisterReloadHandler(ad);
+                RegisterEventHandlers(rewardedAd);
+                RegisterReloadHandler(rewardedAd);
             });
     }
 
-    [ContextMenu("ShowRewardAd")]
-    public void ShowRewardedAd()
+    public void ShowRewardedAd(Action watchedRewardedEvent)
     {
         const string rewardMsg =
             "Rewarded ad rewarded the user. Type: {0}, amount: {1}.";
 
-        if (_rewardedAd != null && _rewardedAd.CanShowAd())
+        if (rewardedAd != null && rewardedAd.CanShowAd())
         {
-            _rewardedAd.Show((Reward reward) =>
+            rewardedAd.Show((Reward reward) =>
             {
-                
                 // TODO: Reward the user.
+                watchedRewardedEvent?.Invoke();
                 Debug.Log(String.Format(rewardMsg, reward.Type, reward.Amount));
             });
         }
@@ -91,9 +85,9 @@ public class GoogleMobileAdsDemo : MonoBehaviour
         const string rewardMsg =
             "Rewarded ad rewarded the user. Type: {0}, amount: {1}.";
 
-        if (_rewardedAd != null && _rewardedAd.CanShowAd())
+        if (rewardedAd != null && rewardedAd.CanShowAd())
         {
-            _rewardedAd.Show((Reward reward) =>
+            rewardedAd.Show((Reward reward) =>
             {
                 rewardEvent?.Invoke(100);
                 // TODO: Reward the user.
@@ -149,6 +143,7 @@ public class GoogleMobileAdsDemo : MonoBehaviour
             // Reload the ad so that we can show another as soon as possible.
             LoadRewardedAd();
         };
+
         // Raised when the ad failed to open full screen content.
         ad.OnAdFullScreenContentFailed += (AdError error) =>
         {
@@ -159,5 +154,4 @@ public class GoogleMobileAdsDemo : MonoBehaviour
             LoadRewardedAd();
         };
     }
-
 }
