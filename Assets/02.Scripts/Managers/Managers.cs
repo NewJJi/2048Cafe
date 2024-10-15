@@ -9,12 +9,12 @@ public class Managers : MonoBehaviour
 
     private PoolManager poolManager = new PoolManager();
 	//private DataManager dataManager = new DataManager();
-	private InGameSystem inGameSystem = new InGameSystem();
-	private InGameUiController inGameUiController = new InGameUiController();
+	private GameManager inGameSystem = new GameManager();
+	private UiManager inGameUiController = new UiManager();
 
 	public static PoolManager Pool { get { return Instance?.poolManager; } }
 	//public static DataManager DataManager { get { return Instance?.dataManager; } }
-	public static InGameSystem InGameSystem 
+	public static GameManager InGameSystem 
 	{ 
 		get 
 		{ 
@@ -29,7 +29,7 @@ public class Managers : MonoBehaviour
             }
         }
 	}
-	public static InGameUiController InGameUiController
+	public static UiManager InGameUiController
 	{
 		get
 		{

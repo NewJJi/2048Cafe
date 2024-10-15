@@ -4,7 +4,6 @@ using UnityEngine;
 using static Define;
 
 
-
 [System.Serializable]
 public class FoodDataInfo
 {

@@ -889,6 +889,305 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 169193497}
   m_CullTransparentMesh: 1
+--- !u!1 &218041911
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 218041913}
+  - component: {fileID: 218041912}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &218041912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218041911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 611ecd4cc485e8e40927a275f4525d6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UiManager: {fileID: 0}
+  recipeLabController: {fileID: 1330737909}
+  inputController: {fileID: 1040571654}
+  wealthSaveData:
+    haveMoney: 0
+    expandItemCount: 0
+    needleItemCount: 0
+    throwOutItemCount: 0
+    sortItemCount: 0
+  beverageSaveData:
+    maxValue: 0
+    expandLevel: 2
+    recipeItemDatas:
+    - isUnlock: 1
+      isSpawnMaterial: 1
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+  bakerySaveData:
+    maxValue: 0
+    expandLevel: 2
+    recipeItemDatas:
+    - isUnlock: 1
+      isSpawnMaterial: 1
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+  desertSaveData:
+    maxValue: 0
+    expandLevel: 2
+    recipeItemDatas:
+    - isUnlock: 1
+      isSpawnMaterial: 1
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+--- !u!4 &218041913
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218041911}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 469.74655, y: 1023.21027, z: -8.913578}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &351982736
 GameObject:
   m_ObjectHideFlags: 0
@@ -3067,6 +3366,7 @@ MonoBehaviour:
       sellPrice: 134217730
       starCost: 1350
   expandUpgradeCost: 0a000000f4010000c40900004c1d0000d43000003075000070110100a086010090d0030020a10700
+  savePath: 
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -6789,7 +7089,6 @@ GameObject:
   - component: {fileID: 1646881133}
   - component: {fileID: 1646881132}
   - component: {fileID: 1646881131}
-  - component: {fileID: 1646881137}
   - component: {fileID: 1646881138}
   m_Layer: 5
   m_Name: Canvas
@@ -6883,273 +7182,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1646881137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1646881130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 611ecd4cc485e8e40927a275f4525d6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inGameUiController: {fileID: 1646881138}
-  recipeLabController: {fileID: 1330737909}
-  inputController: {fileID: 1040571654}
-  wealthSaveData:
-    haveMoney: 0
-    expandItemCount: 0
-    needleItemCount: 0
-    throwOutItemCount: 0
-    sortItemCount: 0
-  beverageSaveData:
-    maxValue: 0
-    expandLevel: 2
-    recipeItemDatas:
-    - isUnlock: 1
-      isSpawnMaterial: 1
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-  bakerySaveData:
-    maxValue: 0
-    expandLevel: 2
-    recipeItemDatas:
-    - isUnlock: 1
-      isSpawnMaterial: 1
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-  desertSaveData:
-    maxValue: 0
-    expandLevel: 2
-    recipeItemDatas:
-    - isUnlock: 1
-      isSpawnMaterial: 1
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
 --- !u!114 &1646881138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10021,3 +10053,4 @@ SceneRoots:
   - {fileID: 1196433497}
   - {fileID: 550419548}
   - {fileID: 1040571655}
+  - {fileID: 218041913}

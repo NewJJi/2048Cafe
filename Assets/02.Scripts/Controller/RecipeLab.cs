@@ -24,21 +24,21 @@ public class RecipeLab : MonoBehaviour
     RecipeLabSaveData recipeLabSaveData;
     public void Init()
     {
-        RecipeItemData[] recipeItems = InGameSystem.Instance.GetRecipeItemData(eRecipeType);
+        RecipeItemData[] recipeItems = GameManager.Instance.GetRecipeItemData(eRecipeType);
         recipeViewer.showRecipeEvent = ShowInfoPopup;
         recipeViewer.Init(recipeItems, eRecipeType);
 
-        recipeLabSaveData = InGameSystem.Instance.GetRecipeLabData(eRecipeType);
+        recipeLabSaveData = GameManager.Instance.GetRecipeLabData(eRecipeType);
         tileController.Init(recipeLabSaveData,eRecipeType);
         tileController.GetNewRecipeEvent = EnrollNewRecipe;
-        InGameSystem.Instance.MoneyEvent += ActiveExpandButton;
+        GameManager.Instance.MoneyEvent += ActiveExpandButton;
 
         expandButton.onClick.AddListener(OnClickExpandButton);
 
         int costIndex = recipeLabSaveData.expandLevel - defaultRecipeLabGridSize;
-        expandButtonText.text = $"{DataManager.Instance.expandUpgradeCost[costIndex]} 원";
+        expandButtonText.text = $"{GameManager.Instance.Data.expandUpgradeCost[costIndex]} 원";
 
-        ActiveExpandButton(InGameSystem.Instance.GameMoney);
+        ActiveExpandButton(GameManager.Instance.GameMoney);
     }
 
     public void EnrollNewRecipe(int index)
@@ -48,7 +48,7 @@ public class RecipeLab : MonoBehaviour
 
     public void ShowInfoPopup(int recipeIndex)
     {
-        InGameUiController.ShowRecipeInfoPopupEvent(eRecipeType, recipeIndex);
+        GameManager.Instance.UI.ShowRecipeInfoPopupEvent(eRecipeType, recipeIndex);
     }
 
     public void GetNewRecipe() { }
@@ -57,7 +57,7 @@ public class RecipeLab : MonoBehaviour
     {
         int costIndex = recipeLabSaveData.expandLevel - defaultRecipeLabGridSize;
 
-        if (DataManager.Instance.expandUpgradeCost[costIndex] > money)
+        if (GameManager.Instance.Data.expandUpgradeCost[costIndex] > money)
         {
             expandButton.enabled = false;
         }
@@ -66,7 +66,7 @@ public class RecipeLab : MonoBehaviour
             expandButton.enabled = true;
         }
 
-        expandButtonText.text = $"{DataManager.Instance.expandUpgradeCost[costIndex]} 원";
+        expandButtonText.text = $"{GameManager.Instance.Data.expandUpgradeCost[costIndex]} 원";
     }
 
     public void OnClickExpandButton()
@@ -75,6 +75,6 @@ public class RecipeLab : MonoBehaviour
         recipeLabSaveData.expandLevel++;
         tileController.ExpandLaboratory();
 
-        InGameSystem.Instance.GameMoney = -DataManager.Instance.expandUpgradeCost[costIndex];
+        GameManager.Instance.GameMoney = -GameManager.Instance.Data.expandUpgradeCost[costIndex];
     }
 }

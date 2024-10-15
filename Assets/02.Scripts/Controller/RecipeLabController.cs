@@ -48,7 +48,7 @@ public class RecipeLabController : MonoBehaviour
 
     public void BindEvent()
     {
-        InGameSystem.Instance.ItemEvent = ReInitItemUi;
+        GameManager.Instance.ItemEvent = ReInitItemUi;
 
         beverageRecipeLabButton.onClick.AddListener(() => OnClickSwitchRecipeLab(ERecipeType.Beverage));
         bakeryRecipeLabButton.onClick.AddListener(() => OnClickSwitchRecipeLab(ERecipeType.Bakery));
@@ -94,7 +94,7 @@ public class RecipeLabController : MonoBehaviour
         {
             currentActiveRecipeLab.tileController.RemoveTile(tile);
             isRemoveMode = false;
-            InGameSystem.Instance.ManageWealthData(EWealthType.ThrowOut,-1);
+            GameManager.Instance.ManageWealthData(EWealthType.ThrowOut,-1);
         }
     }
 
@@ -120,18 +120,15 @@ public class RecipeLabController : MonoBehaviour
     }
     public void ReInitItemUi()
     {
-        int throwOutItem = InGameSystem.Instance.wealthSaveData.throwOutItemCount;
-        int expandItem = InGameSystem.Instance.wealthSaveData.expandItemCount;
-        int neeldeItem = InGameSystem.Instance.wealthSaveData.needleItemCount;
-        int sortItem = InGameSystem.Instance.wealthSaveData.sortItemCount;
+        int throwOutItem = GameManager.Instance.Data.GetItemCount(EItemType.ThrowOutEvent);
+        int expandItem = GameManager.Instance.Data.GetItemCount(EItemType.ExpandEvent);
+        int sortItem = GameManager.Instance.Data.GetItemCount(EItemType.SortEvent);
 
         throwOutItemCountText.text = $"X {throwOutItem}";
         expandItemCountText.text = $"X {expandItem}";
-        needleItemCountText.text = $"X {neeldeItem}";
         sortItemCountText.text = $"X {sortItem}";
 
         throwOutButton.gameObject.SetActive(throwOutItem==0 ? false : true);
-        needleButton.gameObject.SetActive(neeldeItem == 0 ? false : true);
         expandButton.gameObject.SetActive(expandItem == 0 ? false : true);
         sortButton.gameObject.SetActive(sortItem == 0 ? false : true);
     }

@@ -14,107 +14,8 @@ public interface ILoader
 
 }
 
-public class DataManager : MonoBehaviour
+public class DataManager
 {
-    #region SingleTon
-    private static DataManager instance;
-    public static DataManager Instance { get { Init(); return instance; } }
-    public static void Init()
-    {
-        if (instance == null)
-        {
-            GameObject go = GameObject.Find("DataManager");
-            if (go == null)
-            {
-                go = new GameObject { name = "DataManager" };
-                go.AddComponent<DataManager>();
-            }
-
-            DontDestroyOnLoad(go);
-
-            // √ ±‚»≠
-            instance = go.GetComponent<DataManager>();
-        }
-    }
-    #endregion
-
-    #region Data
-    public SaveData saveData;
-
-    public List<Sprite> beverageSpriteList;
-    public List<Sprite> bakerySpriteList;
-    public List<Sprite> desertSpriteList;
-
-    public TextAsset beverageInfoData;
-    public TextAsset bakeryInfoData;
-    public TextAsset desertInfoData;
-
-    public FoodDataInfoBundle beverageInfoBundle;
-    public FoodDataInfoBundle bakeryInfoBundle;
-    public FoodDataInfoBundle desertInfoBundle;
-
-    public int[] expandUpgradeCost;
-
-    [ContextMenu("Food Data Init")]
-    public void InitFoodData()
-    {
-        beverageInfoBundle = JsonConvert.DeserializeObject<FoodDataInfoBundle>(beverageInfoData.text);
-        bakeryInfoBundle = JsonConvert.DeserializeObject<FoodDataInfoBundle>(bakeryInfoData.text);
-        desertInfoBundle = JsonConvert.DeserializeObject<FoodDataInfoBundle>(desertInfoData.text);
-    }
-
-    public async Task InitSaveData()
-    {
-        saveData = await LoadDataAsync<SaveData>("SaveData");
-    }
-    public void InitSaveData2()
-    {
-        saveData = LoadData<SaveData>("SaveData");
-    }
-
-
-    [ContextMenu("Reset Save Data")]
-    public void ResetSaveData()
-    {
-        saveData = new SaveData();
-    }
-
-    public FoodDataInfo GetFoodInfo(ERecipeType eRecipeType, int index)
-    {
-        FoodDataInfo foodDataInfo = new FoodDataInfo();
-        switch (eRecipeType)
-        {
-            case ERecipeType.Beverage:
-                return beverageInfoBundle.beverageDataList[index];
-            case ERecipeType.Bakery:
-                return bakeryInfoBundle.beverageDataList[index];
-            case ERecipeType.Desert:
-                return desertInfoBundle.beverageDataList[index];
-            default:
-                Debug.LogError("Exception");
-                return null;
-        }
-    }
-
-    public Sprite GetFoodSprite(ERecipeType eRecipeType, int index)
-    {
-        switch (eRecipeType)
-        {
-            case ERecipeType.Beverage:
-                return beverageSpriteList[index];
-            case ERecipeType.Bakery:
-                return bakerySpriteList[index];
-            case ERecipeType.Desert:
-                return desertSpriteList[index];
-            default:
-                Debug.LogError("Exception");
-                return null;
-        }
-    }
-
-    #endregion
-
-    #region Save And Load
     private static string key = "Your32ByteKeyHere123456789012345"; // 16, 24, 32 characters for AES
     string savePath = "";
     public void SaveData<T>(T data,string name) where T : ILoader
@@ -173,8 +74,7 @@ public class DataManager : MonoBehaviour
         {
             T data = new T();
 
-            await SaveDataAsync<T>(data, name);
-
+            //await SaveDataAsync<T>(data, name);
             return data;
         }
     }
@@ -198,7 +98,7 @@ public class DataManager : MonoBehaviour
         else
         {
             T data = new T();
-            SaveData<T>(data, name);
+            //SaveData<T>(data, name);
             return data;
         }
     }
@@ -255,5 +155,4 @@ public class DataManager : MonoBehaviour
             }
         }
     }
-    #endregion
 }

@@ -5,17 +5,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using static Define;
 
-public class InGameSystem : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public static InGameSystem Instance;
+    public static GameManager Instance;
 
-    public InGameUiController inGameUiController;
-    public RecipeLabController recipeLabController;
-    public InputController inputController;
+    [SerializeField] private UiManager UiManager;
+    [SerializeField] private RecipeLabController recipeLabController;
+    [SerializeField] private InputController inputController;
 
-    public Action<int> MoneyEvent;
+    private GameDataManager dataManager = new GameDataManager();
 
-    public Action ItemEvent;
+    public GameDataManager Data { get { return dataManager; } }
+    public UiManager UI { get { return UiManager; } }
 
     public WealthSaveData wealthSaveData;
     public RecipeLabSaveData beverageSaveData;
@@ -28,30 +29,35 @@ public class InGameSystem : MonoBehaviour
         set
         {
             ManageWealthData(EWealthType.Money,value);
-            MoneyEvent?.Invoke(wealthSaveData.haveMoney);
         }
     }
 
     #region Global Event
 
+    public Action<int> MoneyEvent; 
+    public Action ItemEvent;
 
     #endregion
 
     public async void Awake()
     {
         Instance = this;
-        wealthSaveData = await DataManager.Instance.LoadDataAsync<WealthSaveData>("WealthSaveData");
-        beverageSaveData = await DataManager.Instance.LoadDataAsync<RecipeLabSaveData>("BeverageSaveData");
-        bakerySaveData = await DataManager.Instance.LoadDataAsync<RecipeLabSaveData>("BakerySaveData");
-        desertSaveData = await DataManager.Instance.LoadDataAsync<RecipeLabSaveData>("DesertSaveData");
-
+        wealthSaveData = await dataManager.LoadWealthSaveDataData();
+        beverageSaveData = await dataManager.LoadRecipeLabSaveData("BeverageSaveData");
+        bakerySaveData = await dataManager.LoadRecipeLabSaveData("BakerySaveData");
+        desertSaveData = await dataManager.LoadRecipeLabSaveData("DesertSaveData");
+        await dataManager.LoadAllData();
         Init();
     }
 
     public void Init()
     {
-        inGameUiController.Init();
+        UiManager.Init();
         recipeLabController.Init();
+    }
+
+    public void BindEvent()
+    {
         inputController.swapEvent = recipeLabController.SwapPuzzle;
         inputController.clickTileEvent = recipeLabController.RemoveTile;
     }
@@ -78,7 +84,7 @@ public class InGameSystem : MonoBehaviour
                 break;
         }
         Debug.Log(eWealthType);
-        DataManager.Instance.SaveData<WealthSaveData>(wealthSaveData, "WealthSaveData");
+        dataManager.SaveWealthSaveDataData(wealthSaveData);
     }
     public RecipeItemData[] GetRecipeItemData(ERecipeType eRecipeType)
     {
@@ -131,7 +137,6 @@ public class InGameSystem : MonoBehaviour
         }
         return list;
     }
-
     public RecipeLabSaveData GetRecipeLabData(ERecipeType eRecipeType)
     {
         switch (eRecipeType)
@@ -146,9 +151,7 @@ public class InGameSystem : MonoBehaviour
         Debug.Log("Null Exception");
         return null;
     }
-
     public Action<ERecipeType, int> levelUpEvent;
-
     public void LevelUpRecipe(ERecipeType eRecipeType, int index)
     {
         GetRecipeItemData(eRecipeType)[index].level++;
@@ -161,19 +164,18 @@ public class InGameSystem : MonoBehaviour
 
         SaveRecipeLabData(eRecipeType);
     }
-
     public void SaveRecipeLabData(ERecipeType eRecipeType)
     {
         switch (eRecipeType)
         {
             case ERecipeType.Beverage:
-                DataManager.Instance.SaveData<RecipeLabSaveData>(beverageSaveData, "BeverageSaveData");
+                dataManager.SaveRecipeLabSaveData(beverageSaveData, "BeverageSaveData");
                 break;
             case ERecipeType.Bakery:
-                DataManager.Instance.SaveData<RecipeLabSaveData>(beverageSaveData, "BakerySaveData");
+                dataManager.SaveRecipeLabSaveData(beverageSaveData, "BakerySaveData");
                 break;
             case ERecipeType.Desert:
-                DataManager.Instance.SaveData<RecipeLabSaveData>(beverageSaveData, "DesertSaveData");
+                dataManager.SaveRecipeLabSaveData(beverageSaveData, "DesertSaveData");
                 break;
         }
     }

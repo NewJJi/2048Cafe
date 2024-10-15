@@ -92,10 +92,10 @@ public static class Define
         CherryBlossom,
     }
 
-    public enum EEventType
+    public enum EItemType
     {
         SortEvent,
-        RemoveEvent,
+        ThrowOutEvent,
         ExpandEvent,
         UpgradeEvent,
     }

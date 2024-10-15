@@ -243,8 +243,8 @@ public class TileController : MonoBehaviour
             }
         }
 
-        InGameSystem.Instance.GetRecipeLabData(eRecipeType).gridList = gridList;
-        InGameSystem.Instance.SaveRecipeLabData(eRecipeType);
+        GameManager.Instance.GetRecipeLabData(eRecipeType).gridList = gridList;
+        GameManager.Instance.SaveRecipeLabData(eRecipeType);
     }
 
     public bool IsCanSwap()
@@ -311,7 +311,7 @@ public class TileController : MonoBehaviour
         puzzleData.gridList[x].tiles[y] = tile;
         tile.SetGrid(x, y);
         int value = num == 0 ? 0 : (int)Mathf.Log(num, 2);
-        tile.Change(num, DataManager.Instance.GetFoodSprite(eRecipeType, value-1));
+        tile.Change(num, GameManager.Instance.Data.GetFoodSprite(eRecipeType, value-1));
         if (!IsCanSwap())
         {
             Debug.Log("����!");
@@ -344,11 +344,11 @@ public class TileController : MonoBehaviour
         puzzleData.gridList[x].tiles[y] = tile;
         tile.SetGrid(x, y);
 
-        List<int> spawnValue = InGameSystem.Instance.GetSpawnValue(eRecipeType);
+        List<int> spawnValue = GameManager.Instance.GetSpawnValue(eRecipeType);
 
         int ranSapwnNum = UnityEngine.Random.Range(0, spawnValue.Count);
         int logValue = Mathf.RoundToInt(Mathf.Pow(2, ranSapwnNum+1));
-        tile.Change(logValue, DataManager.Instance.GetFoodSprite(eRecipeType, ranSapwnNum));
+        tile.Change(logValue, GameManager.Instance.Data.GetFoodSprite(eRecipeType, ranSapwnNum));
         
         if (!IsCanSwap())
         {
@@ -376,25 +376,25 @@ public class TileController : MonoBehaviour
         yield return new WaitForSeconds(moveSpeed);
         int newValue = newMovedTile.tileValue * 2;
 
-        if(InGameSystem.Instance.GetRecipeLabData(eRecipeType).maxValue < newValue)
+        if(GameManager.Instance.GetRecipeLabData(eRecipeType).maxValue < newValue)
         {
-            InGameSystem.Instance.GetRecipeLabData(eRecipeType).maxValue = newValue;
-            InGameSystem.Instance.inGameUiController.popupController.ShowInfoPopup(eRecipeType, (int)Mathf.Log(newValue, 2)-1);
+            GameManager.Instance.GetRecipeLabData(eRecipeType).maxValue = newValue;
+            GameManager.Instance.UI.popupController.ShowInfoPopup(eRecipeType, (int)Mathf.Log(newValue, 2)-1);
             GetNewRecipeEvent?.Invoke((int)Mathf.Log(newValue, 2));
         }
 
         newMovedTile.GrowTile(new Vector2(gridSize, gridSize));
-        newMovedTile.Change(newValue, DataManager.Instance.GetFoodSprite(eRecipeType,(int)Mathf.Log(newValue, 2)-1));
+        newMovedTile.Change(newValue, GameManager.Instance.Data.GetFoodSprite(eRecipeType,(int)Mathf.Log(newValue, 2)-1));
         PushTile(tile);
 
         SwapMoney swapMoney = PopMoney();
         swapMoney.transform.localPosition = newMovedTile.transform.localPosition;
 
-        float multiple = InGameSystem.Instance.GetRecipeItemData(eRecipeType)[(int)Mathf.Log(newValue, 2) - 1].level * 0.2f;
+        float multiple = GameManager.Instance.GetRecipeItemData(eRecipeType)[(int)Mathf.Log(newValue, 2) - 1].level * 0.2f;
         int getCoin = newValue + Mathf.RoundToInt(newValue * multiple);
 
         swapMoney.Init(getCoin, gridSize);
-        InGameSystem.Instance.GameMoney = getCoin;
+        GameManager.Instance.GameMoney = getCoin;
     }
 
     #region Func

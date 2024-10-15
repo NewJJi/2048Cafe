@@ -6,21 +6,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using static Define;
 
-public class InGameUiController : MonoBehaviour
+public class UiManager : MonoBehaviour
 {
-    public static Action<ERecipeType,int> ShowRecipeInfoPopupEvent;
+    public Action<ERecipeType,int> ShowRecipeInfoPopupEvent;
     public PopupController popupController;
     public Shop shopPanel;
 
     public TMP_Text moneyText;
     public Button shopButton;
 
-    
     public void Init()
     {
         popupController.Init();
-        ShowHaveMoney(InGameSystem.Instance.GameMoney);
-        InGameSystem.Instance.MoneyEvent += ShowHaveMoney;
+        ShowHaveMoney(GameManager.Instance.GameMoney);
+        GameManager.Instance.MoneyEvent += ShowHaveMoney;
         shopPanel.Init();
 
         BindEvent();
