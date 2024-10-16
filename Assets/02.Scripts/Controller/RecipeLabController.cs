@@ -7,22 +7,6 @@ using static Define;
 
 public class RecipeLabController : MonoBehaviour
 {
-    public Button beverageRecipeLabButton;
-    public Button bakeryRecipeLabButton;
-    public Button desertRecipeLabButton;
-
-    public Button throwOutButton;
-    public TMP_Text throwOutItemCountText;
-
-    public Button expandButton;
-    public TMP_Text expandItemCountText;
-
-    public Button needleButton;
-    public TMP_Text needleItemCountText;
-
-    public Button sortButton;
-    public TMP_Text sortItemCountText;
-
     public RecipeLab beverageRecipeLab;
     public RecipeLab bakeryRecipeLab;
     public RecipeLab desertRecipeLab;
@@ -30,107 +14,74 @@ public class RecipeLabController : MonoBehaviour
     public RecipeLab currentActiveRecipeLab;
 
     public bool isRemoveMode = false;
+
     public void Init()
     {
-        BindEvent();
         InitData();
-        OnClickSwitchRecipeLab(ERecipeType.Beverage);
+        SwitchRecipeLab(ERecipeLabType.Beverage);
     }
-
     private void InitData()
     {
-        ReInitItemUi();
-
         beverageRecipeLab.Init();
         bakeryRecipeLab.Init();
         desertRecipeLab.Init();
     }
 
-    public void BindEvent()
-    {
-        GameManager.Instance.ItemEvent = ReInitItemUi;
-
-        beverageRecipeLabButton.onClick.AddListener(() => OnClickSwitchRecipeLab(ERecipeType.Beverage));
-        bakeryRecipeLabButton.onClick.AddListener(() => OnClickSwitchRecipeLab(ERecipeType.Bakery));
-        desertRecipeLabButton.onClick.AddListener(() => OnClickSwitchRecipeLab(ERecipeType.Desert));
-
-        throwOutButton.onClick.AddListener(() => OnClickThrowOutButton());
-        needleButton.onClick.AddListener(() => OnClickUseNeedleButton());
-        expandButton.onClick.AddListener(() => OnClickExpandButton());
-        sortButton.onClick.AddListener(() => OnClickSortButton());
-    }
-
-    public void OnClickSwitchRecipeLab(ERecipeType eRecipeType)
+    public void SwitchRecipeLab(ERecipeLabType eRecipeLabType)
     {
         if(currentActiveRecipeLab != null)
         {
             currentActiveRecipeLab.gameObject.SetActive(false);
         }
 
-        switch (eRecipeType)
+        switch (eRecipeLabType)
         {
-            case ERecipeType.Beverage:
+            case ERecipeLabType.Beverage:
                 currentActiveRecipeLab = beverageRecipeLab;
                 break;
-            case ERecipeType.Bakery:
+            case ERecipeLabType.Bakery:
                 currentActiveRecipeLab = bakeryRecipeLab;
                 break;
-            case ERecipeType.Desert:
+            case ERecipeLabType.Desert:
                 currentActiveRecipeLab = desertRecipeLab;
                 break;
         }
         currentActiveRecipeLab.gameObject.SetActive(true);
     }
-
     public void SwapPuzzle(EMoveDirType eMoveDirType)
     {
-        Debug.Log(eMoveDirType);
         currentActiveRecipeLab.tileController.Move(eMoveDirType);
     }
 
+    #region Func
     public void RemoveTile(Tile tile)
     {
         if(isRemoveMode == true)
         {
             currentActiveRecipeLab.tileController.RemoveTile(tile);
             isRemoveMode = false;
-            GameManager.Instance.ManageWealthData(EWealthType.ThrowOut,-1);
+            GameManager.Instance.UseItem(EItemType.ThrowOutEvent);
         }
     }
-
-    public void OnClickExpandButton()
+    public void ExpandRecipeLab()
     {
         Debug.Log("확장!");
     }
-
-    public void OnClickUseNeedleButton()
-    {
-        Debug.Log("바늘!");
-    }
-
-    public void OnClickThrowOutButton()
+    public void ThrowOutTile()
     {
         Debug.Log("버리기!");
         isRemoveMode = true;
     }
-
-    public void OnClickSortButton()
+    public void SortRecipeLab()
     {
         Debug.Log("정렬!");
     }
-    public void ReInitItemUi()
+    public void UpgradeTile()
     {
-        int throwOutItem = GameManager.Instance.Data.GetItemCount(EItemType.ThrowOutEvent);
-        int expandItem = GameManager.Instance.Data.GetItemCount(EItemType.ExpandEvent);
-        int sortItem = GameManager.Instance.Data.GetItemCount(EItemType.SortEvent);
-
-        throwOutItemCountText.text = $"X {throwOutItem}";
-        expandItemCountText.text = $"X {expandItem}";
-        sortItemCountText.text = $"X {sortItem}";
-
-        throwOutButton.gameObject.SetActive(throwOutItem==0 ? false : true);
-        expandButton.gameObject.SetActive(expandItem == 0 ? false : true);
-        sortButton.gameObject.SetActive(sortItem == 0 ? false : true);
+        Debug.Log("정렬!");
     }
+    #endregion
 
+    #region Pool
+    #endregion
 }

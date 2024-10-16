@@ -12,7 +12,7 @@ public class PopupController : MonoBehaviour
         GameManager.Instance.UI.ShowRecipeInfoPopupEvent = ShowInfoPopup;
     }
 
-    public void ShowInfoPopup(ERecipeType eRecipeType, int index)
+    public void ShowInfoPopup(ERecipeLabType eRecipeType, int index)
     {
         infoPopup.gameObject.SetActive(true);
         infoPopup.SetInfoPopup(eRecipeType, index);

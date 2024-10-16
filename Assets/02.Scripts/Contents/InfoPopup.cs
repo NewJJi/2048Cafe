@@ -21,7 +21,7 @@ public class InfoPopup : MonoBehaviour
 
     int upgradeCost = 0;
 
-    ERecipeType recipeType;
+    ERecipeLabType recipeType;
     int index;
     private void Start()
     {
@@ -30,7 +30,7 @@ public class InfoPopup : MonoBehaviour
         GameManager.Instance.levelUpEvent += ShowRecipeItem;
     }
 
-    public void SetInfoPopup(ERecipeType eRecipeType, int index/* Sprite foodSprite, string name, string description, int startCount*/)
+    public void SetInfoPopup(ERecipeLabType eRecipeType, int index/* Sprite foodSprite, string name, string description, int startCount*/)
     {
         recipeType = eRecipeType;
         this.index = index;
@@ -46,7 +46,7 @@ public class InfoPopup : MonoBehaviour
         upgradeCost = GameManager.Instance.Data.GetFoodInfo(eRecipeType, index).starCost * (recipeItemData.level + 1);
         costText.text = $"$ {upgradeCost}";
 
-        if(upgradeCost > GameManager.Instance.wealthSaveData.haveMoney)
+        if(upgradeCost > GameManager.Instance.GameMoney)
         {
             upgradeButton.enabled = false;
         }
@@ -64,9 +64,9 @@ public class InfoPopup : MonoBehaviour
     public void OnClickUpgradeButton()
     {
         Debug.Log("업그레이드!!");
-        GameManager.Instance.ManageWealthData(EWealthType.Money, -upgradeCost);
+        GameManager.Instance.SpendMoney(upgradeCost);
         GameManager.Instance.LevelUpRecipe(recipeType, index);
-        if (upgradeCost > GameManager.Instance.wealthSaveData.haveMoney)
+        if (upgradeCost > GameManager.Instance.GameMoney)
         {
             upgradeButton.enabled = false;
         }
@@ -76,7 +76,7 @@ public class InfoPopup : MonoBehaviour
         costText.text = $"$ {upgradeCost}";
     }
 
-    public void ShowRecipeItem(ERecipeType recipeType, int index)
+    public void ShowRecipeItem(ERecipeLabType recipeType, int index)
     {
             int level = GameManager.Instance.GetRecipeLabData(recipeType).recipeItemDatas[index].level;
 

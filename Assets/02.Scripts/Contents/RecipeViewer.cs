@@ -12,7 +12,7 @@ public class RecipeViewer : MonoBehaviour
 
     public RecipeItemData[] recipeItemDataArray;
 
-    public void Init(RecipeItemData[] recipeItemDatas, ERecipeType eRecipeType)
+    public void Init(RecipeItemData[] recipeItemDatas, ERecipeLabType eRecipeType)
     {
         recipeItemDataArray = recipeItemDatas;
         for (int i = 0; i < recipeItemDatas.Length; i++)
@@ -25,7 +25,7 @@ public class RecipeViewer : MonoBehaviour
         }
     }
 
-    public void EnrollNewRecipe(ERecipeType eRecipeType, int index)
+    public void EnrollNewRecipe(ERecipeLabType eRecipeType, int index)
     {
         RecipeItem recipeItem = Instantiate(recipeItemPrefab, recipeParent);
         recipeItem.SetInfo(index, recipeItemDataArray[index].level, eRecipeType, showRecipeEvent, recipeItemDataArray[index].isSpawnMaterial);

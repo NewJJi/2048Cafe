@@ -23,7 +23,7 @@ public class PuzzleData
 
 public class TileController : MonoBehaviour
 {
-    private ERecipeType eRecipeType;
+    private ERecipeLabType eRecipeType;
 
     public Tile tilePrefab;
     private Stack<Tile> tilePool = new Stack<Tile>();
@@ -45,7 +45,7 @@ public class TileController : MonoBehaviour
 
     public Action<int> GetNewRecipeEvent;
 
-    public void Init(RecipeLabSaveData recipeLabSaveData, ERecipeType eRecipeType)
+    public void Init(RecipeLabSaveData recipeLabSaveData, ERecipeLabType eRecipeType)
     {
         this.eRecipeType = eRecipeType;
         expandGridCount = recipeLabSaveData.expandLevel;
@@ -93,7 +93,6 @@ public class TileController : MonoBehaviour
             ConvertSaveData();
         }
     }
-
     public void InitTile(List<List<int>> grid)
     {
         for (int y = 0; y < grid.Count; y++)
@@ -107,7 +106,6 @@ public class TileController : MonoBehaviour
             }
         }
     }
-
     public void Move(Define.EMoveDirType dir)
     {
         bool isMoved = false;
@@ -127,7 +125,6 @@ public class TileController : MonoBehaviour
             yArrayTemp[i] = i;
         }
 
-        //������ ���⺤��
         switch (dir)
         {
             case EMoveDirType.Up:
@@ -146,17 +143,12 @@ public class TileController : MonoBehaviour
                 break;
         }
 
-        //�׸��� x,y �ݺ�
         foreach (int x in xArrayTemp)
         {
             foreach (int y in yArrayTemp)
             {
-                //�׸��尡 ������� ������ ����
-                //��� grid�� ��ȸ�� �ʿ䰡 �ֳ�?
                 if (puzzleData.gridList[x].tiles[y] != null)
                 {
-                    //tile combined false�� ����
-                    //�ʱ�ȭ
                     puzzleData.gridList[x].tiles[y].combined = false;
                     //current cell
                     Vector2 cell;
@@ -166,18 +158,11 @@ public class TileController : MonoBehaviour
 
                     do
                     {
-                        //���� cell�� next�� ����
                         cell = next;
 
-                        //next�� ���� �� + ���⺤��
                         next = new Vector2(cell.x + vector.x, cell.y + vector.y);
 
-                        //�����ȿ� �ְ�, �������� null�� �ƴҶ����� �ݺ�
-                        //do while�̱� ������ ������ ����ų� ���� �־ �ϴ� next���� ������ �Ѿ
                     } while (isInArea(next) && puzzleData.gridList[Mathf.RoundToInt(next.x)].tiles[Mathf.RoundToInt(next.y)] == null);
-
-                    //vector2���̾ float���̱� ������ RoundToInt�� ����ȯ�ؼ� �־��ֱ�
-                    //
 
                     int nx = Mathf.RoundToInt(next.x);
                     int ny = Mathf.RoundToInt(next.y);
@@ -185,9 +170,6 @@ public class TileController : MonoBehaviour
                     int cx = Mathf.RoundToInt(cell.x);
                     int cy = Mathf.RoundToInt(cell.y);
 
-                    //nx,ny�� cx,cy���� ���⺤�͸� ���� ��
-
-                    //next�� �����ȿ� �ְ�, next�� ���� Ÿ���� value���� ������ �̵�
                     if (isInArea(next) && !puzzleData.gridList[nx].tiles[ny].combined && puzzleData.gridList[nx].tiles[ny].tileValue == puzzleData.gridList[x].tiles[y].tileValue)
                     {
                         StartCoroutine(MergeTile(puzzleData.gridList[nx].tiles[ny], puzzleData.gridList[x].tiles[y]));
@@ -225,11 +207,9 @@ public class TileController : MonoBehaviour
 
         if (!IsCanSwap())
         {
-            Debug.Log("����!");
+            Debug.Log("Can't Move");
         }
     }
-
-    bool isSaved = false;
     public void ConvertSaveData()
     {
         List<List<int>> gridList = new List<List<int>>();
@@ -246,16 +226,12 @@ public class TileController : MonoBehaviour
         GameManager.Instance.GetRecipeLabData(eRecipeType).gridList = gridList;
         GameManager.Instance.SaveRecipeLabData(eRecipeType);
     }
-
     public bool IsCanSwap()
     {
-        //������ ���� �� �̵��� �� �Ҽ� �ִ� ���� �ִ��� Ȯ��
-
         for (int y = 0; y < expandGridCount; y++)
         {
             for (int x = 0; x < expandGridCount; x++)
             {
-                //�� ���� �ϳ��� ������ swap����
                 if (puzzleData.gridList[x].tiles[y] == null)
                 {
                     return true;
@@ -295,7 +271,6 @@ public class TileController : MonoBehaviour
 
         return false;
     }
-
     public void SpawnTile(Vector2 pos, int num)
     {
         Vector2 spawnPosition = GetWorldPositionFromGrid(pos);
@@ -314,12 +289,11 @@ public class TileController : MonoBehaviour
         tile.Change(num, GameManager.Instance.Data.GetFoodSprite(eRecipeType, value-1));
         if (!IsCanSwap())
         {
-            Debug.Log("����!");
+            Debug.Log("Can't Move!");
         }
 
         ConvertSaveData();
     }
-
     public void SpawnTile()
     {
         if (emptyGrid.Count == 0)
@@ -352,7 +326,7 @@ public class TileController : MonoBehaviour
         
         if (!IsCanSwap())
         {
-            Debug.Log("����!");
+            Debug.Log("Can't Move!");
         }
 
         ConvertSaveData();
@@ -362,7 +336,6 @@ public class TileController : MonoBehaviour
         yield return new WaitForSeconds(moveSpeed);
         SpawnTile();
     }
-    
     public void MoveTile(Vector2 destinationGrid, Tile tile)
     {
         Vector2 destinationPosition = GetWorldPositionFromGrid(destinationGrid);
@@ -394,7 +367,7 @@ public class TileController : MonoBehaviour
         int getCoin = newValue + Mathf.RoundToInt(newValue * multiple);
 
         swapMoney.Init(getCoin, gridSize);
-        GameManager.Instance.GameMoney = getCoin;
+        GameManager.Instance.EarnMoney(getCoin);
     }
 
     #region Func

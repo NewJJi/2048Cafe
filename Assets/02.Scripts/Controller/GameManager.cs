@@ -9,126 +9,158 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [SerializeField] private UiManager UiManager;
+    [SerializeField] private UiManager uiManager;
     [SerializeField] private RecipeLabController recipeLabController;
     [SerializeField] private InputController inputController;
+    [SerializeField] private GameDataManager gameData = new GameDataManager();
 
-    private GameDataManager dataManager = new GameDataManager();
+    public GameDataManager Data { get { return gameData; } }
+    public UiManager UI { get { return uiManager; } }
 
-    public GameDataManager Data { get { return dataManager; } }
-    public UiManager UI { get { return UiManager; } }
-
-    public WealthSaveData wealthSaveData;
-    public RecipeLabSaveData beverageSaveData;
-    public RecipeLabSaveData bakerySaveData;
-    public RecipeLabSaveData desertSaveData; 
-
+    #region Money
     public int GameMoney
     {
-        get => wealthSaveData.haveMoney;
-        set
-        {
-            ManageWealthData(EWealthType.Money,value);
-        }
+        get => gameData.wealthSaveData.haveMoney;
     }
+
+    public void EarnMoney(int money)
+    {
+        gameData.wealthSaveData.haveMoney += money;
+        ChangeMoney();
+    }
+
+    public void SpendMoney(int money)
+    {
+        gameData.wealthSaveData.haveMoney -= money;
+        ChangeMoney();
+    }
+
+    public void ChangeMoney()
+    {
+        MoneyEvent?.Invoke(gameData.wealthSaveData.haveMoney);
+        gameData.SaveWealthSaveDataData();
+    }
+    #endregion
+
+    #region Item
+    public void UseItem(EItemType eItemType)
+    {
+        int remainItemCount = 0;
+        switch (eItemType)
+        {
+            case EItemType.SortEvent:
+                gameData.wealthSaveData.sortItemCount--;
+                remainItemCount = gameData.wealthSaveData.sortItemCount;
+                break;
+            case EItemType.ThrowOutEvent:
+                gameData.wealthSaveData.throwOutItemCount--;
+                remainItemCount = gameData.wealthSaveData.throwOutItemCount;
+                break;
+            case EItemType.UpgradeEvent:
+                gameData.wealthSaveData.upgradeItemCount--;
+                remainItemCount = gameData.wealthSaveData.upgradeItemCount;
+                break;
+        }
+        gameData.SaveWealthSaveDataData();
+        ItemEvent?.Invoke(eItemType, remainItemCount);
+    }
+    public void GetItem(EItemType eItemType)
+    {
+        int remainItemCount = 0;
+        switch (eItemType)
+        {
+            case EItemType.SortEvent:
+                gameData.wealthSaveData.sortItemCount++;
+                remainItemCount = gameData.wealthSaveData.sortItemCount;
+                break;
+            case EItemType.ThrowOutEvent:
+                gameData.wealthSaveData.throwOutItemCount++;
+                remainItemCount = gameData.wealthSaveData.throwOutItemCount;
+                break;
+            case EItemType.UpgradeEvent:
+                gameData.wealthSaveData.upgradeItemCount++;
+                remainItemCount = gameData.wealthSaveData.upgradeItemCount;
+                break;
+        }
+        gameData.SaveWealthSaveDataData();
+        ItemEvent?.Invoke(eItemType, remainItemCount);
+    }
+    #endregion
 
     #region Global Event
 
+    //돈을 쓴다 or 돈을 번다 -> ui표시, 데이터 저장
     public Action<int> MoneyEvent; 
-    public Action ItemEvent;
+    public Action<EItemType,int> ItemEvent;
+    public Action<ERecipeLabType, int> levelUpEvent;
 
     #endregion
 
     public async void Awake()
     {
         Instance = this;
-        wealthSaveData = await dataManager.LoadWealthSaveDataData();
-        beverageSaveData = await dataManager.LoadRecipeLabSaveData("BeverageSaveData");
-        bakerySaveData = await dataManager.LoadRecipeLabSaveData("BakerySaveData");
-        desertSaveData = await dataManager.LoadRecipeLabSaveData("DesertSaveData");
-        await dataManager.LoadAllData();
+        await gameData.LoadAllData();
+
+        BindEvent();
         Init();
     }
 
     public void Init()
     {
-        UiManager.Init();
+        uiManager.Init();
         recipeLabController.Init();
     }
 
     public void BindEvent()
     {
+        uiManager.ClickRecipeLabEvent += recipeLabController.SwitchRecipeLab;
+
         inputController.swapEvent = recipeLabController.SwapPuzzle;
         inputController.clickTileEvent = recipeLabController.RemoveTile;
     }
 
-    public void ManageWealthData(EWealthType eWealthType, int value)
-    {
-        switch (eWealthType)
-        {
-            case EWealthType.Money:
-                wealthSaveData.haveMoney += value;
-                MoneyEvent?.Invoke(wealthSaveData.haveMoney);
-                break;
-            case EWealthType.Expand:
-                wealthSaveData.expandItemCount += value;
-                break;
-            case EWealthType.Sort:
-                wealthSaveData.sortItemCount += value;
-                break;
-            case EWealthType.Needle:
-                wealthSaveData.needleItemCount += value;
-                break;
-            case EWealthType.ThrowOut:
-                wealthSaveData.throwOutItemCount += value;
-                break;
-        }
-        Debug.Log(eWealthType);
-        dataManager.SaveWealthSaveDataData(wealthSaveData);
-    }
-    public RecipeItemData[] GetRecipeItemData(ERecipeType eRecipeType)
+    public RecipeItemData[] GetRecipeItemData(ERecipeLabType eRecipeType)
     {
         switch (eRecipeType)
         {
-            case ERecipeType.Beverage:
-                return beverageSaveData.recipeItemDatas;
-            case ERecipeType.Bakery:
-                return bakerySaveData.recipeItemDatas;
-            case ERecipeType.Desert:
-                return desertSaveData.recipeItemDatas;
+            case ERecipeLabType.Beverage:
+                return gameData.beverageSaveData.recipeItemDatas;
+            case ERecipeLabType.Bakery:
+                return gameData.bakerySaveData.recipeItemDatas;
+            case ERecipeLabType.Desert:
+                return gameData.desertSaveData.recipeItemDatas;
         }
 
         Debug.Log("Null Exception");
         return null;
     }
-
-    public List<int> GetSpawnValue(ERecipeType eRecipeType)
+    public List<int> GetSpawnValue(ERecipeLabType eRecipeType)
     {
         List<int> list = new List<int>();
         switch (eRecipeType)
         {
-            case ERecipeType.Beverage:
-                for (int i = 0; i < beverageSaveData.recipeItemDatas.Length; i++)
+            case ERecipeLabType.Beverage:
+                for (int i = 0; i < gameData.beverageSaveData.recipeItemDatas.Length; i++)
                 {
-                    if(beverageSaveData.recipeItemDatas[i].isSpawnMaterial == true)
+                    if(gameData.beverageSaveData.recipeItemDatas[i].isSpawnMaterial == true)
                     {
                         list.Add(i);
                     }
                 }
                 break;
-            case ERecipeType.Bakery:
-                for (int i = 0; i < bakerySaveData.recipeItemDatas.Length; i++)
+            case ERecipeLabType.Bakery:
+                for (int i = 0; i < gameData.bakerySaveData.recipeItemDatas.Length; i++)
                 {
-                    if (bakerySaveData.recipeItemDatas[i].isSpawnMaterial == true)
+                    if (gameData.bakerySaveData.recipeItemDatas[i].isSpawnMaterial == true)
                     {
                         list.Add(i);
                     }
                 }
                 break;
-            case ERecipeType.Desert:
-                for (int i = 0; i < desertSaveData.recipeItemDatas.Length; i++)
+            case ERecipeLabType.Desert:
+                for (int i = 0; i < gameData.desertSaveData.recipeItemDatas.Length; i++)
                 {
-                    if (desertSaveData.recipeItemDatas[i].isSpawnMaterial == true)
+                    if (gameData.desertSaveData.recipeItemDatas[i].isSpawnMaterial == true)
                     {
                         list.Add(i);
                     }
@@ -137,22 +169,21 @@ public class GameManager : MonoBehaviour
         }
         return list;
     }
-    public RecipeLabSaveData GetRecipeLabData(ERecipeType eRecipeType)
+    public RecipeLabSaveData GetRecipeLabData(ERecipeLabType eRecipeType)
     {
         switch (eRecipeType)
         {
-            case ERecipeType.Beverage:
-                return beverageSaveData;
-            case ERecipeType.Bakery:
-                return bakerySaveData;
-            case ERecipeType.Desert:
-                return desertSaveData;
+            case ERecipeLabType.Beverage:
+                return gameData.beverageSaveData;
+            case ERecipeLabType.Bakery:
+                return gameData.bakerySaveData;
+            case ERecipeLabType.Desert:
+                return gameData.desertSaveData;
         }
         Debug.Log("Null Exception");
         return null;
     }
-    public Action<ERecipeType, int> levelUpEvent;
-    public void LevelUpRecipe(ERecipeType eRecipeType, int index)
+    public void LevelUpRecipe(ERecipeLabType eRecipeType, int index)
     {
         GetRecipeItemData(eRecipeType)[index].level++;
         if(GetRecipeItemData(eRecipeType)[index].level == 5)
@@ -161,22 +192,10 @@ public class GameManager : MonoBehaviour
         }
 
         levelUpEvent?.Invoke(eRecipeType, index);
-
         SaveRecipeLabData(eRecipeType);
     }
-    public void SaveRecipeLabData(ERecipeType eRecipeType)
+    public void SaveRecipeLabData(ERecipeLabType eRecipeType)
     {
-        switch (eRecipeType)
-        {
-            case ERecipeType.Beverage:
-                dataManager.SaveRecipeLabSaveData(beverageSaveData, "BeverageSaveData");
-                break;
-            case ERecipeType.Bakery:
-                dataManager.SaveRecipeLabSaveData(beverageSaveData, "BakerySaveData");
-                break;
-            case ERecipeType.Desert:
-                dataManager.SaveRecipeLabSaveData(beverageSaveData, "DesertSaveData");
-                break;
-        }
+        gameData.SaveRecipeLabSaveData(eRecipeType);
     }
 }

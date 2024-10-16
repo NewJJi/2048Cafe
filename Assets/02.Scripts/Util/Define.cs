@@ -15,8 +15,6 @@ public static class Define
 
     public const float moveSpeed = 0.5f;
 
-
-
     public enum EMoveDirType
     {
         Left,
@@ -25,36 +23,11 @@ public static class Define
         Down
     }
 
-    public enum ESaveType { }
-
-    public enum EPuzzleType
-    {
-        Beverage,
-        Caffee,
-        Desert,
-    }
-
     public enum ERecipeLabType
     {
         Beverage,
         Bakery,
         Desert,
-    }
-
-    public enum ESaveDataType
-    {
-        BeverageData,
-        CaffeeData,
-        Desert,
-    }
-
-    public enum EWealthType
-    {
-        Money,
-        Expand,
-        Sort,
-        Needle,
-        ThrowOut
     }
 
     public enum EBeverageData
@@ -96,14 +69,6 @@ public static class Define
     {
         SortEvent,
         ThrowOutEvent,
-        ExpandEvent,
         UpgradeEvent,
-    }
-
-    public enum ERecipeType
-    {
-        Beverage,
-        Bakery,
-        Desert
     }
 }

@@ -19,7 +19,7 @@ public class RecipeItem : MonoBehaviour, IPointerClickHandler
         GameManager.Instance.levelUpEvent += ShowRecipeItem;
     }
 
-    public void SetInfo(int recipeIndex, int level, ERecipeType recipeType, Action<int> showRecipeEvent, bool isSpawnMaterial)
+    public void SetInfo(int recipeIndex, int level, ERecipeLabType recipeType, Action<int> showRecipeEvent, bool isSpawnMaterial)
     {
         this.recipeIndex = recipeIndex;
         image.sprite = GameManager.Instance.Data.GetFoodSprite(recipeType,recipeIndex);
@@ -43,7 +43,7 @@ public class RecipeItem : MonoBehaviour, IPointerClickHandler
         Debug.Log("레시피 클릭");
     }
 
-    public void ShowRecipeItem(ERecipeType recipeType, int index)
+    public void ShowRecipeItem(ERecipeLabType recipeType, int index)
     {
         if (index == recipeIndex)
         {

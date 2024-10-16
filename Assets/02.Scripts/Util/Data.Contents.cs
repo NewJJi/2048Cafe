@@ -30,16 +30,14 @@ public class HaveRecipe
 public class WealthSaveData : ILoader
 {
     public int haveMoney;
-    public int expandItemCount;
-    public int needleItemCount;
+    public int upgradeItemCount;
     public int throwOutItemCount;
     public int sortItemCount;
 
     public WealthSaveData()
     {
         haveMoney = 0;
-        expandItemCount = defaultChargedItemCount;
-        needleItemCount = defaultChargedItemCount;
+        upgradeItemCount = defaultChargedItemCount;
         throwOutItemCount = defaultChargedItemCount;
         sortItemCount = defaultChargedItemCount;
     }
@@ -82,30 +80,30 @@ public class SaveData : ILoader
         desertRecipeData = new RecipeLabSaveData();
     }
 
-    public RecipeItemData[] GetRecipeItemData(ERecipeType eRecipeType)
+    public RecipeItemData[] GetRecipeItemData(ERecipeLabType eRecipeType)
     {
         switch (eRecipeType)
         {
-            case ERecipeType.Beverage:
+            case ERecipeLabType.Beverage:
                 return beverageRecipeData.recipeItemDatas;
-            case ERecipeType.Bakery:
+            case ERecipeLabType.Bakery:
                 return bakeryRecipeData.recipeItemDatas;
-            case ERecipeType.Desert:
+            case ERecipeLabType.Desert:
                 return desertRecipeData.recipeItemDatas;
         }
 
         Debug.Log("Null Exception");
         return null;
     }
-    public RecipeLabSaveData GetRecipeLabData(ERecipeType eRecipeType)
+    public RecipeLabSaveData GetRecipeLabData(ERecipeLabType eRecipeType)
     {
         switch (eRecipeType)
         {
-            case ERecipeType.Beverage:
+            case ERecipeLabType.Beverage:
                 return beverageRecipeData;
-            case ERecipeType.Bakery:
+            case ERecipeLabType.Bakery:
                 return bakeryRecipeData;
-            case ERecipeType.Desert:
+            case ERecipeLabType.Desert:
                 return desertRecipeData;
         }
         Debug.Log("Null Exception");

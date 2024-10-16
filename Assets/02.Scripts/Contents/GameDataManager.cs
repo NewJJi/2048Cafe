@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using static Define;
 
-public class GameDataManager
+public class GameDataManager : MonoBehaviour
 {
     DataManager dataManager = new DataManager();
 
@@ -61,16 +61,16 @@ public class GameDataManager
         saveData = new SaveData();
     }
 
-    public FoodDataInfo GetFoodInfo(ERecipeType eRecipeType, int index)
+    public FoodDataInfo GetFoodInfo(ERecipeLabType eRecipeType, int index)
     {
         FoodDataInfo foodDataInfo = new FoodDataInfo();
         switch (eRecipeType)
         {
-            case ERecipeType.Beverage:
+            case ERecipeLabType.Beverage:
                 return beverageInfoBundle.beverageDataList[index];
-            case ERecipeType.Bakery:
+            case ERecipeLabType.Bakery:
                 return bakeryInfoBundle.beverageDataList[index];
-            case ERecipeType.Desert:
+            case ERecipeLabType.Desert:
                 return desertInfoBundle.beverageDataList[index];
             default:
                 Debug.LogError("Exception");
@@ -78,15 +78,15 @@ public class GameDataManager
         }
     }
 
-    public Sprite GetFoodSprite(ERecipeType eRecipeType, int index)
+    public Sprite GetFoodSprite(ERecipeLabType eRecipeType, int index)
     {
         switch (eRecipeType)
         {
-            case ERecipeType.Beverage:
+            case ERecipeLabType.Beverage:
                 return beverageSpriteList[index];
-            case ERecipeType.Bakery:
+            case ERecipeLabType.Bakery:
                 return bakerySpriteList[index];
-            case ERecipeType.Desert:
+            case ERecipeLabType.Desert:
                 return desertSpriteList[index];
             default:
                 Debug.LogError("Exception");
@@ -94,13 +94,25 @@ public class GameDataManager
         }
     }
 
-    public void SaveWealthSaveDataData(WealthSaveData wealthSaveData)
+    public void SaveWealthSaveDataData()
     {
         dataManager.SaveData<WealthSaveData>(wealthSaveData, "WealthSaveData");
     }
-    public void SaveRecipeLabSaveData(RecipeLabSaveData recipeLabSaveData, string path)
+
+    public void SaveRecipeLabSaveData(ERecipeLabType eRecipeLabType)
     {
-        dataManager.SaveData<RecipeLabSaveData>(recipeLabSaveData, path);
+        switch (eRecipeLabType)
+        {
+            case ERecipeLabType.Beverage:
+                dataManager.SaveData<RecipeLabSaveData>(beverageSaveData, "BeverageSaveData");
+                break;
+            case ERecipeLabType.Bakery:
+                dataManager.SaveData<RecipeLabSaveData>(bakerySaveData, "BakerySaveData");
+                break;
+            case ERecipeLabType.Desert:
+                dataManager.SaveData<RecipeLabSaveData>(desertSaveData, "DesertSaveData");
+                break;
+        }
     }
 
     public async Task<RecipeLabSaveData> LoadRecipeLabSaveData(string path)
@@ -122,9 +134,6 @@ public class GameDataManager
                 break;
             case EItemType.ThrowOutEvent:
                 count = wealthSaveData.throwOutItemCount;
-                break;
-            case EItemType.ExpandEvent:
-                count = wealthSaveData.expandItemCount;
                 break;
             case EItemType.UpgradeEvent:
                 break;
