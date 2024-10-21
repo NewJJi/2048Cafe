@@ -1,191 +1,191 @@
 {
   "beverageDataList": [
     {
-      "uid": 1,
-      "name": "에스프레소",
-      "description": "강한 풍미와 진한 농도를 자랑하는 커피의 기본이 되는 음료.",
+      "uid": 101,
+      "name": "모닝빵",
+      "description": "아침 식사에 자주 먹는 부드럽고 달콤한 작은 빵",
       "sellPrice": 2.0,
       "starCost": 50
     },
     {
-      "uid": 2,
-      "name": "아메리카노",
-      "description": "에스프레소에 물을 추가해 부드럽게 즐길 수 있는 커피.",
+      "uid": 102,
+      "name": "햄치즈롤빵",
+      "description": "햄과 치즈가 말린 형태로 속에 들어간 롤빵",
       "sellPrice": 4.0,
       "starCost": 100
     },
     {
-      "uid": 3,
-      "name": "카페라떼",
-      "description": "에스프레소에 우유를 더해 부드럽고 크리미한 맛이 나는 커피.",
+      "uid": 103,
+      "name": "식빵",
+      "description": "토스트나 샌드위치로 많이 사용하는 네모난 흰빵",
       "sellPrice": 8.0,
       "starCost": 150
     },
     {
-      "uid": 4,
-      "name": "카페모카",
-      "description": "에스프레소에 초콜릿 시럽과 우유를 더해 부드럽고 달콤한 맛을 내는 커피 음료.",
+      "uid": 104,
+      "name": "꽈배기",
+      "description": "꼬인 모양의 튀긴 달콤한 도넛 형태의 빵",
       "sellPrice": 16.0,
       "starCost": 200
     },
     {
-      "uid": 4,
-      "name": "캬라멜 마끼아토",
-      "description": "에스프레소와 우유 위에 캬라멜 시럽을 얹은 달콤한 커피.",
+      "uid": 105,
+      "name": "바게트",
+      "description": "길고 바삭한 프랑스식 흰 빵",
       "sellPrice": 32.0,
       "starCost": 250
     },
     {
-      "uid": 5,
-      "name": "콜드브루",
-      "description": "차가운 물에 오랜 시간 우려내어 만든 깔끔하고 상쾌한 커피.",
+      "uid": 106,
+      "name": "베이글",
+      "description": "겉은 바삭하고 속은 쫄깃한 동그란 빵",
       "sellPrice": 64.0,
       "starCost": 300
     },
     {
-      "uid": 6,
-      "name": "자몽 에이드",
-      "description": "자몽의 상큼함과 청량감을 즐길 수 있는 에이드.",
+      "uid": 107,
+      "name": "프레즐",
+      "description": "소금이 뿌려진 꼬인 모양의 짭짤한 빵",
       "sellPrice": 128.0,
       "starCost": 350
     },
     {
-      "uid": 7,
-      "name": "레몬 에이드",
-      "description": "레몬의 신선한 맛을 살린 상쾌한 음료.",
+      "uid": 108,
+      "name": "소금빵",
+      "description": "버터를 베이스로 소금이 뿌려진 바삭하고 고소한 빵",
       "sellPrice": 256.0,
       "starCost": 400
     },
     {
-      "uid": 8,
-      "name": "블루베리 에이드",
-      "description": "블루베리의 달콤함과 탄산이 어우러진 에이드.",
+      "uid": 109,
+      "name": "크로와상",
+      "description": "버터가 많이 들어간 바삭하고 결이 있는 페이스트리",
       "sellPrice": 512.0,
       "starCost": 450
     },
     {
-      "uid": 9,
-      "name": "블루레몬 에이드",
-      "description": "블루큐라소와 레몬이 조화를 이루어 색감이 독특하고 상큼한 에이드",
+      "uid": 110,
+      "name": "카스테라",
+      "description": "촉촉하고 부드러운 달걀을 많이 사용한 스폰지 케이크",
       "sellPrice": 1024.0,
       "starCost": 500
     },
     {
-      "uid": 10,
-      "name": "트로피칼 에이드",
-      "description": "다양한 열대 과일의 풍미가 담긴 에이드.",
+      "uid": 111,
+      "name": "단팥빵",
+      "description": "달콤한 팥소를 속에 넣은 빵",
       "sellPrice": 2048.0,
       "starCost": 550
     },
     {
-      "uid": 11,
-      "name": "메론 소다",
-      "description": "달콤한 메론 맛이 나는 탄산 음료.",
+      "uid": 112,
+      "name": "커피번",
+      "description": "달콤하고 바삭한 커피 맛 크러스트가 얹힌 빵",
       "sellPrice": 4096.0,
       "starCost": 600
     },
     {
-      "uid": 12,
-      "name": "자바칩 푸라푸치노",
-      "description": "초콜릿 칩과 커피가 어우러진 시원한 블렌디드 음료.",
+      "uid": 113,
+      "name": "고로케",
+      "description": "속에 다양한 재료가 들어간 빵가루를 입힌 튀긴 빵",
       "sellPrice": 8192.0,
       "starCost": 650
     },
     {
-      "uid": 13,
-      "name": "딸기 푸라푸치노",
-      "description": "딸기의 달콤한 맛을 담은 블렌디드 음료.",
+      "uid": 114,
+      "name": "메론빵",
+      "description": "겉이 바삭하고 달콤한 메론 모양의 일본식 빵",
       "sellPrice": 16384.0,
       "starCost": 700
     },
     {
-      "uid": 14,
-      "name": "망고 푸라푸치노",
-      "description": "망고의 진한 맛이 살아있는 블렌디드 음료.",
+      "uid": 115,
+      "name": "초코소라빵",
+      "description": "초코 크림이 들어간 소라 모양의 달콤한 빵",
       "sellPrice": 32768.0,
       "starCost": 750
     },
     {
-      "uid": 15,
-      "name": "녹차 푸라푸치노",
-      "description": "녹차의 쌉싸름함과 시원함을 함께 느낄 수 있는 음료.",
+      "uid": 116,
+      "name": "뺑오쇼콜라",
+      "description": "초콜릿이 들어간 페이스트리 빵",
       "sellPrice": 65536.0,
       "starCost": 800
     },
     {
-      "uid": 16,
-      "name": "오레오 푸라푸치노",
-      "description": "오레오와 커피가 조화를 이루는 달콤한 블렌디드 음료.",
+      "uid": 117,
+      "name": "마늘육쪽빵",
+      "description": "6개로 나눠진 빵 사이 마늘과 버터가 들어간 빵",
       "sellPrice": 131072.0,
       "starCost": 850
     },
     {
-      "uid": 17,
-      "name": "토마토 주스",
-      "description": "신선한 토마토로 만든 건강한 주스.",
+      "uid": 118,
+      "name": "소시지빵",
+      "description": "소시지가 들어간 미국식 핫도그 빵",
       "sellPrice": 262144.0,
       "starCost": 900
     },
     {
-      "uid": 18,
-      "name": "수박 주스",
-      "description": "여름철 인기 있는 수박의 시원한 맛을 살린 주스.",
+      "uid": 119,
+      "name": "피자빵",
+      "description": "핫도그와 피자가 섞인 독특한 한국식 빵",
       "sellPrice": 524288.0,
       "starCost": 950
     },
     {
-      "uid": 19,
-      "name": "키위 주스",
-      "description": "키위의 새콤달콤한 맛이 특징인 주스.",
+      "uid": 120,
+      "name": "계란샌드위치",
+      "description": "삶은 달걀과 마요네즈를 섞어 넣은 샌드위치",
       "sellPrice": 1048576.0,
       "starCost": 1000
     },
     {
-      "uid": 20,
-      "name": "블루베리 스무디",
-      "description": "블루베리를 얼음과 함께 갈아 만든 시원한 스무디.",
+      "uid": 121,
+      "name": "햄버거",
+      "description": "번 사이에 고기 패티와 채소를 넣은 샌드위치",
       "sellPrice": 2097152.0,
       "starCost": 1050
     },
     {
-      "uid": 21,
-      "name": "초코 바나나 스무디",
-      "description": "초콜릿과 바나나가 어우러진 달콤한 스무디.",
+      "uid": 122,
+      "name": "파니니샌드",
+      "description": "햄과 치즈가 들어간 그릴에 구운 샌드위치",
       "sellPrice": 4194304.0,
       "starCost": 1100
     },
     {
-      "uid": 22,
-      "name": "타로 밀크티",
-      "description": "쫄깃한 펄이 들어간 타로 밀크티.",
+      "uid": 123,
+      "name": "애플파이",
+      "description": "달콤한 사과 필링을 넣은 파이",
       "sellPrice": 8388608.0,
       "starCost": 1150
     },
     {
-      "uid": 23,
-      "name": "모히또",
-      "description": "라임과 민트의 상쾌한 조합을 즐길 수 있는 음료.",
+      "uid": 124,
+      "name": "미트파이",
+      "description": "고기와 그레이비를 넣은 파이",
       "sellPrice": 16777216.0,
       "starCost": 1200
     },
     {
-      "uid": 24,
-      "name": "뱅쇼",
-      "description": "와인에 과일과 향신료를 넣어 끓여 마시는 따뜻한 음료.",
+      "uid": 125,
+      "name": "정어리파이",
+      "description": "페이스트리에 정어리를 넣은 영국의 파이",
       "sellPrice": 33554432.0,
       "starCost": 1250
     },
     {
-      "uid": 25,
-      "name": "흑임자 라떼",
-      "description": "고소한 흑임자의 깊은 풍미가 우유와 조화를 이룬 음료.",
+      "uid": 126,
+      "name": "앙쿠르트 스프",
+      "description": "스프 위에 페이스트리 반죽을 덮어 구운 요리",
       "sellPrice": 67108864.0,
       "starCost": 1300
     },
     {
-      "uid": 26,
-      "name": "체리 블라썸",
-      "description": "벚꽃 시럽과 라떼가 어우러져 달콤하고 은은한 벚꽃 향을 느낄 수 있는 음료.",
+      "uid": 127,
+      "name": "허니브레드",
+      "description": "구운 식빵에 생크림과 캐러멜시럽 시나몬 파우더로 토핑한 빵",
       "sellPrice": 134217728.0,
       "starCost": 1350
     }

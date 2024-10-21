@@ -15,6 +15,9 @@ public static class Define
 
     public const float moveSpeed = 0.5f;
 
+    public const int SwapAreaLayer = 7;
+    public const int TileLayer = 8;
+
     public enum EMoveDirType
     {
         Left,
@@ -67,8 +70,15 @@ public static class Define
 
     public enum EItemType
     {
-        SortEvent,
-        ThrowOutEvent,
-        UpgradeEvent,
+        SortItem,
+        ThrowOutItem,
+        UpgradeItem,
+    }
+
+    public enum ETileClickEventType
+    {
+        None,
+        Remove,
+        Upgrade
     }
 }

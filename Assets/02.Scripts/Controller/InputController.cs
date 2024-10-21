@@ -41,6 +41,11 @@ public class InputController : MonoBehaviour
     
     private void Update()
     {
+        if(GameManager.Instance.IsCanSwap == false)
+        {
+            return;
+        }
+
         SwipeEditor();
         if (Input.GetMouseButtonDown(0))
         {
@@ -48,13 +53,13 @@ public class InputController : MonoBehaviour
             //startPosition = Input.mousePosition;
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && IsCheckInSwapArea())
         {
             endPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             //endPosition = Input.mousePosition;
             if (endPosition.y < swapMinArea && startPosition.y < swapMinArea)
             {
-                Swipe(startPosition, endPosition, isCanDiagonal);
+                Swipe(startPosition, endPosition);
             }
         }
 
@@ -63,7 +68,7 @@ public class InputController : MonoBehaviour
 
     public void ClickTile()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonUp(0))
         {
             PointerEventData pointerData = new PointerEventData(eventSystem);
             pointerData.position = Input.mousePosition;
@@ -76,13 +81,36 @@ public class InputController : MonoBehaviour
 
             foreach (RaycastResult result in results)
             {
-                if (string.Equals(result.gameObject.name, "Tile(Clone)"))
+                if (result.gameObject.layer == TileLayer)
                 {
                     Debug.Log("Hit UI: " + result.gameObject.name);
                     clickTileEvent.Invoke(result.gameObject.GetComponent<Tile>());
                 }
             }
         }
+    }
+
+    public bool IsCheckInSwapArea()
+    {
+        PointerEventData pointerData = new PointerEventData(eventSystem);
+        pointerData.position = Input.mousePosition;
+
+        // Raycast 결과를 저장할 리스트
+        List<RaycastResult> results = new List<RaycastResult>();
+
+        // Raycast 실행
+        raycaster.Raycast(pointerData, results);
+
+        foreach (RaycastResult result in results)
+        {
+            if (result.gameObject.layer == SwapAreaLayer)
+            {
+                Debug.Log("Hit UI: " + result.gameObject.name);
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void SwipeEditor() 
@@ -106,7 +134,7 @@ public class InputController : MonoBehaviour
     }
 
 
-    private void Swipe(Vector2 startPosition, Vector2 endPosition, bool diagonal)
+    private void Swipe(Vector2 startPosition, Vector2 endPosition)
     {
         if (startPosition != endPosition/* && startPosition != Vector2.zero && endPosition != Vector2.zero*/)
         {
@@ -147,21 +175,9 @@ public class InputController : MonoBehaviour
         }
     }
 
-    public void SwapRecipeLab()
-    {
-
-    }
-
     public void InitSwapArea()
     {
         swapMinArea = (canvas.sizeDelta.y * 0.5f);
         swapMaxArea = 0;
-    }
-
-    public void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(new Vector3(0, swapMinArea), new Vector3(1080, swapMinArea));
-        Gizmos.DrawLine(new Vector3(0, swapMaxArea), new Vector3(1080, swapMaxArea));
     }
 }

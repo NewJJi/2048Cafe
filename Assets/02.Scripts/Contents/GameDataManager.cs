@@ -9,8 +9,6 @@ public class GameDataManager : MonoBehaviour
 {
     DataManager dataManager = new DataManager();
 
-    public SaveData saveData;
-
     public WealthSaveData wealthSaveData;
     public RecipeLabSaveData beverageSaveData;
     public RecipeLabSaveData bakerySaveData;
@@ -46,24 +44,21 @@ public class GameDataManager : MonoBehaviour
         desertInfoBundle = JsonConvert.DeserializeObject<FoodDataInfoBundle>(desertInfoData.text);
     }
 
-    public async Task InitSaveData()
-    {
-        saveData = await dataManager.LoadDataAsync<SaveData>("SaveData");
-    }
-    public void InitSaveData2()
-    {
-        saveData = dataManager.LoadData<SaveData>("SaveData");
-    }
-
     [ContextMenu("Reset Save Data")]
     public void ResetSaveData()
     {
-        saveData = new SaveData();
+        wealthSaveData = new WealthSaveData();
+        beverageSaveData = new RecipeLabSaveData();
+        bakerySaveData = new RecipeLabSaveData();
+        desertSaveData = new RecipeLabSaveData();
+        SaveWealthSaveDataData();
+        SaveRecipeLabSaveData(ERecipeLabType.Beverage);
+        SaveRecipeLabSaveData(ERecipeLabType.Bakery);
+        SaveRecipeLabSaveData(ERecipeLabType.Desert);
     }
 
     public FoodDataInfo GetFoodInfo(ERecipeLabType eRecipeType, int index)
     {
-        FoodDataInfo foodDataInfo = new FoodDataInfo();
         switch (eRecipeType)
         {
             case ERecipeLabType.Beverage:
@@ -129,13 +124,14 @@ public class GameDataManager : MonoBehaviour
         int count = 0;
         switch (eItemType)
         {
-            case EItemType.SortEvent:
+            case EItemType.SortItem:
                 count = wealthSaveData.sortItemCount;
                 break;
-            case EItemType.ThrowOutEvent:
+            case EItemType.ThrowOutItem:
                 count = wealthSaveData.throwOutItemCount;
                 break;
-            case EItemType.UpgradeEvent:
+            case EItemType.UpgradeItem:
+                count = wealthSaveData.upgradeItemCount;
                 break;
         }
         return count;

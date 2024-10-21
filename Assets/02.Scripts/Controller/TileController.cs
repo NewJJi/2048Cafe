@@ -9,18 +9,6 @@ using DG.Tweening;
 using System;
 using Newtonsoft.Json;
 
-[System.Serializable]
-public class ListBundle
-{
-    public List<Tile> tiles = new List<Tile>();
-}
-
-[System.Serializable]
-public class PuzzleData
-{
-    public List<ListBundle> gridList = new List<ListBundle>();
-}
-
 public class TileController : MonoBehaviour
 {
     private ERecipeLabType eRecipeType;
@@ -29,13 +17,11 @@ public class TileController : MonoBehaviour
     private Stack<Tile> tilePool = new Stack<Tile>();
     private Transform poolParent;
 
-    public SwapMoney moneyPrefab;
-    private Stack<SwapMoney> moneyPool = new Stack<SwapMoney>();
-    private Transform moneyParent;
-
     public PuzzleData puzzleData;
 
-    private List<Vector2> emptyGrid = new List<Vector2>();
+    public List<Vector2> emptyGrid = new List<Vector2>();
+
+    private Func<SwapMoney> ShowSwapMoneyEvnet;
 
     public RectTransform contentTransform;
     public int padding;
@@ -57,11 +43,7 @@ public class TileController : MonoBehaviour
         poolParent.transform.localPosition = Vector2.zero;
         poolParent.name = "PoolParent";
 
-        moneyParent = new GameObject().transform;
-        moneyParent.parent = this.transform;
-        moneyParent.transform.localPosition = Vector2.zero;
-        moneyParent.name = "moneyParent";
-
+        ShowSwapMoneyEvnet = GameManager.Instance.UI.PopMoney;
 
         for (int i = 0; i < expandGridCount; i++)
         {
@@ -75,11 +57,11 @@ public class TileController : MonoBehaviour
 
         for (int y = 0; y < expandGridCount; y++)
         {
-            puzzleData.gridList.Add(new ListBundle());
+            puzzleData.tileColumn.Add(new ListBundle());
 
             for (int x = 0; x < expandGridCount; x++)
             {
-                puzzleData.gridList[y].tiles.Add(null);
+                puzzleData.tileColumn[y].tileRow.Add(null);
             }
         }
 
@@ -102,6 +84,7 @@ public class TileController : MonoBehaviour
                 if (grid[x][y] != 0)
                 {
                     SpawnTile(new Vector2(x, y), grid[x][y]);
+                    emptyGrid.Remove(new Vector2(x, y));
                 }
             }
         }
@@ -147,9 +130,9 @@ public class TileController : MonoBehaviour
         {
             foreach (int y in yArrayTemp)
             {
-                if (puzzleData.gridList[x].tiles[y] != null)
+                if (puzzleData.tileColumn[x].tileRow[y] != null)
                 {
-                    puzzleData.gridList[x].tiles[y].combined = false;
+                    puzzleData.tileColumn[x].tileRow[y].combined = false;
                     //current cell
                     Vector2 cell;
 
@@ -162,7 +145,7 @@ public class TileController : MonoBehaviour
 
                         next = new Vector2(cell.x + vector.x, cell.y + vector.y);
 
-                    } while (isInArea(next) && puzzleData.gridList[Mathf.RoundToInt(next.x)].tiles[Mathf.RoundToInt(next.y)] == null);
+                    } while (isInArea(next) && puzzleData.tileColumn[Mathf.RoundToInt(next.x)].tileRow[Mathf.RoundToInt(next.y)] == null);
 
                     int nx = Mathf.RoundToInt(next.x);
                     int ny = Mathf.RoundToInt(next.y);
@@ -170,13 +153,13 @@ public class TileController : MonoBehaviour
                     int cx = Mathf.RoundToInt(cell.x);
                     int cy = Mathf.RoundToInt(cell.y);
 
-                    if (isInArea(next) && !puzzleData.gridList[nx].tiles[ny].combined && puzzleData.gridList[nx].tiles[ny].tileValue == puzzleData.gridList[x].tiles[y].tileValue)
+                    if (isInArea(next) && !puzzleData.tileColumn[nx].tileRow[ny].combined && puzzleData.tileColumn[nx].tileRow[ny].tileValue == puzzleData.tileColumn[x].tileRow[y].tileValue)
                     {
-                        StartCoroutine(MergeTile(puzzleData.gridList[nx].tiles[ny], puzzleData.gridList[x].tiles[y]));
-                        MoveTile(new Vector2(nx, ny), puzzleData.gridList[x].tiles[y]);
-                        puzzleData.gridList[nx].tiles[ny] = puzzleData.gridList[x].tiles[y];
-                        puzzleData.gridList[nx].tiles[ny].combined = true;
-                        puzzleData.gridList[x].tiles[y] = null;
+                        StartCoroutine(MergeTile(puzzleData.tileColumn[nx].tileRow[ny], puzzleData.tileColumn[x].tileRow[y]));
+                        MoveTile(new Vector2(nx, ny), puzzleData.tileColumn[x].tileRow[y]);
+                        puzzleData.tileColumn[nx].tileRow[ny] = puzzleData.tileColumn[x].tileRow[y];
+                        puzzleData.tileColumn[nx].tileRow[ny].combined = true;
+                        puzzleData.tileColumn[x].tileRow[y] = null;
 
                         emptyGrid.Remove(new Vector2(nx, ny));
                         emptyGrid.Add(new Vector2(x, y));
@@ -186,9 +169,9 @@ public class TileController : MonoBehaviour
                     {
                         if (x != cx || y != cy)
                         {
-                            MoveTile(new Vector2(cx, cy), puzzleData.gridList[x].tiles[y]);
-                            puzzleData.gridList[cx].tiles[cy] = puzzleData.gridList[x].tiles[y];
-                            puzzleData.gridList[x].tiles[y] = null;
+                            MoveTile(new Vector2(cx, cy), puzzleData.tileColumn[x].tileRow[y]);
+                            puzzleData.tileColumn[cx].tileRow[cy] = puzzleData.tileColumn[x].tileRow[y];
+                            puzzleData.tileColumn[x].tileRow[y] = null;
 
                             emptyGrid.Remove(new Vector2(cx, cy));
                             emptyGrid.Add(new Vector2(x, y));
@@ -214,12 +197,12 @@ public class TileController : MonoBehaviour
     {
         List<List<int>> gridList = new List<List<int>>();
         
-        for (int y = 0; y < puzzleData.gridList.Count; y++)
+        for (int y = 0; y < puzzleData.tileColumn.Count; y++)
         {
             gridList.Add(new List<int>());
-            for (int x = 0; x < puzzleData.gridList[y].tiles.Count; x++)
+            for (int x = 0; x < puzzleData.tileColumn[y].tileRow.Count; x++)
             {
-                gridList[y].Add(puzzleData.gridList[y].tiles[x] == null ? 0 : puzzleData.gridList[y].tiles[x].tileValue);
+                gridList[y].Add(puzzleData.tileColumn[y].tileRow[x] == null ? 0 : puzzleData.tileColumn[y].tileRow[x].tileValue);
             }
         }
 
@@ -232,7 +215,7 @@ public class TileController : MonoBehaviour
         {
             for (int x = 0; x < expandGridCount; x++)
             {
-                if (puzzleData.gridList[x].tiles[y] == null)
+                if (puzzleData.tileColumn[x].tileRow[y] == null)
                 {
                     return true;
                 }
@@ -259,8 +242,8 @@ public class TileController : MonoBehaviour
                         }
 
                         if (isInArea(Vtor + new Vector2(x, y)) &&
-                            puzzleData.gridList[x + Mathf.RoundToInt(Vtor.x)].tiles[y + Mathf.RoundToInt(Vtor.y)] != null &&
-                            puzzleData.gridList[x].tiles[y].tileValue == puzzleData.gridList[x + Mathf.RoundToInt(Vtor.x)].tiles[y + Mathf.RoundToInt(Vtor.y)].tileValue)
+                            puzzleData.tileColumn[x + Mathf.RoundToInt(Vtor.x)].tileRow[y + Mathf.RoundToInt(Vtor.y)] != null &&
+                            puzzleData.tileColumn[x].tileRow[y].tileValue == puzzleData.tileColumn[x + Mathf.RoundToInt(Vtor.x)].tileRow[y + Mathf.RoundToInt(Vtor.y)].tileValue)
                         {
                             return true;
                         }
@@ -283,7 +266,7 @@ public class TileController : MonoBehaviour
         int x = (int)pos.x;
         int y = (int)pos.y;
 
-        puzzleData.gridList[x].tiles[y] = tile;
+        puzzleData.tileColumn[x].tileRow[y] = tile;
         tile.SetGrid(x, y);
         int value = num == 0 ? 0 : (int)Mathf.Log(num, 2);
         tile.Change(num, GameManager.Instance.Data.GetFoodSprite(eRecipeType, value-1));
@@ -315,7 +298,7 @@ public class TileController : MonoBehaviour
 
         emptyGrid.RemoveAt(ranNum);
 
-        puzzleData.gridList[x].tiles[y] = tile;
+        puzzleData.tileColumn[x].tileRow[y] = tile;
         tile.SetGrid(x, y);
 
         List<int> spawnValue = GameManager.Instance.GetSpawnValue(eRecipeType);
@@ -342,7 +325,7 @@ public class TileController : MonoBehaviour
         tile.transform.DOLocalMove(destinationPosition, moveSpeed);
         tile.SetGrid((int)destinationGrid.x, (int)destinationGrid.y);
 
-        puzzleData.gridList[(int)destinationGrid.x].tiles[(int)destinationGrid.y] = tile;
+        puzzleData.tileColumn[(int)destinationGrid.x].tileRow[(int)destinationGrid.y] = tile;
     }
     public IEnumerator MergeTile(Tile tile, Tile newMovedTile)
     {
@@ -353,15 +336,15 @@ public class TileController : MonoBehaviour
         {
             GameManager.Instance.GetRecipeLabData(eRecipeType).maxValue = newValue;
             GameManager.Instance.UI.popupController.ShowInfoPopup(eRecipeType, (int)Mathf.Log(newValue, 2)-1);
-            GetNewRecipeEvent?.Invoke((int)Mathf.Log(newValue, 2));
+            GetNewRecipeEvent?.Invoke((int)Mathf.Log(newValue, 2)-1);
         }
 
         newMovedTile.GrowTile(new Vector2(gridSize, gridSize));
         newMovedTile.Change(newValue, GameManager.Instance.Data.GetFoodSprite(eRecipeType,(int)Mathf.Log(newValue, 2)-1));
         PushTile(tile);
 
-        SwapMoney swapMoney = PopMoney();
-        swapMoney.transform.localPosition = newMovedTile.transform.localPosition;
+        SwapMoney swapMoney = ShowSwapMoneyEvnet?.Invoke();
+        swapMoney.transform.position = newMovedTile.transform.position;
 
         float multiple = GameManager.Instance.GetRecipeItemData(eRecipeType)[(int)Mathf.Log(newValue, 2) - 1].level * 0.2f;
         int getCoin = newValue + Mathf.RoundToInt(newValue * multiple);
@@ -376,13 +359,13 @@ public class TileController : MonoBehaviour
     public void ExpandLaboratory()
     {
         expandGridCount++;
-        puzzleData.gridList.Add(new ListBundle());
-        for (int i = 0;i<puzzleData.gridList.Count; i++)
+        puzzleData.tileColumn.Add(new ListBundle());
+        for (int i = 0;i<puzzleData.tileColumn.Count; i++)
         {
             do
             {
-                puzzleData.gridList[i].tiles.Insert(0,null);
-            } while(puzzleData.gridList[i].tiles.Count<expandGridCount);
+                puzzleData.tileColumn[i].tileRow.Insert(0,null);
+            } while(puzzleData.tileColumn[i].tileRow.Count<expandGridCount);
         }
         CalculateGridSize();
         SetTileSize();
@@ -396,13 +379,13 @@ public class TileController : MonoBehaviour
     {
         List<Tile> activeTile = new List<Tile>();
 
-        for (int i = 0; i < puzzleData.gridList.Count; i++)
+        for (int i = 0; i < puzzleData.tileColumn.Count; i++)
         {
-            for (int j = 0; j < puzzleData.gridList[i].tiles.Count; j++)
+            for (int j = 0; j < puzzleData.tileColumn[i].tileRow.Count; j++)
             {
-                if(puzzleData.gridList[i].tiles[j] != null)
+                if(puzzleData.tileColumn[i].tileRow[j] != null)
                 {
-                    activeTile.Add(puzzleData.gridList[i].tiles[j]);
+                    activeTile.Add(puzzleData.tileColumn[i].tileRow[j]);
                 }
             }
         }
@@ -414,8 +397,8 @@ public class TileController : MonoBehaviour
             {
                 if(activeTile.Count != 0) 
                 {
-                    puzzleData.gridList[x].tiles[y] = activeTile[0];
-                    puzzleData.gridList[x].tiles[y].gameObject.transform.localPosition = GetWorldPositionFromGrid(new Vector2(x, y));
+                    puzzleData.tileColumn[x].tileRow[y] = activeTile[0];
+                    puzzleData.tileColumn[x].tileRow[y].gameObject.transform.localPosition = GetWorldPositionFromGrid(new Vector2(x, y));
                     activeTile.RemoveAt(0);
                 }
             }
@@ -477,10 +460,28 @@ public class TileController : MonoBehaviour
     #region Remove Tile
     public void RemoveTile(Tile tile)
     {
-        Tile removedTile = puzzleData.gridList[tile.gridX].tiles[tile.gridY];
-        puzzleData.gridList[tile.gridX].tiles[tile.gridY] = null;
+        Tile removedTile = puzzleData.tileColumn[tile.gridX].tileRow[tile.gridY];
+        puzzleData.tileColumn[tile.gridX].tileRow[tile.gridY] = null;
         PushTile(removedTile);
     }
+
+    #region Upgrade Tile
+    internal bool UpgradeTile(Tile tile)
+    {
+        Tile upgradeTile = puzzleData.tileColumn[tile.gridX].tileRow[tile.gridY];
+        if(upgradeTile.tileValue >= GameManager.Instance.GetRecipeLabData(eRecipeType).maxValue)
+        {
+            return false;
+        }
+        else
+        {
+            int newValue = upgradeTile.tileValue * 2;
+            upgradeTile.Change(newValue, GameManager.Instance.Data.GetFoodSprite(eRecipeType, (int)Mathf.Log(newValue, 2) - 1));
+            return true;
+        }
+
+    }
+    #endregion
 
     #endregion
 
@@ -510,22 +511,22 @@ public class TileController : MonoBehaviour
         {
             for (int j = 0; j < expandGridCount; j++)
             {
-                if (puzzleData.gridList[i].tiles[j] != null)
+                if (puzzleData.tileColumn[i].tileRow[j] != null)
                 {
-                    puzzleData.gridList[i].tiles[j].rectTransform.sizeDelta = new Vector2(gridSize, gridSize);
+                    puzzleData.tileColumn[i].tileRow[j].rectTransform.sizeDelta = new Vector2(gridSize, gridSize);
                 }
             }
         }
     }
     public void SetPositionAllTile()
     {
-        for (int x = 0; x < puzzleData.gridList.Count; x++)
+        for (int x = 0; x < puzzleData.tileColumn.Count; x++)
         {
-            for (int y = 0; y < puzzleData.gridList[x].tiles.Count; y++)
+            for (int y = 0; y < puzzleData.tileColumn[x].tileRow.Count; y++)
             {
-                if (puzzleData.gridList[x].tiles[y] != null)
+                if (puzzleData.tileColumn[x].tileRow[y] != null)
                 {
-                    puzzleData.gridList[x].tiles[y].transform.localPosition = GetWorldPositionFromGrid(new Vector2(x,y));
+                    puzzleData.tileColumn[x].tileRow[y].transform.localPosition = GetWorldPositionFromGrid(new Vector2(x,y));
                 }
             }
         }
@@ -558,25 +559,5 @@ public class TileController : MonoBehaviour
         tile.gameObject.SetActive(false);
         tilePool.Push(tile);
     }
-
-    public SwapMoney PopMoney()
-    {
-        if (moneyPool.Count == 0)
-        {
-            SwapMoney money = Instantiate(moneyPrefab, moneyParent);
-            money.returnEvent = PushMoney;
-            moneyPool.Push(money);
-        }
-
-        SwapMoney swapMoney = moneyPool.Pop();
-        swapMoney.gameObject.SetActive(true);
-        return swapMoney;
-    }
-    public void PushMoney(SwapMoney money)
-    {
-        money.gameObject.SetActive(false);
-        moneyPool.Push(money);
-    }
-
     #endregion
 }

@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public GameDataManager Data { get { return gameData; } }
     public UiManager UI { get { return uiManager; } }
 
+    public bool IsCanSwap = true;
+
     #region Money
     public int GameMoney
     {
@@ -48,15 +50,15 @@ public class GameManager : MonoBehaviour
         int remainItemCount = 0;
         switch (eItemType)
         {
-            case EItemType.SortEvent:
+            case EItemType.SortItem:
                 gameData.wealthSaveData.sortItemCount--;
                 remainItemCount = gameData.wealthSaveData.sortItemCount;
                 break;
-            case EItemType.ThrowOutEvent:
+            case EItemType.ThrowOutItem:
                 gameData.wealthSaveData.throwOutItemCount--;
                 remainItemCount = gameData.wealthSaveData.throwOutItemCount;
                 break;
-            case EItemType.UpgradeEvent:
+            case EItemType.UpgradeItem:
                 gameData.wealthSaveData.upgradeItemCount--;
                 remainItemCount = gameData.wealthSaveData.upgradeItemCount;
                 break;
@@ -64,21 +66,21 @@ public class GameManager : MonoBehaviour
         gameData.SaveWealthSaveDataData();
         ItemEvent?.Invoke(eItemType, remainItemCount);
     }
-    public void GetItem(EItemType eItemType)
+    public void GetItem(EItemType eItemType, int itemCount)
     {
         int remainItemCount = 0;
         switch (eItemType)
         {
-            case EItemType.SortEvent:
-                gameData.wealthSaveData.sortItemCount++;
+            case EItemType.SortItem:
+                gameData.wealthSaveData.sortItemCount += itemCount;
                 remainItemCount = gameData.wealthSaveData.sortItemCount;
                 break;
-            case EItemType.ThrowOutEvent:
-                gameData.wealthSaveData.throwOutItemCount++;
+            case EItemType.ThrowOutItem:
+                gameData.wealthSaveData.throwOutItemCount += itemCount;
                 remainItemCount = gameData.wealthSaveData.throwOutItemCount;
                 break;
-            case EItemType.UpgradeEvent:
-                gameData.wealthSaveData.upgradeItemCount++;
+            case EItemType.UpgradeItem:
+                gameData.wealthSaveData.upgradeItemCount += itemCount;
                 remainItemCount = gameData.wealthSaveData.upgradeItemCount;
                 break;
         }
@@ -114,9 +116,10 @@ public class GameManager : MonoBehaviour
     public void BindEvent()
     {
         uiManager.ClickRecipeLabEvent += recipeLabController.SwitchRecipeLab;
+        uiManager.ClickItemEvent += recipeLabController.UseItem;
 
         inputController.swapEvent = recipeLabController.SwapPuzzle;
-        inputController.clickTileEvent = recipeLabController.RemoveTile;
+        inputController.clickTileEvent = recipeLabController.ClickTileEvent;
     }
 
     public RecipeItemData[] GetRecipeItemData(ERecipeLabType eRecipeType)

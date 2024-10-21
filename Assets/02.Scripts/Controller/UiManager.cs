@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,8 +12,8 @@ public class UiManager : MonoBehaviour
     public TMP_Text moneyText;
 
     [Header("Shop")]
-    public Button shopButton;
     public Shop shopPanel;
+    public Button shopOpenButton;
 
     [Header("RecipeLabButton")]
     public Button beverageRecipeLabButton;
@@ -28,6 +29,10 @@ public class UiManager : MonoBehaviour
 
     public Button sortButton;
     public TMP_Text sortItemCountText;
+
+    public SwapMoney moneyPrefab;
+    public Transform moneyParent;
+    private Stack<SwapMoney> moneyPool = new Stack<SwapMoney>();
 
     #region Event
     //info 패널 이벤트
@@ -49,9 +54,9 @@ public class UiManager : MonoBehaviour
 
         ShowHaveMoney(GameManager.Instance.GameMoney);
 
-        ShowItemData(EItemType.ThrowOutEvent, GameManager.Instance.Data.GetItemCount(EItemType.ThrowOutEvent));
-        ShowItemData(EItemType.UpgradeEvent, GameManager.Instance.Data.GetItemCount(EItemType.UpgradeEvent));
-        ShowItemData(EItemType.SortEvent, GameManager.Instance.Data.GetItemCount(EItemType.SortEvent));
+        ShowItemData(EItemType.ThrowOutItem, GameManager.Instance.Data.GetItemCount(EItemType.ThrowOutItem));
+        ShowItemData(EItemType.UpgradeItem, GameManager.Instance.Data.GetItemCount(EItemType.UpgradeItem));
+        ShowItemData(EItemType.SortItem, GameManager.Instance.Data.GetItemCount(EItemType.SortItem));
     }
 
     public void BindEvent()
@@ -59,7 +64,12 @@ public class UiManager : MonoBehaviour
         GameManager.Instance.MoneyEvent += ShowHaveMoney;
         GameManager.Instance.ItemEvent += ShowItemData;
 
-        shopButton.onClick.AddListener(() => { shopPanel.ShowShopPanel(); });
+        shopOpenButton.onClick.AddListener(() => shopPanel.ShowShopPanel());
+
+        throwOutButton.onClick.AddListener(()=>ClickItemEvent?.Invoke(EItemType.ThrowOutItem));
+        upgradeButton.onClick.AddListener(() => ClickItemEvent?.Invoke(EItemType.UpgradeItem));
+        sortButton.onClick.AddListener(() => ClickItemEvent?.Invoke(EItemType.SortItem));
+
         beverageRecipeLabButton.onClick.AddListener(() => { ClickRecipeLabEvent?.Invoke(ERecipeLabType.Beverage); });
         bakeryRecipeLabButton.onClick.AddListener(() => { ClickRecipeLabEvent?.Invoke(ERecipeLabType.Bakery); });
         desertRecipeLabButton.onClick.AddListener(() => { ClickRecipeLabEvent?.Invoke(ERecipeLabType.Desert); });
@@ -75,18 +85,66 @@ public class UiManager : MonoBehaviour
         bool isRemainItem = count == 0 ? false : true;
         switch (eItemType)
         {
-            case EItemType.SortEvent:
-                sortItemCountText.text = $"X {count}";
-                sortButton.gameObject.SetActive(isRemainItem);
+            case EItemType.SortItem:
+                sortItemCountText.text = $"{count} 개";
+                sortButton.interactable = isRemainItem;
                 break;
-            case EItemType.ThrowOutEvent:
-                throwOutItemCountText.text = $"X {count}";
-                throwOutButton.gameObject.SetActive(isRemainItem);
+            case EItemType.ThrowOutItem:
+                throwOutItemCountText.text = $"{count} 개";
+                throwOutButton.interactable = isRemainItem;
                 break;
-            case EItemType.UpgradeEvent:
-                upgradeItemCountText.text = $"{count}";
-                upgradeButton.gameObject.SetActive(isRemainItem);
+            case EItemType.UpgradeItem:
+                upgradeItemCountText.text = $"{count} 개";
+                upgradeButton.interactable = isRemainItem;
                 break;
         }
+    }
+
+    public void OnClickThrowAwayItem()
+    {
+        Debug.Log("버리기!");
+    }
+    public void OnClickSortItem()
+    {
+        Debug.Log("정렬하기!");
+    }
+    public void OnClickUpgradeItem()
+    {
+        Debug.Log("업그레이드하기!");
+    }
+
+    public void OnClickItemButton(EItemType eItemType)
+    {
+        switch (eItemType)
+        {
+            case EItemType.SortItem:
+
+                break;
+            case EItemType.ThrowOutItem:
+
+                break;
+            case EItemType.UpgradeItem:
+
+                break;
+        }
+    }
+
+    public SwapMoney PopMoney()
+    {
+        if (moneyPool.Count == 0)
+        {
+            SwapMoney money = Instantiate(moneyPrefab, moneyParent);
+            money.returnEvent = PushMoney;
+            moneyPool.Push(money);
+        }
+
+        SwapMoney swapMoney = moneyPool.Pop();
+        swapMoney.gameObject.SetActive(true);
+        return swapMoney;
+    }
+    public void PushMoney(SwapMoney money)
+    {
+        money.gameObject.SetActive(false);
+        moneyPool.Push(money);
     }
 }

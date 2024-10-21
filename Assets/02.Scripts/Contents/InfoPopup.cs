@@ -25,13 +25,20 @@ public class InfoPopup : MonoBehaviour
     int index;
     private void Start()
     {
-        backPanelButton.onClick.AddListener(()=> { this.gameObject.SetActive(false); });
+        backPanelButton.onClick.AddListener(()=> 
+        { 
+            this.gameObject.SetActive(false);
+            GameManager.Instance.IsCanSwap = true;
+        });
+
         upgradeButton.onClick.AddListener(OnClickUpgradeButton);
         GameManager.Instance.levelUpEvent += ShowRecipeItem;
     }
 
     public void SetInfoPopup(ERecipeLabType eRecipeType, int index/* Sprite foodSprite, string name, string description, int startCount*/)
     {
+        GameManager.Instance.IsCanSwap = false;
+
         recipeType = eRecipeType;
         this.index = index;
 
@@ -46,9 +53,17 @@ public class InfoPopup : MonoBehaviour
         upgradeCost = GameManager.Instance.Data.GetFoodInfo(eRecipeType, index).starCost * (recipeItemData.level + 1);
         costText.text = $"$ {upgradeCost}";
 
-        if(upgradeCost > GameManager.Instance.GameMoney)
+        upgradeButton.interactable = true;
+
+        if (upgradeCost > GameManager.Instance.GameMoney)
         {
-            upgradeButton.enabled = false;
+            upgradeButton.interactable = false;
+        }
+
+        if(recipeItemData.level == 5)
+        {
+            costText.text = "Max";
+            upgradeButton.interactable = false;
         }
 
         for (int i = 0; i < foodStarArray.Length; i++)
@@ -74,6 +89,11 @@ public class InfoPopup : MonoBehaviour
         RecipeItemData recipeItemData = recipeLabSaveData.recipeItemDatas[index];
         upgradeCost = GameManager.Instance.Data.GetFoodInfo(recipeType, index).starCost * (recipeItemData.level + 1);
         costText.text = $"$ {upgradeCost}";
+        if (recipeItemData.level == 5)
+        {
+            costText.text = "Max";
+            upgradeButton.interactable = false;
+        }
     }
 
     public void ShowRecipeItem(ERecipeLabType recipeType, int index)

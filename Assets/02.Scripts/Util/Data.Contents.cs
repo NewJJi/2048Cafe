@@ -27,6 +27,18 @@ public class HaveRecipe
 #region Save Data
 
 [System.Serializable]
+public class ListBundle
+{
+    public List<Tile> tileRow = new List<Tile>();
+}
+
+[System.Serializable]
+public class PuzzleData
+{
+    public List<ListBundle> tileColumn = new List<ListBundle>();
+}
+
+[System.Serializable]
 public class WealthSaveData : ILoader
 {
     public int haveMoney;
@@ -45,8 +57,6 @@ public class WealthSaveData : ILoader
 public class BeverageSaveData : RecipeLabSaveData { }
 public class BakerySaveData : RecipeLabSaveData { }
 public class DesertSaveData : RecipeLabSaveData { }
-
-
 
 public class SaveData : ILoader
 {

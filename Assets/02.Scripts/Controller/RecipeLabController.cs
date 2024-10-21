@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -13,7 +14,13 @@ public class RecipeLabController : MonoBehaviour
 
     public RecipeLab currentActiveRecipeLab;
 
-    public bool isRemoveMode = false;
+    public Action<bool> activeTileMaskUiEvent;
+
+    public ETileClickEventType eTileEventType = ETileClickEventType.None;
+
+    public SwapMoney moneyPrefab;
+    private Stack<SwapMoney> moneyPool = new Stack<SwapMoney>();
+    private Transform moneyParent;
 
     public void Init()
     {
@@ -54,34 +61,87 @@ public class RecipeLabController : MonoBehaviour
     }
 
     #region Func
-    public void RemoveTile(Tile tile)
+
+    public void UseItem(EItemType eItemType)
     {
-        if(isRemoveMode == true)
+        switch (eItemType)
         {
-            currentActiveRecipeLab.tileController.RemoveTile(tile);
-            isRemoveMode = false;
-            GameManager.Instance.UseItem(EItemType.ThrowOutEvent);
+            case EItemType.SortItem:
+                SortRecipeLab();
+                break;
+            case EItemType.ThrowOutItem:
+                eTileEventType = ETileClickEventType.Remove;
+                activeTileMaskUiEvent?.Invoke(true);
+                break;
+            case EItemType.UpgradeItem:
+                eTileEventType = ETileClickEventType.Upgrade;
+                activeTileMaskUiEvent?.Invoke(true);
+                break;
         }
     }
-    public void ExpandRecipeLab()
+    public void ClickTileEvent(Tile tile)
     {
-        Debug.Log("확장!");
+        switch (eTileEventType)
+        {
+            case ETileClickEventType.None:
+                Debug.Log("아무일 없기!");
+                break;
+            case ETileClickEventType.Remove:
+                RemoveTile(tile);
+                Debug.Log("음식 갖다 버리기!");
+                break;
+            case ETileClickEventType.Upgrade:
+                UpgradeTile(tile);
+                Debug.Log("레시피 업그레이드 하기!");
+                break;
+        }
     }
-    public void ThrowOutTile()
+    public void RemoveTile(Tile tile)
     {
-        Debug.Log("버리기!");
-        isRemoveMode = true;
+        currentActiveRecipeLab.tileController.RemoveTile(tile);
+        GameManager.Instance.UseItem(EItemType.ThrowOutItem);
+        activeTileMaskUiEvent?.Invoke(false);
+        eTileEventType = ETileClickEventType.None;
+    }
+    public void UpgradeTile(Tile tile)
+    {
+        bool isFinishUpgrade = currentActiveRecipeLab.tileController.UpgradeTile(tile);
+
+        if (isFinishUpgrade == true)
+        {
+            GameManager.Instance.UseItem(EItemType.UpgradeItem);
+            activeTileMaskUiEvent?.Invoke(false);
+            eTileEventType = ETileClickEventType.None;
+        }
     }
     public void SortRecipeLab()
     {
+        currentActiveRecipeLab.SortPuzzle();
+        GameManager.Instance.UseItem(EItemType.SortItem);
         Debug.Log("정렬!");
     }
-    public void UpgradeTile()
-    {
-        Debug.Log("정렬!");
-    }
+
     #endregion
 
     #region Pool
+    public SwapMoney PopMoney()
+    {
+        if (moneyPool.Count == 0)
+        {
+            SwapMoney money = Instantiate(moneyPrefab, moneyParent);
+            money.returnEvent = PushMoney;
+            moneyPool.Push(money);
+        }
+
+        SwapMoney swapMoney = moneyPool.Pop();
+        swapMoney.gameObject.SetActive(true);
+        return swapMoney;
+    }
+    public void PushMoney(SwapMoney money)
+    {
+        money.gameObject.SetActive(false);
+        moneyPool.Push(money);
+    }
+
     #endregion
 }

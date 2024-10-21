@@ -265,9 +265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   expandButton: {fileID: 8859190578658237300}
   expandButtonText: {fileID: 5484325990372601638}
-  eRecipeLabType: 0
   eRecipeType: 0
-  spriteList: []
   recipeViewer: {fileID: 8295070589707661842}
   tileController: {fileID: 378306078644366250}
 --- !u!114 &5153378090888980085
@@ -443,7 +441,7 @@ GameObject:
   - component: {fileID: 410754262777951940}
   - component: {fileID: 5465588414715953173}
   - component: {fileID: 378306078644366250}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: 2048
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -751,6 +749,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeParent: {fileID: 5675184173933966920}
   recipeItemPrefab: {fileID: 6491682648924481829, guid: cdb3b0185f194774ca0aca72ddd171f9, type: 3}
+  recipeItemDataArray: []
 --- !u!1 &7661458955253787835
 GameObject:
   m_ObjectHideFlags: 0

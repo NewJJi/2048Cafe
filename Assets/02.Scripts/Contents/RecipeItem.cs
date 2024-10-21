@@ -49,6 +49,11 @@ public class RecipeItem : MonoBehaviour, IPointerClickHandler
         {
             int level = GameManager.Instance.GetRecipeLabData(recipeType).recipeItemDatas[index].level;
 
+            if (level == 5)
+            {
+                defaultMaterialText.SetActive(true);
+            }
+
             for (int i = 0; i < recipeStar.Length; i++)
             {
                 recipeStar[i].gameObject.SetActive(false);
