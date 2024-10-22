@@ -17,8 +17,22 @@ public class UiManager : MonoBehaviour
 
     [Header("RecipeLabButton")]
     public Button beverageRecipeLabButton;
+    public Image beverageRecipeLabButtonImage;
+    public Sprite beverageButtonActiveSprite;
+    public Sprite beverageButtonDeActiveSprite;
+
     public Button bakeryRecipeLabButton;
+    public Image bakeryRecipeLabButtonImage;
+    public Sprite bakeryButtonActiveSprite;
+    public Sprite bakeryButtonDeActiveSprite;
+
     public Button desertRecipeLabButton;
+    public Image desertRecipeLabButtonImage;
+    public Sprite desertButtonActiveSprite;
+    public Sprite desertButtonDeActiveSprite;
+
+    public Image buttonBottomLineImage;
+    public List<Sprite> labButtonBottomAreaSprite;
 
     [Header("Use Item")]
     public Button throwOutButton;
@@ -70,9 +84,31 @@ public class UiManager : MonoBehaviour
         upgradeButton.onClick.AddListener(() => ClickItemEvent?.Invoke(EItemType.UpgradeItem));
         sortButton.onClick.AddListener(() => ClickItemEvent?.Invoke(EItemType.SortItem));
 
-        beverageRecipeLabButton.onClick.AddListener(() => { ClickRecipeLabEvent?.Invoke(ERecipeLabType.Beverage); });
-        bakeryRecipeLabButton.onClick.AddListener(() => { ClickRecipeLabEvent?.Invoke(ERecipeLabType.Bakery); });
-        desertRecipeLabButton.onClick.AddListener(() => { ClickRecipeLabEvent?.Invoke(ERecipeLabType.Desert); });
+        beverageRecipeLabButton.onClick.AddListener(() => { ClickRecipeLabButton(ERecipeLabType.Beverage); });
+        bakeryRecipeLabButton.onClick.AddListener(() => { ClickRecipeLabButton(ERecipeLabType.Bakery); });
+        desertRecipeLabButton.onClick.AddListener(() => { ClickRecipeLabButton(ERecipeLabType.Desert); });
+    }
+
+    public void ClickRecipeLabButton(ERecipeLabType eRecipeLabType)
+    {
+        switch (eRecipeLabType)
+        {
+            case ERecipeLabType.Beverage:
+
+                beverageRecipeLabButtonImage.SetNativeSize();
+                break;
+            case ERecipeLabType.Bakery:
+
+                beverageRecipeLabButtonImage.SetNativeSize();
+                break;
+            case ERecipeLabType.Desert:
+
+                beverageRecipeLabButtonImage.SetNativeSize();
+                break;
+        }
+
+        buttonBottomLineImage.sprite = labButtonBottomAreaSprite[(int)eRecipeLabType];
+        ClickRecipeLabEvent?.Invoke(eRecipeLabType);
     }
 
     public void ShowHaveMoney(int haveMoney)

@@ -22,9 +22,9 @@ public class GameDataManager : MonoBehaviour
     public TextAsset bakeryInfoData;
     public TextAsset desertInfoData;
 
-    public FoodDataInfoBundle beverageInfoBundle;
-    public FoodDataInfoBundle bakeryInfoBundle;
-    public FoodDataInfoBundle desertInfoBundle;
+    public FoodDataInfoBundle beverageInfoBundle = new FoodDataInfoBundle();
+    public FoodDataInfoBundle bakeryInfoBundle = new FoodDataInfoBundle();
+    public FoodDataInfoBundle desertInfoBundle = new FoodDataInfoBundle();
 
     public int[] expandUpgradeCost;
 
@@ -40,6 +40,7 @@ public class GameDataManager : MonoBehaviour
     public void InitFoodData()
     {
         beverageInfoBundle = JsonConvert.DeserializeObject<FoodDataInfoBundle>(beverageInfoData.text);
+        Debug.Log(beverageInfoBundle.foodDataList);
         bakeryInfoBundle = JsonConvert.DeserializeObject<FoodDataInfoBundle>(bakeryInfoData.text);
         desertInfoBundle = JsonConvert.DeserializeObject<FoodDataInfoBundle>(desertInfoData.text);
     }
@@ -51,6 +52,12 @@ public class GameDataManager : MonoBehaviour
         beverageSaveData = new RecipeLabSaveData();
         bakerySaveData = new RecipeLabSaveData();
         desertSaveData = new RecipeLabSaveData();
+        SaveData();
+    }
+
+    [ContextMenu("Save Save Data")]
+    public void SaveData()
+    {
         SaveWealthSaveDataData();
         SaveRecipeLabSaveData(ERecipeLabType.Beverage);
         SaveRecipeLabSaveData(ERecipeLabType.Bakery);
@@ -62,11 +69,11 @@ public class GameDataManager : MonoBehaviour
         switch (eRecipeType)
         {
             case ERecipeLabType.Beverage:
-                return beverageInfoBundle.beverageDataList[index];
+                return beverageInfoBundle.foodDataList[index];
             case ERecipeLabType.Bakery:
-                return bakeryInfoBundle.beverageDataList[index];
+                return bakeryInfoBundle.foodDataList[index];
             case ERecipeLabType.Desert:
-                return desertInfoBundle.beverageDataList[index];
+                return desertInfoBundle.foodDataList[index];
             default:
                 Debug.LogError("Exception");
                 return null;

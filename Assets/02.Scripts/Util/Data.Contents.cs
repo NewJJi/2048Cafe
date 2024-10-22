@@ -16,7 +16,7 @@ public class FoodDataInfo
 [System.Serializable]
 public class FoodDataInfoBundle
 {
-    public List<FoodDataInfo> beverageDataList;
+    public List<FoodDataInfo> foodDataList;
 }
 
 public class HaveRecipe

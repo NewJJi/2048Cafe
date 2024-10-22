@@ -24,7 +24,7 @@ public class ExcelToJsonConverter
     private static void ParseExcelDataToJson<Loader, LoaderData>(string filename) where Loader : new() where LoaderData : new()
     {
         Loader loader = new Loader();
-        FieldInfo field = loader.GetType().GetField("beverageDataList");
+        FieldInfo field = loader.GetType().GetField("foodDataList");
         field.SetValue(loader, ParseExcelDataToList<LoaderData>(filename));
 
         string jsonStr = JsonConvert.SerializeObject(loader, Formatting.Indented);

@@ -81,4 +81,10 @@ public static class Define
         Remove,
         Upgrade
     }
+
+    public enum EPopupType
+    {
+        InfoPopup,
+        StuckPopup
+    }
 }

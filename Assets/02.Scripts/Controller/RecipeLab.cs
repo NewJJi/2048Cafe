@@ -26,8 +26,8 @@ public class RecipeLab : MonoBehaviour
         recipeViewer.Init(recipeItems, eRecipeType);
 
         recipeLabSaveData = GameManager.Instance.GetRecipeLabData(eRecipeType);
-        tileController.Init(recipeLabSaveData,eRecipeType);
-
+        //tileController.Init(recipeLabSaveData,eRecipeType);
+        tileController.Init(recipeLabSaveData.expandLevel, recipeLabSaveData.gridList, eRecipeType);
 
         int costIndex = recipeLabSaveData.expandLevel - defaultRecipeLabGridSize;
         expandButtonText.text = $"{GameManager.Instance.Data.expandUpgradeCost[costIndex]} ¿ø";
