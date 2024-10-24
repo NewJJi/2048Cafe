@@ -34,6 +34,11 @@ public class UiManager : MonoBehaviour
     public Image buttonBottomLineImage;
     public List<Sprite> labButtonBottomAreaSprite;
 
+    public Canvas beverageButtonCanvas;
+    public Canvas bakeryButtonCanvas;
+    public Canvas desertButtonCanvas;
+    public Canvas bottomLineCanvas;
+
     [Header("Use Item")]
     public Button throwOutButton;
     public TMP_Text throwOutItemCountText;
@@ -71,6 +76,8 @@ public class UiManager : MonoBehaviour
         ShowItemData(EItemType.ThrowOutItem, GameManager.Instance.Data.GetItemCount(EItemType.ThrowOutItem));
         ShowItemData(EItemType.UpgradeItem, GameManager.Instance.Data.GetItemCount(EItemType.UpgradeItem));
         ShowItemData(EItemType.SortItem, GameManager.Instance.Data.GetItemCount(EItemType.SortItem));
+
+        ClickRecipeLabButton(ERecipeLabType.Beverage);
     }
 
     public void BindEvent()
@@ -91,24 +98,74 @@ public class UiManager : MonoBehaviour
 
     public void ClickRecipeLabButton(ERecipeLabType eRecipeLabType)
     {
+        DeSelectAllRecipeLabButton();
         switch (eRecipeLabType)
         {
             case ERecipeLabType.Beverage:
+                //beverageRecipeLabButtonImage.sprite = beverageButtonActiveSprite;
+                beverageButtonCanvas.sortingOrder = 4;
+                bakeryButtonCanvas.sortingOrder = 2;
+                desertButtonCanvas.sortingOrder = 1;
+
+                bottomLineCanvas.sortingOrder = 3;
+
+                beverageRecipeLabButtonImage.sprite = beverageButtonActiveSprite;
 
                 beverageRecipeLabButtonImage.SetNativeSize();
                 break;
             case ERecipeLabType.Bakery:
+                //bakeryRecipeLabButtonImage.sprite = bakeryButtonActiveSprite;
 
-                beverageRecipeLabButtonImage.SetNativeSize();
+                beverageButtonCanvas.sortingOrder = 1;
+                bakeryButtonCanvas.sortingOrder = 3;
+                desertButtonCanvas.sortingOrder = 1;
+                bottomLineCanvas.sortingOrder = 2;
+
+                bakeryRecipeLabButtonImage.sprite = bakeryButtonActiveSprite;
+
+
+                bakeryRecipeLabButtonImage.SetNativeSize();
                 break;
             case ERecipeLabType.Desert:
+                //desertRecipeLabButtonImage.sprite = desertButtonActiveSprite;
 
-                beverageRecipeLabButtonImage.SetNativeSize();
+                beverageButtonCanvas.sortingOrder = 1;
+                bakeryButtonCanvas.sortingOrder = 2;
+                desertButtonCanvas.sortingOrder = 4;
+
+                bottomLineCanvas.sortingOrder = 3;
+
+                desertRecipeLabButtonImage.sprite = desertButtonActiveSprite;
+                desertRecipeLabButtonImage.SetNativeSize();
                 break;
         }
-
+        //bakeryRecipeLabButtonImage.sprite = labButtonBottomAreaSprite[(int)eRecipeLabType];
         buttonBottomLineImage.sprite = labButtonBottomAreaSprite[(int)eRecipeLabType];
         ClickRecipeLabEvent?.Invoke(eRecipeLabType);
+    }
+
+    public void DeSelectAllRecipeLabButton()
+    {
+        beverageRecipeLabButtonImage.sprite = beverageButtonDeActiveSprite;
+        bakeryRecipeLabButtonImage.sprite = bakeryButtonDeActiveSprite;
+        desertRecipeLabButtonImage.sprite = desertButtonDeActiveSprite;
+
+        beverageRecipeLabButtonImage.SetNativeSize();
+        bakeryRecipeLabButtonImage.SetNativeSize();
+        desertRecipeLabButtonImage.SetNativeSize();
+
+        beverageRecipeLabButtonImage.rectTransform.sizeDelta = GetDeActiveButtonImageSize(beverageRecipeLabButtonImage.rectTransform.sizeDelta);
+        bakeryRecipeLabButtonImage.rectTransform.sizeDelta = GetDeActiveButtonImageSize(bakeryRecipeLabButtonImage.rectTransform.sizeDelta);
+        desertRecipeLabButtonImage.rectTransform.sizeDelta = GetDeActiveButtonImageSize(desertRecipeLabButtonImage.rectTransform.sizeDelta);
+
+        //beverageRecipeLabButtonImage.SetNativeSize();
+        //bakeryRecipeLabButtonImage.SetNativeSize();
+        //desertRecipeLabButtonImage.SetNativeSize();
+    }
+
+    public Vector2 GetDeActiveButtonImageSize(Vector2 originSize)
+    {
+        return new Vector2(originSize.x * 0.8f, originSize.y * 0.8f);
     }
 
     public void ShowHaveMoney(int haveMoney)
