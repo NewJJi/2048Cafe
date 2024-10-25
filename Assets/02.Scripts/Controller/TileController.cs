@@ -32,10 +32,14 @@ public class TileController : MonoBehaviour
     public Action<int> GetNewRecipeEvent;
     private Func<SwapMoney> ShowSwapMoneyEvnet;
 
+    public Image tileBackgroundImage;
+
     public void Init(int expandLevel, List<List<int>> tileValueList, ERecipeLabType eRecipeType)
     {
         this.eRecipeType = eRecipeType;
         expandGridCount = expandLevel;
+
+        tileBackgroundImage.pixelsPerUnitMultiplier = 1 + (0.5f * (expandGridCount - 2));
 
         wholeSize = (int)contentTransform.rect.width;
         gridSize = GetGridSize();
@@ -365,6 +369,7 @@ public class TileController : MonoBehaviour
         gridSize = GetGridSize();
         SetTileSize();
         SetPositionAllTile();
+        tileBackgroundImage.pixelsPerUnitMultiplier += 0.5f;
     }
     #endregion
 
