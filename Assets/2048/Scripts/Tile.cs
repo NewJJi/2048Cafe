@@ -27,6 +27,7 @@ public class Tile : MonoBehaviour
         tileValue = 2;
     }
 
+
     public void SetGrid(int x, int y)
     {
         gridX = x;

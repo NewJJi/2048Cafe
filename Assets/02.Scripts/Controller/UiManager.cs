@@ -53,6 +53,8 @@ public class UiManager : MonoBehaviour
     public Transform moneyParent;
     private Stack<SwapMoney> moneyPool = new Stack<SwapMoney>();
 
+    public Material outLineMat;
+
     #region Event
     //info 패널 이벤트
     public Action<ERecipeLabType, int> ShowRecipeInfoPopupEvent;
@@ -63,6 +65,17 @@ public class UiManager : MonoBehaviour
     //아이템 클릭 이벤트
     public Action<EItemType> ClickItemEvent;
     #endregion
+
+    [ContextMenu("Show OutLine")]
+    public void ShowOutLine()
+    {
+        outLineMat.SetFloat("_OutlineAlpha", 1.0f);
+    }
+    [ContextMenu("Hide OutLine")]
+    public void HideOutLine()
+    {
+        outLineMat.SetFloat("_OutlineAlpha", 0f);
+    }
 
     public void Init()
     {
@@ -102,7 +115,6 @@ public class UiManager : MonoBehaviour
         switch (eRecipeLabType)
         {
             case ERecipeLabType.Beverage:
-                //beverageRecipeLabButtonImage.sprite = beverageButtonActiveSprite;
                 beverageButtonCanvas.sortingOrder = 4;
                 bakeryButtonCanvas.sortingOrder = 2;
                 desertButtonCanvas.sortingOrder = 1;
@@ -114,8 +126,6 @@ public class UiManager : MonoBehaviour
                 beverageRecipeLabButtonImage.SetNativeSize();
                 break;
             case ERecipeLabType.Bakery:
-                //bakeryRecipeLabButtonImage.sprite = bakeryButtonActiveSprite;
-
                 beverageButtonCanvas.sortingOrder = 1;
                 bakeryButtonCanvas.sortingOrder = 3;
                 desertButtonCanvas.sortingOrder = 1;
@@ -127,8 +137,7 @@ public class UiManager : MonoBehaviour
                 bakeryRecipeLabButtonImage.SetNativeSize();
                 break;
             case ERecipeLabType.Desert:
-                //desertRecipeLabButtonImage.sprite = desertButtonActiveSprite;
-
+ 
                 beverageButtonCanvas.sortingOrder = 1;
                 bakeryButtonCanvas.sortingOrder = 2;
                 desertButtonCanvas.sortingOrder = 4;
@@ -139,7 +148,6 @@ public class UiManager : MonoBehaviour
                 desertRecipeLabButtonImage.SetNativeSize();
                 break;
         }
-        //bakeryRecipeLabButtonImage.sprite = labButtonBottomAreaSprite[(int)eRecipeLabType];
         buttonBottomLineImage.sprite = labButtonBottomAreaSprite[(int)eRecipeLabType];
         ClickRecipeLabEvent?.Invoke(eRecipeLabType);
     }
@@ -157,10 +165,6 @@ public class UiManager : MonoBehaviour
         beverageRecipeLabButtonImage.rectTransform.sizeDelta = GetDeActiveButtonImageSize(beverageRecipeLabButtonImage.rectTransform.sizeDelta);
         bakeryRecipeLabButtonImage.rectTransform.sizeDelta = GetDeActiveButtonImageSize(bakeryRecipeLabButtonImage.rectTransform.sizeDelta);
         desertRecipeLabButtonImage.rectTransform.sizeDelta = GetDeActiveButtonImageSize(desertRecipeLabButtonImage.rectTransform.sizeDelta);
-
-        //beverageRecipeLabButtonImage.SetNativeSize();
-        //bakeryRecipeLabButtonImage.SetNativeSize();
-        //desertRecipeLabButtonImage.SetNativeSize();
     }
 
     public Vector2 GetDeActiveButtonImageSize(Vector2 originSize)

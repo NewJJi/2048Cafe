@@ -17,11 +17,15 @@ public class InfoPopup : MonoBehaviour
 
     public TMP_Text costText;
     public Button upgradeButton;
+    public CanvasGroup upgradeCanvasGroup;
 
     public Button backPanelButton;
 
     public Button preButton;
     public Button nextButton;
+
+    public Image preButtonImage;
+    public Image nextButtonImage;
 
     public Sprite preActiveSprite;
     public Sprite preDeActiveSprite;
@@ -32,7 +36,7 @@ public class InfoPopup : MonoBehaviour
     int upgradeCost = 0;
 
     ERecipeLabType recipeType;
-    int index;
+    int recipeIndex;
     private void Start()
     {
         backPanelButton.onClick.AddListener(() =>
@@ -53,7 +57,7 @@ public class InfoPopup : MonoBehaviour
         GameManager.Instance.IsCanSwap = false;
 
         recipeType = eRecipeType;
-        this.index = index;
+        this.recipeIndex = index;
 
         RecipeLabSaveData recipeLabSaveData = GameManager.Instance.GetRecipeLabData(eRecipeType);
         RecipeItemData recipeItemData = recipeLabSaveData.recipeItemDatas[index];
@@ -63,23 +67,26 @@ public class InfoPopup : MonoBehaviour
 
         foodImage.sprite = data.GetFoodSprite(eRecipeType, index);
         foodName.text = data.GetFoodInfo(eRecipeType, index).name;
-        addMoneyValue.text = $"{(recipeItemData.level * 0.2) * 100}%";
+        addMoneyValue.text = $"+{(recipeItemData.level * 0.2) * 100}%";
         foodDescription.text = data.GetFoodInfo(eRecipeType, index).description;
 
         upgradeCost = GameManager.Instance.Data.GetFoodInfo(eRecipeType, index).starCost * (recipeItemData.level + 1);
         costText.text = $"$ {upgradeCost}";
 
         upgradeButton.interactable = true;
+        upgradeCanvasGroup.alpha = 1;
 
         if (upgradeCost > GameManager.Instance.GameMoney)
         {
             upgradeButton.interactable = false;
+            upgradeCanvasGroup.alpha = 0.8f;
         }
 
         if (recipeItemData.level == 5)
         {
             costText.text = "Max";
             upgradeButton.interactable = false;
+            upgradeCanvasGroup.alpha = 0.8f;
         }
 
         for (int i = 0; i < foodStarArray.Length; i++)
@@ -90,25 +97,29 @@ public class InfoPopup : MonoBehaviour
         {
             foodStarArray[i].SetActive(true);
         }
+
+        ShowActiveButton();
     }
 
     public void OnClickUpgradeButton()
     {
         Debug.Log("업그레이드!!");
         GameManager.Instance.SpendMoney(upgradeCost);
-        GameManager.Instance.LevelUpRecipe(recipeType, index);
+        GameManager.Instance.LevelUpRecipe(recipeType, recipeIndex);
         if (upgradeCost > GameManager.Instance.GameMoney)
         {
             upgradeButton.enabled = false;
+            upgradeCanvasGroup.alpha = 0.8f;
         }
         RecipeLabSaveData recipeLabSaveData = GameManager.Instance.GetRecipeLabData(recipeType);
-        RecipeItemData recipeItemData = recipeLabSaveData.recipeItemDatas[index];
-        upgradeCost = GameManager.Instance.Data.GetFoodInfo(recipeType, index).starCost * (recipeItemData.level + 1);
+        RecipeItemData recipeItemData = recipeLabSaveData.recipeItemDatas[recipeIndex];
+        upgradeCost = GameManager.Instance.Data.GetFoodInfo(recipeType, recipeIndex).starCost * (recipeItemData.level + 1);
         costText.text = $"$ {upgradeCost}";
         if (recipeItemData.level == 5)
         {
             costText.text = "Max";
             upgradeButton.interactable = false;
+            upgradeCanvasGroup.alpha = 0.8f;
         }
     }
 
@@ -129,15 +140,53 @@ public class InfoPopup : MonoBehaviour
 
     public void OnClickNextButton()
     {
+        recipeIndex++;
+        SetInfoPopup(recipeType,recipeIndex);
 
+        ShowActiveButton();
     }
     public void OnClickPreButton()
     {
-
+        recipeIndex--;
+        SetInfoPopup(recipeType, recipeIndex);
+        ShowActiveButton();
     }
 
     public void ShowActiveButton()
     {
+        RecipeLabSaveData recipeLabSaveData = GameManager.Instance.GetRecipeLabData(recipeType);
 
+        //0일 때
+
+        if (recipeIndex == 0)
+        {
+            preButton.enabled = false;
+            preButtonImage.sprite = preDeActiveSprite;
+
+            nextButton.enabled = true;
+            nextButtonImage.sprite = nextActiveSprite;
+
+            if (recipeIndex == Mathf.Log(recipeLabSaveData.maxValue,2)-1)
+            {
+                nextButton.enabled = false;
+                nextButtonImage.sprite = nextDeActiveSprite;
+            }
+        }
+        else if(recipeIndex == Mathf.Log(recipeLabSaveData.maxValue,2)-1)
+        {
+            nextButton.enabled = false;
+            nextButtonImage.sprite = nextDeActiveSprite;
+
+            preButton.enabled = true;
+            preButtonImage.sprite = preActiveSprite;
+        }
+        else
+        {
+            nextButton.enabled = true;
+            nextButtonImage.sprite = nextActiveSprite;
+
+            preButton.enabled = true;
+            preButtonImage.sprite = preActiveSprite;
+        }
     }
 }
