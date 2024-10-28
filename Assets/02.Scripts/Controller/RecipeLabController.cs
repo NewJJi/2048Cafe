@@ -14,7 +14,7 @@ public class RecipeLabController : MonoBehaviour
 
     public RecipeLab currentActiveRecipeLab;
 
-    public Action<bool> activeTileMaskUiEvent;
+    public Action<bool,Transform,Transform> activeTileMaskUiEvent;
 
     public ETileClickEventType eTileEventType = ETileClickEventType.None;
 
@@ -71,16 +71,32 @@ public class RecipeLabController : MonoBehaviour
                 break;
             case EItemType.ThrowOutItem:
                 eTileEventType = ETileClickEventType.Remove;
-                activeTileMaskUiEvent?.Invoke(true);
+                activeTileMaskUiEvent?.Invoke(true,currentActiveRecipeLab.tileController.poolParent.transform, currentActiveRecipeLab.tileController.parentTransform);
                 break;
             case EItemType.UpgradeItem:
                 eTileEventType = ETileClickEventType.Upgrade;
-                activeTileMaskUiEvent?.Invoke(true);
+                activeTileMaskUiEvent?.Invoke(true, currentActiveRecipeLab.tileController.poolParent.transform, currentActiveRecipeLab.tileController.parentTransform);
                 break;
         }
     }
+
+    public void CancelItemButtonEvent()
+    {
+        eTileEventType = ETileClickEventType.None;
+        activeTileMaskUiEvent?.Invoke(false, currentActiveRecipeLab.tileController.poolParent.transform, currentActiveRecipeLab.tileController.parentTransform);
+    }
+
     public void ClickTileEvent(Tile tile)
     {
+        if(tile == null)
+        {
+            if (eTileEventType!=ETileClickEventType.None)
+            {
+                CancelItemButtonEvent();
+                return;
+            }
+        }
+
         switch (eTileEventType)
         {
             case ETileClickEventType.None:
@@ -100,7 +116,7 @@ public class RecipeLabController : MonoBehaviour
     {
         currentActiveRecipeLab.tileController.RemoveTile(tile);
         GameManager.Instance.UseItem(EItemType.ThrowOutItem);
-        activeTileMaskUiEvent?.Invoke(false);
+        activeTileMaskUiEvent?.Invoke(false, currentActiveRecipeLab.tileController.poolParent.transform, currentActiveRecipeLab.tileController.parentTransform);
         eTileEventType = ETileClickEventType.None;
     }
     public void UpgradeTile(Tile tile)
@@ -110,7 +126,7 @@ public class RecipeLabController : MonoBehaviour
         if (isFinishUpgrade == true)
         {
             GameManager.Instance.UseItem(EItemType.UpgradeItem);
-            activeTileMaskUiEvent?.Invoke(false);
+            activeTileMaskUiEvent?.Invoke(false, currentActiveRecipeLab.tileController.poolParent.transform, currentActiveRecipeLab.tileController.parentTransform);
             eTileEventType = ETileClickEventType.None;
         }
     }

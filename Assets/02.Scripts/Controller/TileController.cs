@@ -33,6 +33,7 @@ public class TileController : MonoBehaviour
     private Func<SwapMoney> ShowSwapMoneyEvnet;
 
     public Image tileBackgroundImage;
+    public Transform parentTransform;
 
     public void Init(int expandLevel, List<List<int>> tileValueList, ERecipeLabType eRecipeType)
     {

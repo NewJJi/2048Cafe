@@ -115,6 +115,7 @@ public class InfoPopup : MonoBehaviour
         RecipeItemData recipeItemData = recipeLabSaveData.recipeItemDatas[recipeIndex];
         upgradeCost = GameManager.Instance.Data.GetFoodInfo(recipeType, recipeIndex).starCost * (recipeItemData.level + 1);
         costText.text = $"$ {upgradeCost}";
+        addMoneyValue.text = $"+{(recipeItemData.level * 0.2) * 100}%";
         if (recipeItemData.level == 5)
         {
             costText.text = "Max";

@@ -561,6 +561,7 @@ MonoBehaviour:
   contentTransform: {fileID: 8307414205326917902}
   padding: 10
   tileBackgroundImage: {fileID: 8832246267625153294}
+  parentTransform: {fileID: 4529039400725343409}
 --- !u!1 &7333326235643783449
 GameObject:
   m_ObjectHideFlags: 0

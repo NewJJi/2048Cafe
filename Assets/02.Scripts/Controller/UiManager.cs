@@ -54,6 +54,9 @@ public class UiManager : MonoBehaviour
     private Stack<SwapMoney> moneyPool = new Stack<SwapMoney>();
 
     public Material outLineMat;
+    public Transform useItemPuzzlePanelParent;
+    public Transform comebackPuzzleParent;
+    public Button cancelUseItemButton;
 
     #region Event
     //info 패널 이벤트
@@ -64,6 +67,9 @@ public class UiManager : MonoBehaviour
 
     //아이템 클릭 이벤트
     public Action<EItemType> ClickItemEvent;
+
+    //아이템 사용 취소 이벤트
+    public Action cancelItemEvent;
     #endregion
 
     [ContextMenu("Show OutLine")]
@@ -76,6 +82,27 @@ public class UiManager : MonoBehaviour
     {
         outLineMat.SetFloat("_OutlineAlpha", 0f);
     }
+
+    public void UseItemPanelEvent(bool isOpen, Transform puzzleParent, Transform comebackTransform)
+    {
+        if (isOpen == true)
+        {
+            useItemPuzzlePanelParent.gameObject.SetActive(true);
+            puzzleParent.parent = useItemPuzzlePanelParent;
+            comebackPuzzleParent = comebackTransform;
+            ShowOutLine();
+            GameManager.Instance.IsCanSwap = false;
+        }
+        else
+        {
+            useItemPuzzlePanelParent.gameObject.SetActive(false);
+            puzzleParent.parent = comebackTransform;
+            comebackPuzzleParent = null;
+            HideOutLine();
+            GameManager.Instance.IsCanSwap = true;
+        }
+    }
+
 
     public void Init()
     {
@@ -107,6 +134,8 @@ public class UiManager : MonoBehaviour
         beverageRecipeLabButton.onClick.AddListener(() => { ClickRecipeLabButton(ERecipeLabType.Beverage); });
         bakeryRecipeLabButton.onClick.AddListener(() => { ClickRecipeLabButton(ERecipeLabType.Bakery); });
         desertRecipeLabButton.onClick.AddListener(() => { ClickRecipeLabButton(ERecipeLabType.Desert); });
+
+        cancelUseItemButton.onClick.AddListener(() => cancelItemEvent?.Invoke());
     }
 
     public void ClickRecipeLabButton(ERecipeLabType eRecipeLabType)

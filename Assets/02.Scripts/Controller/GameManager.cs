@@ -117,6 +117,8 @@ public class GameManager : MonoBehaviour
     {
         uiManager.ClickRecipeLabEvent += recipeLabController.SwitchRecipeLab;
         uiManager.ClickItemEvent += recipeLabController.UseItem;
+        uiManager.cancelItemEvent += recipeLabController.CancelItemButtonEvent;
+        recipeLabController.activeTileMaskUiEvent += uiManager.UseItemPanelEvent;
 
         inputController.swapEvent = recipeLabController.SwapPuzzle;
         inputController.clickTileEvent = recipeLabController.ClickTileEvent;

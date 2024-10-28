@@ -28,6 +28,8 @@ public class InputController : MonoBehaviour
     public Action<Tile> clickTileEvent;
 
     public GraphicRaycaster raycaster;
+    public GraphicRaycaster swapRaycaster;
+
     public EventSystem eventSystem;
 
     private void Start()
@@ -38,29 +40,44 @@ public class InputController : MonoBehaviour
         height = 2f * cam.orthographicSize;
         width = height * cam.aspect;
     }
-    
+
+    public bool isSwapCanSwap = false;
+
     private void Update()
     {
-        if(GameManager.Instance.IsCanSwap == false)
-        {
-            return;
-        }
 
         SwipeEditor();
         if (Input.GetMouseButtonDown(0))
         {
+            if (GameManager.Instance.IsCanSwap == false)
+            {
+                isSwapCanSwap = false;
+            }
+            else
+            {
+                isSwapCanSwap = true;
+            }
             startPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             //startPosition = Input.mousePosition;
         }
 
-        if (Input.GetMouseButtonUp(0) && IsCheckInSwapArea())
+        if (Input.GetMouseButtonUp(0))
         {
-            endPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            //endPosition = Input.mousePosition;
-            if (endPosition.y < swapMinArea && startPosition.y < swapMinArea)
+            if (IsCheckInSwapArea())
             {
-                Swipe(startPosition, endPosition);
+                if (isSwapCanSwap == true)
+                {
+
+                    endPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    float distance = Vector2.Distance(startPosition, endPosition);
+                    //endPosition = Input.mousePosition;
+                    if (endPosition.y < swapMinArea && startPosition.y < swapMinArea && distance >= 0.5f) ;
+                    {
+                        Swipe(startPosition, endPosition);
+                    }
+                }
             }
+
         }
 
         ClickTile();
@@ -85,6 +102,7 @@ public class InputController : MonoBehaviour
                 {
                     Debug.Log("Hit UI: " + result.gameObject.name);
                     clickTileEvent.Invoke(result.gameObject.GetComponent<Tile>());
+                    return;
                 }
             }
         }
@@ -99,7 +117,7 @@ public class InputController : MonoBehaviour
         List<RaycastResult> results = new List<RaycastResult>();
 
         // Raycast ½ÇÇà
-        raycaster.Raycast(pointerData, results);
+        swapRaycaster.Raycast(pointerData, results);
 
         foreach (RaycastResult result in results)
         {
@@ -113,7 +131,7 @@ public class InputController : MonoBehaviour
         return false;
     }
 
-    private void SwipeEditor() 
+    private void SwipeEditor()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -136,6 +154,11 @@ public class InputController : MonoBehaviour
 
     private void Swipe(Vector2 startPosition, Vector2 endPosition)
     {
+        if (GameManager.Instance.IsCanSwap == false)
+        {
+            return;
+        }
+
         if (startPosition != endPosition/* && startPosition != Vector2.zero && endPosition != Vector2.zero*/)
         {
             float deltaX = endPosition.x - startPosition.x;
