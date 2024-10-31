@@ -226,8 +226,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moneyText: {fileID: 5186630440686080836}
   audioSource: {fileID: 0}
-  moneyMoveSpeed: 200
-  destoryTime: 0.3
+  moneyMoveSpeed: 130
+  destoryTime: 0.6
 --- !u!82 &871218047014421883
 AudioSource:
   m_ObjectHideFlags: 0

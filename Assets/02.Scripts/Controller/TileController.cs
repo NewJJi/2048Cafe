@@ -282,8 +282,8 @@ public class TileController : MonoBehaviour
 
         SwapMoney swapMoney = ShowSwapMoneyEvnet?.Invoke();
         swapMoney.transform.position = newMovedTile.transform.position;
-
-        float multiple = GameManager.Instance.GetRecipeItemData(eRecipeType)[(int)Mathf.Log(newValue, 2) - 1].level * 0.2f;
+        
+        float multiple = GameManager.Instance.GetRecipeItemData(eRecipeType)[(int)Mathf.Log(newValue, 2) - 2].level * 0.2f;
         int getCoin = newValue + Mathf.RoundToInt(newValue * multiple);
 
         swapMoney.Init(getCoin, gridSize);
@@ -355,6 +355,23 @@ public class TileController : MonoBehaviour
 
     #region Func
 
+    [ContextMenu("SetEmptyTile")]
+    public void SetEmptyTile()
+    {
+        emptyGrid.Clear();
+
+        for (int i = 0; i < puzzleData.tileColumn.Count; i++)
+        {
+            for (int j = 0; j < puzzleData.tileColumn[i].tileRow.Count; j++)
+            {
+                if(puzzleData.tileColumn[i].tileRow[j] == null)
+                {
+                    emptyGrid.Add(new Vector2(i,j));
+                }
+            }
+        }
+    }
+
     #region Expand Grid
     public void ExpandLaboratory()
     {
@@ -370,6 +387,7 @@ public class TileController : MonoBehaviour
         gridSize = GetGridSize();
         SetTileSize();
         SetPositionAllTile();
+        SetEmptyTile();
         tileBackgroundImage.pixelsPerUnitMultiplier += 0.5f;
     }
     #endregion
@@ -390,9 +408,10 @@ public class TileController : MonoBehaviour
                 }
             }
         }
+
         MergeSort(activeTile);
 
-        for (int y = expandGridCount-1; y > 0; y--)
+        for (int y = expandGridCount-1; y >= 0; y--)
         {
             for (int x = 0; x < expandGridCount; x++)
             {
@@ -402,8 +421,15 @@ public class TileController : MonoBehaviour
                     puzzleData.tileColumn[x].tileRow[y].gameObject.transform.localPosition = GetWorldPositionFromGrid(new Vector2(x, y));
                     activeTile.RemoveAt(0);
                 }
+                else
+                {
+                    puzzleData.tileColumn[x].tileRow[y] = null;
+                }
             }
         }
+
+        SetEmptyTile();
+        ConvertSaveData();
     }
 
     private void MergeSort(List<Tile> tileList)
@@ -464,6 +490,7 @@ public class TileController : MonoBehaviour
         Tile removedTile = puzzleData.tileColumn[tile.gridX].tileRow[tile.gridY];
         puzzleData.tileColumn[tile.gridX].tileRow[tile.gridY] = null;
         PushTile(removedTile);
+        ConvertSaveData();
     }
 
     #region Upgrade Tile
@@ -478,9 +505,9 @@ public class TileController : MonoBehaviour
         {
             int newValue = upgradeTile.tileValue * 2;
             upgradeTile.Change(newValue, GameManager.Instance.Data.GetFoodSprite(eRecipeType, (int)Mathf.Log(newValue, 2) - 1));
+            ConvertSaveData();
             return true;
         }
-
     }
     #endregion
 

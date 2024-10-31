@@ -17,7 +17,8 @@ public class Tile : MonoBehaviour
     public int gridX;
     public int gridY;
 
-    Image image;
+    public Image image;
+    public TMP_Text valueText;
     public RectTransform rectTransform;
 
     private void Awake()
@@ -25,6 +26,7 @@ public class Tile : MonoBehaviour
         image = this.GetComponent<Image>();
         rectTransform = this.GetComponent<RectTransform>();
         tileValue = 2;
+        valueText.text = tileValue.ToString();
     }
 
 
@@ -37,6 +39,7 @@ public class Tile : MonoBehaviour
     public void Change(int newValue, Sprite sprite)
     {
         tileValue = newValue;
+        valueText.text = tileValue.ToString();
         image.sprite = sprite;
     }
 

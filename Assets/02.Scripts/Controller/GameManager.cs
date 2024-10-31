@@ -100,6 +100,8 @@ public class GameManager : MonoBehaviour
 
     public async void Awake()
     {
+        Application.targetFrameRate = 60;
+
         Instance = this;
         await gameData.LoadAllData();
 

@@ -35,7 +35,6 @@ public class InputController : MonoBehaviour
     private void Start()
     {
         Camera cam = Camera.main;
-        InitSwapArea();
         //orthographic 모드에서는 orthographicSize가 절반 크기로 축소.
         height = 2f * cam.orthographicSize;
         width = height * cam.aspect;
@@ -67,11 +66,10 @@ public class InputController : MonoBehaviour
             {
                 if (isSwapCanSwap == true)
                 {
-
                     endPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     float distance = Vector2.Distance(startPosition, endPosition);
                     //endPosition = Input.mousePosition;
-                    if (endPosition.y < swapMinArea && startPosition.y < swapMinArea && distance >= 0.5f) ;
+                    if (distance >= 0.3f)
                     {
                         Swipe(startPosition, endPosition);
                     }
@@ -168,7 +166,7 @@ public class InputController : MonoBehaviour
             if (Mathf.Abs(deltaX) > Mathf.Abs(deltaY))
             {
                 //마우스 혹은 손이 충분히 거리가 벌어져있다.
-                if (deltaX >= width / 6 || deltaX <= -width / 6)
+                if (deltaX >= width / 12 || deltaX <= -width / 12)
                 {
                     //시작지점이 더 작다 -> 왼쪽에서 오른쪽으로 움직였다.
                     if (startPosition.x < endPosition.x)
@@ -183,7 +181,7 @@ public class InputController : MonoBehaviour
             }
             else
             {
-                if (deltaY >= height / 6 || deltaY <= -height / 6)
+                if (deltaY >= height / 20 || deltaY <= -height / 20)
                 {
                     if (startPosition.y < endPosition.y)
                     {
@@ -198,9 +196,4 @@ public class InputController : MonoBehaviour
         }
     }
 
-    public void InitSwapArea()
-    {
-        swapMinArea = (canvas.sizeDelta.y * 0.5f);
-        swapMaxArea = 0;
-    }
 }
