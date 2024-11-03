@@ -22,6 +22,10 @@ public class RecipeLabController : MonoBehaviour
     private Stack<SwapMoney> moneyPool = new Stack<SwapMoney>();
     private Transform moneyParent;
 
+    public Image recipeLabBackGround;
+    public Color beverageColor;
+    public Color bakeryColor;
+    public Color desertColor;
     public void Init()
     {
         InitData();
@@ -41,18 +45,24 @@ public class RecipeLabController : MonoBehaviour
             currentActiveRecipeLab.gameObject.SetActive(false);
         }
 
+        Color tempColor = Color.white;
         switch (eRecipeLabType)
         {
             case ERecipeLabType.Beverage:
+                tempColor = beverageColor;
                 currentActiveRecipeLab = beverageRecipeLab;
                 break;
             case ERecipeLabType.Bakery:
+                tempColor = bakeryColor;
                 currentActiveRecipeLab = bakeryRecipeLab;
                 break;
             case ERecipeLabType.Desert:
+                tempColor = desertColor;
                 currentActiveRecipeLab = desertRecipeLab;
                 break;
         }
+
+        recipeLabBackGround.color = tempColor;
         currentActiveRecipeLab.gameObject.SetActive(true);
     }
     public void SwapPuzzle(EMoveDirType eMoveDirType)

@@ -5,7 +5,7 @@ using UnityEngine;
 public static class Define
 {
     //총 레시피 갯수
-    public const int recipeItemTotalCount = 26;
+    public const int recipeItemTotalCount = 27;
 
     //기본 연구소 그리드 사이즈
     public const int defaultRecipeLabGridSize = 2;
@@ -17,6 +17,14 @@ public static class Define
 
     public const int SwapAreaLayer = 7;
     public const int TileLayer = 8;
+
+    public const string soundSaveVolumn = "SoundVolumn";
+    public const string soundOnOffKey = "soundOnOffKey";
+
+    public const string finishTutorialBoolKey = "isFinishTutorial";
+
+    public const int nextCustomerMinSwapCount = 20;
+    public const int nextCustomerMaxSwapCount = 40;
 
     public enum EMoveDirType
     {

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -57,6 +58,11 @@ public class UiManager : MonoBehaviour
     public Transform useItemPuzzlePanelParent;
     public Transform comebackPuzzleParent;
     public Button cancelUseItemButton;
+
+    [Header("NPC")]
+    public NPC npcObject;
+    public Button addButton;
+    GoogleMobileAdsController googleMobileAdsController;
 
     #region Event
     //info 패널 이벤트
@@ -118,6 +124,9 @@ public class UiManager : MonoBehaviour
         ShowItemData(EItemType.SortItem, GameManager.Instance.Data.GetItemCount(EItemType.SortItem));
 
         ClickRecipeLabButton(ERecipeLabType.Beverage);
+
+        googleMobileAdsController = new GoogleMobileAdsController();
+        googleMobileAdsController.Init();
     }
 
     public void BindEvent()
@@ -136,6 +145,14 @@ public class UiManager : MonoBehaviour
         desertRecipeLabButton.onClick.AddListener(() => { ClickRecipeLabButton(ERecipeLabType.Desert); });
 
         cancelUseItemButton.onClick.AddListener(() => cancelItemEvent?.Invoke());
+
+        addButton.onClick.AddListener(() =>
+        {
+            googleMobileAdsController.ShowRewardedAd(() =>
+            {
+                GetTip();
+            });
+        });
     }
 
     public void ClickRecipeLabButton(ERecipeLabType eRecipeLabType)
@@ -212,15 +229,15 @@ public class UiManager : MonoBehaviour
         switch (eItemType)
         {
             case EItemType.SortItem:
-                sortItemCountText.text = $"{count} 개";
+                sortItemCountText.text = $"{count}";
                 sortButton.interactable = isRemainItem;
                 break;
             case EItemType.ThrowOutItem:
-                throwOutItemCountText.text = $"{count} 개";
+                throwOutItemCountText.text = $"{count}";
                 throwOutButton.interactable = isRemainItem;
                 break;
             case EItemType.UpgradeItem:
-                upgradeItemCountText.text = $"{count} 개";
+                upgradeItemCountText.text = $"{count}";
                 upgradeButton.interactable = isRemainItem;
                 break;
         }
@@ -272,5 +289,35 @@ public class UiManager : MonoBehaviour
     {
         money.gameObject.SetActive(false);
         moneyPool.Push(money);
+    }
+
+    public void VisitCustomer()
+    {
+        npcObject.gameObject.SetActive(true);
+        npcObject.ShowTextBox();
+        StartCoroutine(LeaveVisitor());
+    }
+    public void GetTip()
+    {
+        npcObject.HideTextBox();
+        npcObject.gameObject.SetActive(false);
+
+        int tipMoney = 0;
+        tipMoney += GameManager.Instance.GetRecipeLabData(ERecipeLabType.Beverage).maxValue;
+        tipMoney += GameManager.Instance.GetRecipeLabData(ERecipeLabType.Bakery).maxValue;
+        tipMoney += GameManager.Instance.GetRecipeLabData(ERecipeLabType.Desert).maxValue;
+
+        GameManager.Instance.EarnMoney(tipMoney);
+
+        var money = PopMoney();
+        money.transform.position = npcObject.transform.position;
+        money.Init(tipMoney, 300);
+    }
+
+    public IEnumerator LeaveVisitor()
+    {
+        yield return new WaitForSeconds(7.0f);
+        npcObject.HideTextBox();
+        npcObject.gameObject.SetActive(false);
     }
 }

@@ -17,6 +17,7 @@ public class GameDataManager : MonoBehaviour
     public List<Sprite> beverageSpriteList;
     public List<Sprite> bakerySpriteList;
     public List<Sprite> desertSpriteList;
+    public List<Sprite> NPCSpriteList;
 
     public TextAsset beverageInfoData;
     public TextAsset bakeryInfoData;
@@ -40,7 +41,6 @@ public class GameDataManager : MonoBehaviour
     public void InitFoodData()
     {
         beverageInfoBundle = JsonConvert.DeserializeObject<FoodDataInfoBundle>(beverageInfoData.text);
-        Debug.Log(beverageInfoBundle.foodDataList);
         bakeryInfoBundle = JsonConvert.DeserializeObject<FoodDataInfoBundle>(bakeryInfoData.text);
         desertInfoBundle = JsonConvert.DeserializeObject<FoodDataInfoBundle>(desertInfoData.text);
     }
@@ -94,6 +94,12 @@ public class GameDataManager : MonoBehaviour
                 Debug.LogError("Exception");
                 return null;
         }
+    }
+
+    public Sprite GetRandomNPCSprite()
+    {
+        int ranIndex = Random.Range(0, NPCSpriteList.Count);
+        return NPCSpriteList[ranIndex];
     }
 
     public void SaveWealthSaveDataData()

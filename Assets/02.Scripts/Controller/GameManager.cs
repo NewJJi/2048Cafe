@@ -1,3 +1,4 @@
+using Crystal;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,9 +14,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private RecipeLabController recipeLabController;
     [SerializeField] private InputController inputController;
     [SerializeField] private GameDataManager gameData = new GameDataManager();
+    [SerializeField] private SoundController soundController;
+    [SerializeField] private NPCManager NPCManager;
+    [SerializeField] private TutorialController tutorialManager;
 
     public GameDataManager Data { get { return gameData; } }
     public UiManager UI { get { return uiManager; } }
+    public SoundController Sound { get { return soundController; } }
+    public NPCManager NPC { get { return NPCManager; } }
+    public TutorialController Tutorial { get { return tutorialManager; } }
 
     public bool IsCanSwap = true;
 
@@ -98,9 +105,12 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+    SafeArea.SimDevice[] Sims;
     public async void Awake()
     {
         Application.targetFrameRate = 60;
+
+        Sims = (SafeArea.SimDevice[])Enum.GetValues(typeof(SafeArea.SimDevice));
 
         Instance = this;
         await gameData.LoadAllData();
@@ -113,6 +123,13 @@ public class GameManager : MonoBehaviour
     {
         uiManager.Init();
         recipeLabController.Init();
+        NPCManager.Init();
+
+        if (!PlayerPrefs.HasKey(finishTutorialBoolKey))
+        {
+            tutorialManager.Init();
+            PlayerPrefs.SetInt(finishTutorialBoolKey, 1);
+        }
     }
 
     public void BindEvent()
@@ -124,6 +141,8 @@ public class GameManager : MonoBehaviour
 
         inputController.swapEvent = recipeLabController.SwapPuzzle;
         inputController.clickTileEvent = recipeLabController.ClickTileEvent;
+
+        NPCManager.visitEvent = uiManager.VisitCustomer;
     }
 
     public RecipeItemData[] GetRecipeItemData(ERecipeLabType eRecipeType)

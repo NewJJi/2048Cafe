@@ -14,9 +14,15 @@ public interface ILoader
 
 }
 
+[CreateAssetMenu(fileName = "KeyData", menuName = "ScriptableObjects/KeyData", order = 1)]
+public class KeyData : ScriptableObject
+{
+    public string key;
+}
+
 public class DataManager
 {
-    private static string key = "Your32ByteKeyHere123456789012345"; // 16, 24, 32 characters for AES
+    private static KeyData keyData = null;
     string savePath = "";
     public void SaveData<T>(T data,string name) where T : ILoader
     {
@@ -33,7 +39,6 @@ public class DataManager
             Directory.CreateDirectory(savePath);
         }
 
-        Debug.Log($"{savePath}/{name}");
         File.WriteAllText($"{savePath}/{name}.json", encryptData);
     }
     public async Task SaveDataAsync<T>(T data, string name) where T : ILoader
@@ -105,7 +110,12 @@ public class DataManager
     // AES 암호화 함수
     public static string Encrypt(string plainText)
     {
-        byte[] keyBytes = Encoding.UTF8.GetBytes(key);
+        if(keyData == null)
+        {
+            keyData = Resources.Load<KeyData>("KeyData");
+        }
+
+        byte[] keyBytes = Encoding.UTF8.GetBytes(keyData.key);
         byte[] plainBytes = Encoding.UTF8.GetBytes(plainText);
 
         using (Aes aes = Aes.Create())
@@ -125,7 +135,12 @@ public class DataManager
     // AES 복호화 함수
     public static string Decrypt(string encryptedText)
     {
-        byte[] keyBytes = Encoding.UTF8.GetBytes(key);
+        if (keyData == null)
+        {
+            keyData = Resources.Load<KeyData>("KeyData");
+        }
+
+        byte[] keyBytes = Encoding.UTF8.GetBytes(keyData.key);
         byte[] encryptedBytes = Convert.FromBase64String(encryptedText);
 
         using (Aes aes = Aes.Create())

@@ -147,7 +147,7 @@ public class TileController : MonoBehaviour
                     int cx = Mathf.RoundToInt(cell.x);
                     int cy = Mathf.RoundToInt(cell.y);
 
-                    if (isInArea(next) && !puzzleData.tileColumn[nx].tileRow[ny].combined && puzzleData.tileColumn[nx].tileRow[ny].tileValue == puzzleData.tileColumn[x].tileRow[y].tileValue)
+                    if (isInArea(next) && !puzzleData.tileColumn[nx].tileRow[ny].combined && puzzleData.tileColumn[nx].tileRow[ny].tileValue == puzzleData.tileColumn[x].tileRow[y].tileValue && puzzleData.tileColumn[x].tileRow[y].tileValue != 134217728)
                     {
                         StartCoroutine(MergeTile(puzzleData.tileColumn[nx].tileRow[ny], puzzleData.tileColumn[x].tileRow[y]));
                         MoveTile(new Vector2(nx, ny), puzzleData.tileColumn[x].tileRow[y]);
@@ -185,6 +185,10 @@ public class TileController : MonoBehaviour
         if (!IsCanSwap())
         {
             Debug.Log("Can't Move");
+        }
+        else
+        {
+            GameManager.Instance.NPC.CountUpSwap();
         }
     }
     public void MoveTile(Vector2 destinationGrid, Tile tile)
@@ -267,6 +271,9 @@ public class TileController : MonoBehaviour
     public IEnumerator MergeTile(Tile tile, Tile newMovedTile)
     {
         yield return new WaitForSeconds(moveSpeed);
+
+        GameManager.Instance.Sound.PlayMoneySound();
+
         int newValue = newMovedTile.tileValue * 2;
 
         if(GameManager.Instance.GetRecipeLabData(eRecipeType).maxValue < newValue)
@@ -578,7 +585,6 @@ public class TileController : MonoBehaviour
     }
     public void PushTile(Tile tile)
     {
-        Debug.Log("Push Tile");
         tile.gameObject.SetActive(false);
         tilePool.Push(tile);
     }

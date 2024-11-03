@@ -19,7 +19,7 @@ public class Shop : MonoBehaviour
 
     public Button closeButton;
 
-    GoogleMobileAdsController googleMobileAdsController;
+    //GoogleMobileAdsController googleMobileAdsController;
 
     //광고 무한 시청 막기
     float moneyAdTimer;
@@ -27,21 +27,21 @@ public class Shop : MonoBehaviour
 
     public void Init()
     {
-        googleMobileAdsController = new GoogleMobileAdsController();
-        googleMobileAdsController.Init();
+        //googleMobileAdsController = new GoogleMobileAdsController();
+        //googleMobileAdsController.Init();
 
         BindEvnet();
     }
 
     public void BindEvnet()
     {
-        adButton.onClick.AddListener(() =>
-        {
-            googleMobileAdsController.ShowRewardedAd(() =>
-            {
-                OnClickAdButton();
-            });
-        });
+        //adButton.onClick.AddListener(() =>
+        //{
+        //    googleMobileAdsController.ShowRewardedAd(() =>
+        //    {
+        //        OnClickAdButton();
+        //    });
+        //});
 
         closeButton.onClick.AddListener(() => { CloseShopPanel(); });
 
@@ -78,20 +78,20 @@ public class Shop : MonoBehaviour
     public void OnClickBuySortItemItem(Product product)
     {
         Debug.Log("정렬 아이템 샀다!!");
-        GameManager.Instance.GetItem(Define.EItemType.SortItem, 3);
+        GameManager.Instance.GetItem(Define.EItemType.SortItem, 2);
     }
 
     public void OnClickBuyUpgradeItem(Product product)
     {
         Debug.Log("업그레이드 아이템 샀다!!");
-        GameManager.Instance.GetItem(Define.EItemType.UpgradeItem, 3);
+        GameManager.Instance.GetItem(Define.EItemType.UpgradeItem, 2);
     }
 
     public void OnClickBuyPackageItem(Product product)
     {
         Debug.Log("패키지 플렉스 해부렀다!!");
-        GameManager.Instance.GetItem(Define.EItemType.UpgradeItem, 3);
-        GameManager.Instance.GetItem(Define.EItemType.SortItem, 3);
+        GameManager.Instance.GetItem(Define.EItemType.UpgradeItem, 2);
+        GameManager.Instance.GetItem(Define.EItemType.SortItem, 2);
         GameManager.Instance.GetItem(Define.EItemType.ThrowOutItem, 3);
     }
 }

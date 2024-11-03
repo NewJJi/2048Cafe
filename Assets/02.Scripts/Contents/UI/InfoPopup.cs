@@ -67,6 +67,12 @@ public class InfoPopup : MonoBehaviour
 
         foodImage.sprite = data.GetFoodSprite(eRecipeType, index);
         foodName.text = data.GetFoodInfo(eRecipeType, index).name;
+
+        if(index == 26)
+        {
+            foodName.text = data.GetFoodInfo(eRecipeType, index).name + "(¸¶Áö¸·)";
+        }
+
         addMoneyValue.text = $"+{(recipeItemData.level * 0.2) * 100}%";
         foodDescription.text = data.GetFoodInfo(eRecipeType, index).description;
 

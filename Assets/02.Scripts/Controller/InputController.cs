@@ -121,7 +121,6 @@ public class InputController : MonoBehaviour
         {
             if (result.gameObject.layer == SwapAreaLayer)
             {
-                Debug.Log("Hit UI: " + result.gameObject.name);
                 return true;
             }
         }
