@@ -14,16 +14,13 @@ public interface ILoader
 
 }
 
-[CreateAssetMenu(fileName = "KeyData", menuName = "ScriptableObjects/KeyData", order = 1)]
-public class KeyData : ScriptableObject
-{
-    public string key;
-}
 
 public class DataManager
 {
     private static KeyData keyData = null;
+    private const string keyPassword = "sd5f7b69z2GFD2b1f5B2x3hJ567JDF12";
     string savePath = "";
+
     public void SaveData<T>(T data,string name) where T : ILoader
     {
         string saveData = JsonConvert.SerializeObject(data);
@@ -70,16 +67,35 @@ public class DataManager
 
         if (File.Exists(filePath))
         {
+            Debug.Log(filePath);
+            Debug.Log("ASDFFASDDFSAFSDASFDAFSDASFDAFSDASFD");
             string readData = await File.ReadAllTextAsync(filePath);
-            string decrpytData = Decrypt(readData);
-            T data = JsonConvert.DeserializeObject<T>(decrpytData);
-            return data;
+
+            if (!string.IsNullOrEmpty(readData))
+            {
+                if (PlayerPrefs.HasKey("SavedInitData"))
+                {
+                    string decrpytData = Decrypt(readData);
+                    T data = JsonConvert.DeserializeObject<T>(decrpytData);
+                    return data;
+                }
+                else
+                {
+                    PlayerPrefs.SetInt("SavedInitData", 1);
+                    File.Delete(filePath);
+                    T data = new T();
+                    return data;
+                }
+            }
+            else
+            {
+                T data = new T();
+                return data;
+            }
         }
         else
         {
             T data = new T();
-
-            //await SaveDataAsync<T>(data, name);
             return data;
         }
     }
@@ -110,24 +126,25 @@ public class DataManager
     // AES 암호화 함수
     public static string Encrypt(string plainText)
     {
-        if(keyData == null)
-        {
-            keyData = Resources.Load<KeyData>("KeyData");
-        }
-
-        byte[] keyBytes = Encoding.UTF8.GetBytes(keyData.key);
+        byte[] keyBytes = Encoding.UTF8.GetBytes(keyPassword);
         byte[] plainBytes = Encoding.UTF8.GetBytes(plainText);
 
         using (Aes aes = Aes.Create())
         {
             aes.Key = keyBytes;
-            aes.IV = new byte[16]; // IV는 기본적으로 0으로 설정
-            aes.Mode = CipherMode.CBC;
+            aes.GenerateIV(); // IV 생성
+            byte[] iv = aes.IV;
 
             using (var encryptor = aes.CreateEncryptor(aes.Key, aes.IV))
             {
                 byte[] encryptedBytes = PerformCryptography(plainBytes, encryptor);
-                return Convert.ToBase64String(encryptedBytes);
+
+                // IV와 암호문을 결합
+                byte[] combined = new byte[iv.Length + encryptedBytes.Length];
+                Buffer.BlockCopy(iv, 0, combined, 0, iv.Length);
+                Buffer.BlockCopy(encryptedBytes, 0, combined, iv.Length, encryptedBytes.Length);
+
+                return Convert.ToBase64String(combined); // Base64 인코딩
             }
         }
     }
@@ -135,23 +152,28 @@ public class DataManager
     // AES 복호화 함수
     public static string Decrypt(string encryptedText)
     {
-        if (keyData == null)
+        if (string.IsNullOrEmpty(encryptedText))
         {
-            keyData = Resources.Load<KeyData>("KeyData");
+            throw new ArgumentException("Encrypted text cannot be null or empty.");
         }
 
-        byte[] keyBytes = Encoding.UTF8.GetBytes(keyData.key);
-        byte[] encryptedBytes = Convert.FromBase64String(encryptedText);
+        byte[] fullCipher = Convert.FromBase64String(encryptedText);
+        byte[] iv = new byte[16]; // IV는 16바이트
+        byte[] cipherText = new byte[fullCipher.Length - iv.Length];
+
+        Buffer.BlockCopy(fullCipher, 0, iv, 0, iv.Length);
+        Buffer.BlockCopy(fullCipher, iv.Length, cipherText, 0, cipherText.Length);
+
+        byte[] keyBytes = Encoding.UTF8.GetBytes(keyPassword);
 
         using (Aes aes = Aes.Create())
         {
             aes.Key = keyBytes;
-            aes.IV = new byte[16]; // 복호화할 때도 같은 IV 사용
-            aes.Mode = CipherMode.CBC;
+            aes.IV = iv;
 
             using (var decryptor = aes.CreateDecryptor(aes.Key, aes.IV))
             {
-                byte[] decryptedBytes = PerformCryptography(encryptedBytes, decryptor);
+                byte[] decryptedBytes = PerformCryptography(cipherText, decryptor);
                 return Encoding.UTF8.GetString(decryptedBytes);
             }
         }
@@ -160,14 +182,22 @@ public class DataManager
     // 암호화/복호화 수행
     private static byte[] PerformCryptography(byte[] data, ICryptoTransform cryptoTransform)
     {
-        using (var memoryStream = new System.IO.MemoryStream())
+        try
         {
-            using (var cryptoStream = new CryptoStream(memoryStream, cryptoTransform, CryptoStreamMode.Write))
+            using (var memoryStream = new System.IO.MemoryStream())
             {
-                cryptoStream.Write(data, 0, data.Length);
-                cryptoStream.FlushFinalBlock();
-                return memoryStream.ToArray();
+                using (var cryptoStream = new CryptoStream(memoryStream, cryptoTransform, CryptoStreamMode.Write))
+                {
+                    cryptoStream.Write(data, 0, data.Length);
+                    cryptoStream.FlushFinalBlock();
+                    return memoryStream.ToArray();
+                }
             }
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Cryptography error: {ex.Message}");
+            throw; // 예외를 다시 던져서 호출자에게 전달
         }
     }
 }

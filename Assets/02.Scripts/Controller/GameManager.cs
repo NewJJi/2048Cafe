@@ -105,12 +105,9 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    SafeArea.SimDevice[] Sims;
     public async void Awake()
     {
         Application.targetFrameRate = 60;
-
-        Sims = (SafeArea.SimDevice[])Enum.GetValues(typeof(SafeArea.SimDevice));
 
         Instance = this;
         await gameData.LoadAllData();

@@ -13,7 +13,7 @@ public static class Define
     //기본 아이템 갯수
     public const int defaultChargedItemCount = 2;
 
-    public const float moveSpeed = 0.5f;
+    public const float moveSpeed = 0.3f;
 
     public const int SwapAreaLayer = 7;
     public const int TileLayer = 8;

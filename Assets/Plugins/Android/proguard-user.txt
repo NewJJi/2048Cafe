@@ -1,0 +1,1 @@
+-keep class System.Security.Cryptography.** { *; }
