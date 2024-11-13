@@ -2,12 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Define;
+
+public enum EEffectSoundType
+{
+    Money,
+    DoorBell,
+    CashRegister,
+    Sweep,
+    Button,
+    ItemButton
+}
+
 public class SoundController : MonoBehaviour
 {
     [SerializeField] private AudioSource bgmSound;
     [SerializeField] private AudioSource moneySound;
     [SerializeField] private AudioSource doorBellSound;
     [SerializeField] private AudioSource cashRegisterSound;
+    [SerializeField] private AudioSource sweepSound;
+    [SerializeField] private AudioSource buttonSound;
+    [SerializeField] private AudioSource itemButtonSound;
 
     private float bgmMaxValue = 0.6f;
     private float moneyMaxValue = 1.0f;
@@ -53,5 +67,31 @@ public class SoundController : MonoBehaviour
     public void PlayCashRegisterSound()
     {
         cashRegisterSound.Play();
+    }
+    public void PlaySweepSound()
+    {
+        sweepSound.Play();
+    }
+
+    public void PlayEffectSound(EEffectSoundType effectSoundType)
+    {
+        switch (effectSoundType)
+        {
+            case EEffectSoundType.Money:
+                break;
+            case EEffectSoundType.DoorBell:
+                break;
+            case EEffectSoundType.CashRegister:
+                cashRegisterSound.Play();
+                break;
+            case EEffectSoundType.Sweep:
+                break;
+            case EEffectSoundType.Button:
+                buttonSound.Play();
+                break;
+            case EEffectSoundType.ItemButton:
+                itemButtonSound.Play();
+                break;
+        }
     }
 }

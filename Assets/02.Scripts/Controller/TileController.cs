@@ -190,6 +190,8 @@ public class TileController : MonoBehaviour
         {
             GameManager.Instance.NPC.CountUpSwap();
         }
+
+        GameManager.Instance.Sound.PlaySweepSound();
     }
     public void MoveTile(Vector2 destinationGrid, Tile tile)
     {

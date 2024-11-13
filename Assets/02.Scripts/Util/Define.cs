@@ -23,8 +23,8 @@ public static class Define
 
     public const string finishTutorialBoolKey = "isFinishTutorial";
 
-    public const int nextCustomerMinSwapCount = 20;
-    public const int nextCustomerMaxSwapCount = 40;
+    public const int nextCustomerMinSwapCount = 0;
+    public const int nextCustomerMaxSwapCount = 5;
 
     public enum EMoveDirType
     {

@@ -53,6 +53,7 @@ public class Shop : MonoBehaviour
 
     internal void ShowShopPanel()
     {
+        GameManager.Instance.Sound.PlayEffectSound(EEffectSoundType.Button);
         GameManager.Instance.IsCanSwap = false;
         shopPanel.SetActive(true);
     }

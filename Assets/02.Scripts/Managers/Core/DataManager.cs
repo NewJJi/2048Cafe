@@ -64,37 +64,21 @@ public class DataManager
         }
 
         string filePath = $"{savePath}/{path}.json";
-
+        Debug.Log($"File Path : " + filePath);
         if (File.Exists(filePath))
         {
-            Debug.Log(filePath);
-            Debug.Log("ASDFFASDDFSAFSDASFDAFSDASFDAFSDASFD");
+            Debug.Log("Exist File");
             string readData = await File.ReadAllTextAsync(filePath);
+            string decrpytData = Decrypt(readData);
 
-            if (!string.IsNullOrEmpty(readData))
-            {
-                if (PlayerPrefs.HasKey("SavedInitData"))
-                {
-                    string decrpytData = Decrypt(readData);
-                    T data = JsonConvert.DeserializeObject<T>(decrpytData);
-                    return data;
-                }
-                else
-                {
-                    PlayerPrefs.SetInt("SavedInitData", 1);
-                    File.Delete(filePath);
-                    T data = new T();
-                    return data;
-                }
-            }
-            else
-            {
-                T data = new T();
-                return data;
-            }
+            Debug.Log(decrpytData);
+            T data = JsonConvert.DeserializeObject<T>(decrpytData);
+            return data;
         }
         else
         {
+            Debug.Log("File Not Exist");
+
             T data = new T();
             return data;
         }

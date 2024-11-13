@@ -30,7 +30,7 @@ public class RecipeLab : MonoBehaviour
         tileController.Init(recipeLabSaveData.expandLevel, recipeLabSaveData.gridList, eRecipeType);
 
         int costIndex = recipeLabSaveData.expandLevel - defaultRecipeLabGridSize;
-        expandButtonText.text = $"{GameManager.Instance.Data.expandUpgradeCost[costIndex]} ¿ø";
+        expandButtonText.text = $"{NumberTranslator.FormatNumber(GameManager.Instance.Data.expandUpgradeCost[costIndex])}";
 
         ActiveExpandButton(GameManager.Instance.GameMoney);
     }
@@ -65,8 +65,9 @@ public class RecipeLab : MonoBehaviour
         {
             expandButton.enabled = true;
         }
+        expandButtonText.text = $"{NumberTranslator.FormatNumber(GameManager.Instance.Data.expandUpgradeCost[costIndex])}";
 
-        expandButtonText.text = $"{GameManager.Instance.Data.expandUpgradeCost[costIndex]} ¿ø";
+        //expandButtonText.text = $"{GameManager.Instance.Data.expandUpgradeCost[costIndex]} ¿ø";
     }
 
     public void OnClickExpandButton()
@@ -76,6 +77,7 @@ public class RecipeLab : MonoBehaviour
         tileController.ExpandLaboratory();
 
         GameManager.Instance.SpendMoney(GameManager.Instance.Data.expandUpgradeCost[costIndex]);
+        GameManager.Instance.Sound.PlayEffectSound(EEffectSoundType.ItemButton);
     }
 
     public void SortPuzzle()

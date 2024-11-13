@@ -74,6 +74,7 @@ public class RecipeLabController : MonoBehaviour
 
     public void UseItem(EItemType eItemType)
     {
+        GameManager.Instance.Sound.PlayEffectSound(EEffectSoundType.ItemButton);
         switch (eItemType)
         {
             case EItemType.SortItem:

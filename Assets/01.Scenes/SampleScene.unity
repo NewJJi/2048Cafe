@@ -537,7 +537,10 @@ MonoBehaviour:
   bgmSound: {fileID: 312058745}
   moneySound: {fileID: 567025932}
   doorBellSound: {fileID: 289586475}
-  cashRegisterSound: {fileID: 0}
+  cashRegisterSound: {fileID: 1736555876}
+  sweepSound: {fileID: 1508814775}
+  buttonSound: {fileID: 1511881931}
+  itemButtonSound: {fileID: 154115905}
 --- !u!4 &22512943
 Transform:
   m_ObjectHideFlags: 0
@@ -546,8 +549,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 22512941}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.268225, y: -236.98547, z: -8.345151}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -555,7 +558,10 @@ Transform:
   - {fileID: 289586474}
   - {fileID: 567025931}
   - {fileID: 1736555875}
-  m_Father: {fileID: 0}
+  - {fileID: 1508814776}
+  - {fileID: 1511881930}
+  - {fileID: 154115906}
+  m_Father: {fileID: 218041913}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &24106308
 GameObject:
@@ -1177,6 +1183,134 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 147974833}
   m_CullTransparentMesh: 1
+--- !u!1 &154115904
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 154115906}
+  - component: {fileID: 154115905}
+  m_Layer: 0
+  m_Name: ItemButtonSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &154115905
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154115904}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 6ceda123e83ac9a44990ceb75b4da6aa, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.7
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &154115906
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154115904}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22512943}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &162091288
 GameObject:
   m_ObjectHideFlags: 0
@@ -1412,7 +1546,6 @@ GameObject:
   m_Component:
   - component: {fileID: 218041913}
   - component: {fileID: 218041912}
-  - component: {fileID: 218041914}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1435,7 +1568,7 @@ MonoBehaviour:
   uiManager: {fileID: 1646881138}
   recipeLabController: {fileID: 1330737909}
   inputController: {fileID: 1040571654}
-  gameData: {fileID: 218041914}
+  gameData: {fileID: 965238630}
   soundController: {fileID: 22512942}
   NPCManager: {fileID: 1464969937}
   tutorialManager: {fileID: 1990117916}
@@ -1449,868 +1582,16 @@ Transform:
   m_GameObject: {fileID: 218041911}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 469.74655, y: 1023.21027, z: -8.913578}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1464969938}
+  - {fileID: 22512943}
+  - {fileID: 1040571655}
+  - {fileID: 965238629}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &218041914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 218041911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f1f969ce93aaba4982677571de97cc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wealthSaveData:
-    haveMoney: 0
-    upgradeItemCount: 2
-    throwOutItemCount: 2
-    sortItemCount: 2
-  beverageSaveData:
-    maxValue: 0
-    expandLevel: 2
-    recipeItemDatas:
-    - isUnlock: 1
-      isSpawnMaterial: 1
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-  bakerySaveData:
-    maxValue: 0
-    expandLevel: 2
-    recipeItemDatas:
-    - isUnlock: 1
-      isSpawnMaterial: 1
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-  desertSaveData:
-    maxValue: 0
-    expandLevel: 2
-    recipeItemDatas:
-    - isUnlock: 1
-      isSpawnMaterial: 1
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-    - isUnlock: 0
-      isSpawnMaterial: 0
-      level: 0
-  beverageSpriteList:
-  - {fileID: 21300000, guid: 97648e1377f964948801270e1ae43fd8, type: 3}
-  - {fileID: 21300000, guid: 52d286c68a7460d409587b10f7c11684, type: 3}
-  - {fileID: 21300000, guid: 308ba816af3794448b5fb33364466ecf, type: 3}
-  - {fileID: 21300000, guid: 2e8bface0306ff34bb4349eb9f364657, type: 3}
-  - {fileID: 21300000, guid: ca8ed0b219c852f49a499d1c037b24b9, type: 3}
-  - {fileID: 21300000, guid: 307fb50ff826d1c44b9feba2cb50a64f, type: 3}
-  - {fileID: 21300000, guid: 8cb517034243bd34e86559dc6cbf4f3a, type: 3}
-  - {fileID: 21300000, guid: 7588c622c5f1b414aac4991e964de44c, type: 3}
-  - {fileID: 21300000, guid: 1eecaa5eef4ab4549a78e9e0b610de2d, type: 3}
-  - {fileID: 21300000, guid: eb8018ca5c8bbcd40913c80f7607c721, type: 3}
-  - {fileID: 21300000, guid: eb9dfd3aee42c984894cd88e6a91cd10, type: 3}
-  - {fileID: 21300000, guid: e744478d458172e499bb623a66de9484, type: 3}
-  - {fileID: 21300000, guid: 415d6a926dce7b14a85c47244bbe2cdd, type: 3}
-  - {fileID: 21300000, guid: ed49cc3e7bfefaf4a9ba62ff951d4ced, type: 3}
-  - {fileID: 21300000, guid: b067e5f8699ce8647a5a61ac1846afbb, type: 3}
-  - {fileID: 21300000, guid: 3ec59aaf55b45864f85eef047012a5ca, type: 3}
-  - {fileID: 21300000, guid: 280da033105620142828a74d19292abe, type: 3}
-  - {fileID: 21300000, guid: 2b31b8472c44fd04b9a55cebe0566224, type: 3}
-  - {fileID: 21300000, guid: 236b02fa57ef71d40a5631ff8a542979, type: 3}
-  - {fileID: 21300000, guid: d34317ca4fb44934e9c9ac173d741622, type: 3}
-  - {fileID: 21300000, guid: 922cf2a2383fa8f46ba4424d87cd9385, type: 3}
-  - {fileID: 21300000, guid: a71fabb3464f82448ab52b383674fc4a, type: 3}
-  - {fileID: 21300000, guid: ddddc994bb4afb743995229810dcd9a3, type: 3}
-  - {fileID: 21300000, guid: 2b01480739a1d414487d4fe0208a0b63, type: 3}
-  - {fileID: 21300000, guid: bb22a4a1f28dacf40be7aa605d251bb2, type: 3}
-  - {fileID: 21300000, guid: 55796ec6fdefcbd499e0a62afa44bec8, type: 3}
-  - {fileID: 21300000, guid: 2a04e8153b3378a48a351bd6d90eece9, type: 3}
-  bakerySpriteList:
-  - {fileID: 21300000, guid: 268a84b71ec80114fb168c1592256a21, type: 3}
-  - {fileID: 21300000, guid: c82482a0aa59a1649bd913e85b04ce36, type: 3}
-  - {fileID: 21300000, guid: 8509b6f905549204cbed2e20d2547558, type: 3}
-  - {fileID: 21300000, guid: d2f4456aa2244e74bb118ed79ec1b927, type: 3}
-  - {fileID: 21300000, guid: d585769ab8f018243acc48d573f56ece, type: 3}
-  - {fileID: 21300000, guid: 090541daedf53cd489b9c36cd77176f6, type: 3}
-  - {fileID: 21300000, guid: 750cfdd312d593840b69dd16c8ec20d2, type: 3}
-  - {fileID: 21300000, guid: 3636b488d1e9b0f42813af5436df2462, type: 3}
-  - {fileID: 21300000, guid: b7c9e986ea5c9224d98fc5ae8170a5f9, type: 3}
-  - {fileID: 21300000, guid: ff51e756f0d11bd4e8b136b485d00d32, type: 3}
-  - {fileID: 21300000, guid: 9be7354782eeafa48a6f17d3b63d5bcf, type: 3}
-  - {fileID: 21300000, guid: 13e16e7648776ee49900b96fdd981a9a, type: 3}
-  - {fileID: 21300000, guid: 318945b49f3bc214b91edcdee5ec9803, type: 3}
-  - {fileID: 21300000, guid: 945941f7846f5c546a0085ca95357114, type: 3}
-  - {fileID: 21300000, guid: c4003da7895d9b94eade1c2e75657005, type: 3}
-  - {fileID: 21300000, guid: 619fa25135714a74d907e29458892729, type: 3}
-  - {fileID: 21300000, guid: b56d9d7bead292b4a943439aac27dbd7, type: 3}
-  - {fileID: 21300000, guid: 4b6c66e3677fb7743b64b1eb663b904e, type: 3}
-  - {fileID: 21300000, guid: 5a8778c30b362c141a081ffe5cbcefb5, type: 3}
-  - {fileID: 21300000, guid: 9abfee5b064672e43967517bfda5a871, type: 3}
-  - {fileID: 21300000, guid: 925f72f340a525f46bdbc9cd077f2d5c, type: 3}
-  - {fileID: 21300000, guid: 982efce0264443b4ab15d4843d7e1bdd, type: 3}
-  - {fileID: 21300000, guid: 51edf7e7049c52a468d9b01c6daf4f0d, type: 3}
-  - {fileID: 21300000, guid: af10118efd2c9a7478b58d834e3f5879, type: 3}
-  - {fileID: 21300000, guid: fecb474de36fd244d858d9b7cbe0d19b, type: 3}
-  - {fileID: 21300000, guid: 6b230f3d94151134ba8f004f5be5c26c, type: 3}
-  - {fileID: 21300000, guid: 5530f76bdbfdbba439a467b1afbab927, type: 3}
-  desertSpriteList:
-  - {fileID: 21300000, guid: 23f9e1a7d783f3c45ba74df2fa7e8203, type: 3}
-  - {fileID: 21300000, guid: 22c316f2e917f434d8f07edc3fefb057, type: 3}
-  - {fileID: 21300000, guid: 48fe690517789e8489638eea9c900c2a, type: 3}
-  - {fileID: 21300000, guid: ee51017d345b9fb44ab81bffa8188c78, type: 3}
-  - {fileID: 21300000, guid: 619995925d00f1b4da28adba76a48b19, type: 3}
-  - {fileID: 21300000, guid: 0c414af56e560f046b71c4fcc226e5ed, type: 3}
-  - {fileID: 21300000, guid: 4e07e4ec7bb766f49bc04d3cc7d2e3eb, type: 3}
-  - {fileID: 21300000, guid: 0a66592fcf79bac498d611747eae036a, type: 3}
-  - {fileID: 21300000, guid: a79bc1402a0e0084ba897d992ddc9a6a, type: 3}
-  - {fileID: 21300000, guid: c57a7f549313fdc4683a153db6cefb55, type: 3}
-  - {fileID: 21300000, guid: f040e6b7303dcfe419f11852550b0c14, type: 3}
-  - {fileID: 21300000, guid: 40dc4e33f94834c49ab5a574ba516eaf, type: 3}
-  - {fileID: 21300000, guid: 2c59055e58be8b3438bcf27f008773d9, type: 3}
-  - {fileID: 21300000, guid: 7376935efe4588f408b596c2c9f87556, type: 3}
-  - {fileID: 21300000, guid: 385dbc6997f44f1409c38d049d8f9818, type: 3}
-  - {fileID: 21300000, guid: a82023cb977ac28459a003a4328a2135, type: 3}
-  - {fileID: 21300000, guid: 92f8a79617555a34ba41adf10265d342, type: 3}
-  - {fileID: 21300000, guid: 23684dbaada3b0943b30d6a0f3aca005, type: 3}
-  - {fileID: 21300000, guid: 880ce50608e84014bac8836f01e2d863, type: 3}
-  - {fileID: 21300000, guid: 876c6f0c27e5dc54c92d5e19cf3b64fd, type: 3}
-  - {fileID: 21300000, guid: bad04c7c16bc2744594a9adb41f00116, type: 3}
-  - {fileID: 21300000, guid: 48decea62e958a34ca1cd19df87558ae, type: 3}
-  - {fileID: 21300000, guid: e56fd02aa02d0244092701d58d9fd772, type: 3}
-  - {fileID: 21300000, guid: 1135130b3e527df4db071df83a47dda9, type: 3}
-  - {fileID: 21300000, guid: 04f1e030adf98f944a9f44a26cc9d75e, type: 3}
-  - {fileID: 21300000, guid: 990e8df3ebcf6694dac946ce4aabeea2, type: 3}
-  - {fileID: 21300000, guid: 0cf424513169641408ede08ade755d92, type: 3}
-  NPCSpriteList: []
-  beverageInfoData: {fileID: 4900000, guid: 5b57637be0a8ef843bfd22f1ee253a46, type: 3}
-  bakeryInfoData: {fileID: 4900000, guid: 236b22552391ef74f9b76568f6f06963, type: 3}
-  desertInfoData: {fileID: 4900000, guid: 6075a9e18163aa74f8a32b15828eaeb1, type: 3}
-  beverageInfoBundle:
-    foodDataList:
-    - uid: 1
-      name: "\uC5D0\uC2A4\uD504\uB808\uC18C"
-      description: "\uAC15\uD55C \uD48D\uBBF8\uC640 \uC9C4\uD55C \uB18D\uB3C4\uB97C
-        \uC790\uB791\uD558\uB294 \uCEE4\uD53C\uC758 \uAE30\uBCF8\uC774 \uB418\uB294
-        \uC74C\uB8CC"
-      sellPrice: 2
-      starCost: 50
-    - uid: 2
-      name: "\uC544\uBA54\uB9AC\uCE74\uB178"
-      description: "\uC5D0\uC2A4\uD504\uB808\uC18C\uC5D0 \uBB3C\uC744 \uCD94\uAC00\uD574
-        \uBD80\uB4DC\uB7FD\uAC8C \uC990\uAE38 \uC218 \uC788\uB294 \uCEE4\uD53C"
-      sellPrice: 4
-      starCost: 150
-    - uid: 3
-      name: "\uCE74\uD398\uB77C\uB5BC"
-      description: "\uC5D0\uC2A4\uD504\uB808\uC18C\uC5D0 \uC6B0\uC720\uB97C \uB354\uD574
-        \uBD80\uB4DC\uB7FD\uACE0 \uD06C\uB9AC\uBBF8\uD55C \uB9DB\uC774 \uB098\uB294
-        \uCEE4\uD53C"
-      sellPrice: 8
-      starCost: 250
-    - uid: 4
-      name: "\uCE74\uD398\uBAA8\uCE74"
-      description: "\uC5D0\uC2A4\uD504\uB808\uC18C\uC5D0 \uCD08\uCF5C\uB9BF \uC2DC\uB7FD\uACFC
-        \uC6B0\uC720\uB97C \uB354\uD574 \uBD80\uB4DC\uB7FD\uACE0 \uB2EC\uCF64\uD55C
-        \uB9DB\uC744 \uB0B4\uB294 \uCEE4\uD53C \uC74C\uB8CC"
-      sellPrice: 16
-      starCost: 350
-    - uid: 5
-      name: "\uCEAC\uB77C\uBA5C \uB9C8\uB07C\uC544\uD1A0"
-      description: "\uC5D0\uC2A4\uD504\uB808\uC18C\uC640 \uC6B0\uC720 \uC704\uC5D0
-        \uCEAC\uB77C\uBA5C \uC2DC\uB7FD\uC744 \uC5B9\uC740 \uB2EC\uCF64\uD55C \uCEE4\uD53C"
-      sellPrice: 32
-      starCost: 450
-    - uid: 6
-      name: "\uCF5C\uB4DC\uBE0C\uB8E8"
-      description: "\uCC28\uAC00\uC6B4 \uBB3C\uC5D0 \uC624\uB79C \uC2DC\uAC04 \uC6B0\uB824\uB0B4\uC5B4
-        \uB9CC\uB4E0 \uAE54\uB054\uD558\uACE0 \uC0C1\uCF8C\uD55C \uCEE4\uD53C"
-      sellPrice: 64
-      starCost: 550
-    - uid: 7
-      name: "\uD2B8\uB85C\uD53C\uCE7C \uC5D0\uC774\uB4DC"
-      description: "\uB2E4\uC591\uD55C \uC5F4\uB300 \uACFC\uC77C\uC758 \uD48D\uBBF8\uAC00
-        \uB2F4\uAE34 \uC5D0\uC774\uB4DC"
-      sellPrice: 128
-      starCost: 650
-    - uid: 8
-      name: "\uC624\uB80C\uC9C0 \uC5D0\uC774\uB4DC"
-      description: "\uC624\uB80C\uC9C0\uC758 \uC0C1\uD07C\uD568\uACFC \uCCAD\uB7C9\uAC10\uC744
-        \uC990\uAE38 \uC218 \uC788\uB294 \uC5D0\uC774\uB4DC"
-      sellPrice: 256
-      starCost: 750
-    - uid: 9
-      name: "\uB808\uBAAC \uC5D0\uC774\uB4DC"
-      description: "\uB808\uBAAC\uC758 \uC2E0\uC120\uD55C \uB9DB\uC744 \uC0B4\uB9B0
-        \uC0C1\uCF8C\uD55C \uC74C\uB8CC"
-      sellPrice: 512
-      starCost: 850
-    - uid: 10
-      name: "\uBE14\uB8E8\uBCA0\uB9AC \uC5D0\uC774\uB4DC"
-      description: "\uBE14\uB8E8\uBCA0\uB9AC\uC758 \uB2EC\uCF64\uD568\uACFC \uD0C4\uC0B0\uC774
-        \uC5B4\uC6B0\uB7EC\uC9C4 \uC5D0\uC774\uB4DC"
-      sellPrice: 1024
-      starCost: 950
-    - uid: 11
-      name: "\uBA54\uB860 \uC18C\uB2E4"
-      description: "\uB2EC\uCF64\uD55C \uBA54\uB860 \uB9DB\uC774 \uB098\uB294 \uD0C4\uC0B0
-        \uC74C\uB8CC"
-      sellPrice: 2048
-      starCost: 1050
-    - uid: 12
-      name: "\uBE14\uB8E8\uB808\uBAAC \uC5D0\uC774\uB4DC"
-      description: "\uBE14\uB8E8\uD050\uB77C\uC18C\uC640 \uB808\uBAAC\uC774 \uC870\uD654\uB97C
-        \uC774\uB8E8\uC5B4 \uC0C9\uAC10\uC774 \uB3C5\uD2B9\uD558\uACE0 \uC0C1\uD07C\uD55C
-        \uC5D0\uC774\uB4DC"
-      sellPrice: 4096
-      starCost: 1150
-    - uid: 13
-      name: "\uC790\uBC14\uCE69 \uD478\uB77C\uD478\uCE58\uB178"
-      description: "\uCD08\uCF5C\uB9BF \uCE69\uACFC \uCEE4\uD53C\uAC00 \uC5B4\uC6B0\uB7EC\uC9C4
-        \uC2DC\uC6D0\uD55C \uBE14\uB80C\uB514\uB4DC \uC74C\uB8CC"
-      sellPrice: 8192
-      starCost: 1250
-    - uid: 14
-      name: "\uB538\uAE30 \uD478\uB77C\uD478\uCE58\uB178"
-      description: "\uB538\uAE30\uC758 \uB2EC\uCF64\uD55C \uB9DB\uC744 \uB2F4\uC740
-        \uBE14\uB80C\uB514\uB4DC \uC74C\uB8CC"
-      sellPrice: 16384
-      starCost: 1350
-    - uid: 15
-      name: "\uB9DD\uACE0 \uD478\uB77C\uD478\uCE58\uB178"
-      description: "\uB9DD\uACE0\uC758 \uC9C4\uD55C \uB9DB\uC774 \uC0B4\uC544\uC788\uB294
-        \uBE14\uB80C\uB514\uB4DC \uC74C\uB8CC"
-      sellPrice: 32768
-      starCost: 1450
-    - uid: 16
-      name: "\uB179\uCC28 \uD478\uB77C\uD478\uCE58\uB178"
-      description: "\uB179\uCC28\uC758 \uC309\uC2F8\uB984\uD568\uACFC \uC2DC\uC6D0\uD568\uC744
-        \uD568\uAED8 \uB290\uB084 \uC218 \uC788\uB294 \uC74C\uB8CC"
-      sellPrice: 65536
-      starCost: 1550
-    - uid: 17
-      name: "\uC624\uB808\uC624 \uD478\uB77C\uD478\uCE58\uB178"
-      description: "\uC624\uB808\uC624\uC640 \uCEE4\uD53C\uAC00 \uC870\uD654\uB97C
-        \uC774\uB8E8\uB294 \uB2EC\uCF64\uD55C \uBE14\uB80C\uB514\uB4DC \uC74C\uB8CC"
-      sellPrice: 131072
-      starCost: 1650
-    - uid: 18
-      name: "\uD1A0\uB9C8\uD1A0 \uC8FC\uC2A4"
-      description: "\uC2E0\uC120\uD55C \uD1A0\uB9C8\uD1A0\uB85C \uB9CC\uB4E0 \uAC74\uAC15\uD55C
-        \uC8FC\uC2A4"
-      sellPrice: 262144
-      starCost: 1750
-    - uid: 19
-      name: "\uC218\uBC15 \uC8FC\uC2A4"
-      description: "\uC5EC\uB984\uCCA0 \uC778\uAE30 \uC788\uB294 \uC218\uBC15\uC758
-        \uC2DC\uC6D0\uD55C \uB9DB\uC744 \uC0B4\uB9B0 \uC8FC\uC2A4"
-      sellPrice: 524288
-      starCost: 1850
-    - uid: 20
-      name: "\uD0A4\uC704 \uC8FC\uC2A4"
-      description: "\uD0A4\uC704\uC758 \uC0C8\uCF64\uB2EC\uCF64\uD55C \uB9DB\uC774
-        \uD2B9\uC9D5\uC778 \uC8FC\uC2A4"
-      sellPrice: 1048576
-      starCost: 1950
-    - uid: 21
-      name: "\uBE14\uB8E8\uBCA0\uB9AC \uC2A4\uBB34\uB514"
-      description: "\uBE14\uB8E8\uBCA0\uB9AC\uB97C \uC5BC\uC74C\uACFC \uD568\uAED8
-        \uAC08\uC544 \uB9CC\uB4E0 \uC2DC\uC6D0\uD55C \uC2A4\uBB34\uB514"
-      sellPrice: 2097152
-      starCost: 2050
-    - uid: 22
-      name: "\uCD08\uCF54 \uBC14\uB098\uB098 \uC2A4\uBB34\uB514"
-      description: "\uCD08\uCF5C\uB9BF\uACFC \uBC14\uB098\uB098\uAC00 \uC5B4\uC6B0\uB7EC\uC9C4
-        \uB2EC\uCF64\uD55C \uC2A4\uBB34\uB514"
-      sellPrice: 4194304
-      starCost: 2150
-    - uid: 23
-      name: "\uD0C0\uB85C \uBC00\uD06C\uD2F0"
-      description: "\uCAC4\uAE43\uD55C \uD384\uC774 \uB4E4\uC5B4\uAC04 \uD0C0\uB85C
-        \uBC00\uD06C\uD2F0"
-      sellPrice: 8388608
-      starCost: 2250
-    - uid: 24
-      name: "\uBAA8\uD788\uB610"
-      description: "\uB77C\uC784\uACFC \uBBFC\uD2B8\uC758 \uC0C1\uCF8C\uD55C \uC870\uD569\uC744
-        \uC990\uAE38 \uC218 \uC788\uB294 \uC74C\uB8CC"
-      sellPrice: 16777216
-      starCost: 2350
-    - uid: 25
-      name: "\uBC45\uC1FC"
-      description: "\uC640\uC778\uC5D0 \uACFC\uC77C\uACFC \uD5A5\uC2E0\uB8CC\uB97C
-        \uB123\uC5B4 \uB053\uC5EC \uB9C8\uC2DC\uB294 \uB530\uB73B\uD55C \uC74C\uB8CC"
-      sellPrice: 33554432
-      starCost: 2450
-    - uid: 26
-      name: "\uD751\uC784\uC790 \uB77C\uB5BC"
-      description: "\uACE0\uC18C\uD55C \uD751\uC784\uC790\uC758 \uAE4A\uC740 \uD48D\uBBF8\uAC00
-        \uC6B0\uC720\uC640 \uC870\uD654\uB97C \uC774\uB8EC \uC74C\uB8CC"
-      sellPrice: 67108864
-      starCost: 2550
-    - uid: 27
-      name: "\uCCB4\uB9AC \uBE14\uB77C\uC378"
-      description: "\uBC9A\uAF43 \uC2DC\uB7FD\uACFC \uB77C\uB5BC\uAC00 \uC5B4\uC6B0\uB7EC\uC838
-        \uB2EC\uCF64\uD558\uACE0 \uC740\uC740\uD55C \uBC9A\uAF43 \uD5A5\uC744 \uB290\uB084
-        \uC218 \uC788\uB294 \uC74C\uB8CC"
-      sellPrice: 134217730
-      starCost: 2650
-  bakeryInfoBundle:
-    foodDataList:
-    - uid: 101
-      name: "\uBAA8\uB2DD\uBE75"
-      description: "\uC544\uCE68 \uC2DD\uC0AC\uC5D0 \uC790\uC8FC \uBA39\uB294 \uBD80\uB4DC\uB7FD\uACE0
-        \uB2EC\uCF64\uD55C \uC791\uC740 \uBE75"
-      sellPrice: 2
-      starCost: 50
-    - uid: 102
-      name: "\uD584\uCE58\uC988\uB864\uBE75"
-      description: "\uD584\uACFC \uCE58\uC988\uAC00 \uB9D0\uB9B0 \uD615\uD0DC\uB85C
-        \uC18D\uC5D0 \uB4E4\uC5B4\uAC04 \uB864\uBE75"
-      sellPrice: 4
-      starCost: 150
-    - uid: 103
-      name: "\uC2DD\uBE75"
-      description: "\uD1A0\uC2A4\uD2B8\uB098 \uC0CC\uB4DC\uC704\uCE58\uB85C \uB9CE\uC774
-        \uC0AC\uC6A9\uD558\uB294 \uB124\uBAA8\uB09C \uD770\uBE75"
-      sellPrice: 8
-      starCost: 250
-    - uid: 104
-      name: "\uAF48\uBC30\uAE30"
-      description: "\uAF2C\uC778 \uBAA8\uC591\uC758 \uD280\uAE34 \uB2EC\uCF64\uD55C
-        \uB3C4\uB11B \uD615\uD0DC\uC758 \uBE75"
-      sellPrice: 16
-      starCost: 350
-    - uid: 105
-      name: "\uBC14\uAC8C\uD2B8"
-      description: "\uAE38\uACE0 \uBC14\uC0AD\uD55C \uD504\uB791\uC2A4\uC2DD \uD770
-        \uBE75"
-      sellPrice: 32
-      starCost: 450
-    - uid: 106
-      name: "\uBCA0\uC774\uAE00"
-      description: "\uAC89\uC740 \uBC14\uC0AD\uD558\uACE0 \uC18D\uC740 \uCAC4\uAE43\uD55C
-        \uB3D9\uADF8\uB780 \uBE75"
-      sellPrice: 64
-      starCost: 550
-    - uid: 107
-      name: "\uD504\uB808\uC990"
-      description: "\uC18C\uAE08\uC774 \uBFCC\uB824\uC9C4 \uAF2C\uC778 \uBAA8\uC591\uC758
-        \uC9ED\uC9E4\uD55C \uBE75"
-      sellPrice: 128
-      starCost: 650
-    - uid: 108
-      name: "\uC18C\uAE08\uBE75"
-      description: "\uBC84\uD130\uB97C \uBCA0\uC774\uC2A4\uB85C \uC18C\uAE08\uC774
-        \uBFCC\uB824\uC9C4 \uBC14\uC0AD\uD558\uACE0 \uACE0\uC18C\uD55C \uBE75"
-      sellPrice: 256
-      starCost: 750
-    - uid: 109
-      name: "\uD06C\uB85C\uC640\uC0C1"
-      description: "\uBC84\uD130\uAC00 \uB9CE\uC774 \uB4E4\uC5B4\uAC04 \uBC14\uC0AD\uD558\uACE0
-        \uACB0\uC774 \uC788\uB294 \uD398\uC774\uC2A4\uD2B8\uB9AC"
-      sellPrice: 512
-      starCost: 850
-    - uid: 110
-      name: "\uCE74\uC2A4\uD14C\uB77C"
-      description: "\uCD09\uCD09\uD558\uACE0 \uBD80\uB4DC\uB7EC\uC6B4 \uB2EC\uAC40\uC744
-        \uB9CE\uC774 \uC0AC\uC6A9\uD55C \uC2A4\uD3F0\uC9C0 \uCF00\uC774\uD06C"
-      sellPrice: 1024
-      starCost: 950
-    - uid: 111
-      name: "\uB2E8\uD325\uBE75"
-      description: "\uB2EC\uCF64\uD55C \uD325\uC18C\uB97C \uC18D\uC5D0 \uB123\uC740
-        \uBE75"
-      sellPrice: 2048
-      starCost: 1050
-    - uid: 112
-      name: "\uCEE4\uD53C\uBC88"
-      description: "\uB2EC\uCF64\uD558\uACE0 \uBC14\uC0AD\uD55C \uCEE4\uD53C \uB9DB
-        \uD06C\uB7EC\uC2A4\uD2B8\uAC00 \uC5B9\uD78C \uBE75"
-      sellPrice: 4096
-      starCost: 1150
-    - uid: 113
-      name: "\uACE0\uB85C\uCF00"
-      description: "\uC18D\uC5D0 \uB2E4\uC591\uD55C \uC7AC\uB8CC\uAC00 \uB4E4\uC5B4\uAC04
-        \uBE75\uAC00\uB8E8\uB97C \uC785\uD78C \uD280\uAE34 \uBE75"
-      sellPrice: 8192
-      starCost: 1250
-    - uid: 114
-      name: "\uBA54\uB860\uBE75"
-      description: "\uAC89\uC774 \uBC14\uC0AD\uD558\uACE0 \uB2EC\uCF64\uD55C \uBA54\uB860
-        \uBAA8\uC591\uC758 \uC77C\uBCF8\uC2DD \uBE75"
-      sellPrice: 16384
-      starCost: 1350
-    - uid: 115
-      name: "\uCD08\uCF54\uC18C\uB77C\uBE75"
-      description: "\uCD08\uCF54 \uD06C\uB9BC\uC774 \uB4E4\uC5B4\uAC04 \uC18C\uB77C
-        \uBAA8\uC591\uC758 \uB2EC\uCF64\uD55C \uBE75"
-      sellPrice: 32768
-      starCost: 1450
-    - uid: 116
-      name: "\uBE91\uC624\uC1FC\uCF5C\uB77C"
-      description: "\uCD08\uCF5C\uB9BF\uC774 \uB4E4\uC5B4\uAC04 \uD398\uC774\uC2A4\uD2B8\uB9AC
-        \uBE75"
-      sellPrice: 65536
-      starCost: 1550
-    - uid: 117
-      name: "\uB9C8\uB298\uC721\uCABD\uBE75"
-      description: "6\uAC1C\uB85C \uB098\uB220\uC9C4 \uBE75 \uC0AC\uC774 \uB9C8\uB298\uACFC
-        \uBC84\uD130\uAC00 \uB4E4\uC5B4\uAC04 \uBE75"
-      sellPrice: 131072
-      starCost: 1650
-    - uid: 118
-      name: "\uC18C\uC2DC\uC9C0\uBE75"
-      description: "\uC18C\uC2DC\uC9C0\uAC00 \uB4E4\uC5B4\uAC04 \uBBF8\uAD6D\uC2DD
-        \uD56B\uB3C4\uADF8 \uBE75"
-      sellPrice: 262144
-      starCost: 1750
-    - uid: 119
-      name: "\uD53C\uC790\uBE75"
-      description: "\uD56B\uB3C4\uADF8\uC640 \uD53C\uC790\uAC00 \uC11E\uC778 \uB3C5\uD2B9\uD55C
-        \uD55C\uAD6D\uC2DD \uBE75"
-      sellPrice: 524288
-      starCost: 1850
-    - uid: 120
-      name: "\uACC4\uB780\uC0CC\uB4DC\uC704\uCE58"
-      description: "\uC0B6\uC740 \uB2EC\uAC40\uACFC \uB9C8\uC694\uB124\uC988\uB97C
-        \uC11E\uC5B4 \uB123\uC740 \uC0CC\uB4DC\uC704\uCE58"
-      sellPrice: 1048576
-      starCost: 1950
-    - uid: 121
-      name: "\uD584\uBC84\uAC70"
-      description: "\uBC88 \uC0AC\uC774\uC5D0 \uACE0\uAE30 \uD328\uD2F0\uC640 \uCC44\uC18C\uB97C
-        \uB123\uC740 \uC0CC\uB4DC\uC704\uCE58"
-      sellPrice: 2097152
-      starCost: 2050
-    - uid: 122
-      name: "\uD30C\uB2C8\uB2C8\uC0CC\uB4DC"
-      description: "\uD584\uACFC \uCE58\uC988\uAC00 \uB4E4\uC5B4\uAC04 \uADF8\uB9B4\uC5D0
-        \uAD6C\uC6B4 \uC0CC\uB4DC\uC704\uCE58"
-      sellPrice: 4194304
-      starCost: 2150
-    - uid: 123
-      name: "\uC560\uD50C\uD30C\uC774"
-      description: "\uB2EC\uCF64\uD55C \uC0AC\uACFC \uD544\uB9C1\uC744 \uB123\uC740
-        \uD30C\uC774"
-      sellPrice: 8388608
-      starCost: 2250
-    - uid: 124
-      name: "\uBBF8\uD2B8\uD30C\uC774"
-      description: "\uACE0\uAE30\uC640 \uADF8\uB808\uC774\uBE44\uB97C \uB123\uC740
-        \uD30C\uC774"
-      sellPrice: 16777216
-      starCost: 2350
-    - uid: 125
-      name: "\uC815\uC5B4\uB9AC\uD30C\uC774"
-      description: "\uD398\uC774\uC2A4\uD2B8\uB9AC\uC5D0 \uC815\uC5B4\uB9AC\uB97C
-        \uB123\uC740 \uC601\uAD6D\uC758 \uD30C\uC774"
-      sellPrice: 33554432
-      starCost: 2450
-    - uid: 126
-      name: "\uC559\uCFE0\uB974\uD2B8 \uC2A4\uD504"
-      description: "\uC2A4\uD504 \uC704\uC5D0 \uD398\uC774\uC2A4\uD2B8\uB9AC \uBC18\uC8FD\uC744
-        \uB36E\uC5B4 \uAD6C\uC6B4 \uC694\uB9AC"
-      sellPrice: 67108864
-      starCost: 2550
-    - uid: 127
-      name: "\uD5C8\uB2C8\uBE0C\uB808\uB4DC"
-      description: "\uAD6C\uC6B4 \uC2DD\uBE75\uC5D0 \uC0DD\uD06C\uB9BC\uACFC \uCE90\uB7EC\uBA5C\uC2DC\uB7FD
-        \uC2DC\uB098\uBAAC \uD30C\uC6B0\uB354\uB85C \uD1A0\uD551\uD55C \uBE75"
-      sellPrice: 134217730
-      starCost: 2650
-  desertInfoBundle:
-    foodDataList:
-    - uid: 201
-      name: "\uB9C8\uCE74\uB871"
-      description: "\uD504\uB791\uC2A4\uC758 \uB2EC\uCF64\uD55C \uC544\uBAAC\uB4DC
-        \uBA38\uB7AD \uCFE0\uD0A4"
-      sellPrice: 2
-      starCost: 50
-    - uid: 202
-      name: "\uBA38\uB7AD"
-      description: "\uC124\uD0D5\uACFC \uACC4\uB780 \uD770\uC790\uB97C \uC11E\uC5B4
-        \uAD6C\uC6B4 \uAC00\uBCBC\uC6B4 \uCFE0\uD0A4"
-      sellPrice: 4
-      starCost: 150
-    - uid: 203
-      name: "\uB9C8\uB4E4\uB80C"
-      description: "\uC870\uAC1C \uBAA8\uC591\uC758 \uD504\uB791\uC2A4 \uC791\uC740
-        \uCF00\uC774\uD06C"
-      sellPrice: 8
-      starCost: 250
-    - uid: 204
-      name: "\uD718\uB0AD\uC2DC\uC5D0"
-      description: "\uBC84\uD130\uAC00 \uB4E4\uC5B4\uAC00 \uCD09\uCD09\uD558\uACE0
-        \uBD80\uB4DC\uB7EC\uC6B4 \uD504\uB791\uC2A4 \uBBF8\uB2C8 \uCF00\uC774\uD06C"
-      sellPrice: 16
-      starCost: 350
-    - uid: 205
-      name: "\uCFE0\uD0A4"
-      description: "\uBC00\uAC00\uB8E8\uC640 \uC124\uD0D5\uC73C\uB85C \uB9CC\uB4E0
-        \uAC04\uB2E8\uD55C \uAD6C\uC6B4 \uACFC\uC790"
-      sellPrice: 32
-      starCost: 450
-    - uid: 206
-      name: "\uC624\uBBC8\uB81B"
-      description: "\uACC4\uB780\uC73C\uB85C \uB9CC\uB4E0 \uBD80\uB4DC\uB7EC\uC6B4
-        \uBC18\uC8FD\uC5D0 \uC0DD\uD06C\uB9BC\uC744 \uB123\uC740 \uB514\uC800\uD2B8"
-      sellPrice: 64
-      starCost: 550
-    - uid: 207
-      name: "\uC57D\uACFC"
-      description: "\uAFC0\uACFC \uAE30\uB984\uC73C\uB85C \uB9CC\uB4E0 \uD55C\uAD6D\uC758
-        \uC804\uD1B5 \uACFC\uC790"
-      sellPrice: 128
-      starCost: 650
-    - uid: 208
-      name: "\uC5D0\uD074\uB808\uB974"
-      description: "\uAE38\uCB49\uD55C \uBAA8\uC591\uC758 \uD504\uB791\uC2A4 \uD06C\uB9BC\uC774
-        \uB4E4\uC5B4\uAC04 \uD398\uC774\uC2A4\uD2B8\uB9AC"
-      sellPrice: 256
-      starCost: 750
-    - uid: 209
-      name: "\uBC84\uD130\uBC14"
-      description: "\uBC84\uD130 \uD48D\uBBF8\uAC00 \uAC15\uD55C \uB2E8\uB2E8\uD55C
-        \uBC14 \uD615\uD0DC\uC758 \uACFC\uC790"
-      sellPrice: 512
-      starCost: 850
-    - uid: 210
-      name: "\uB2EC\uACE0\uB098"
-      description: "\uC124\uD0D5\uC744 \uB179\uC5EC \uB9CC\uB4E0 \uD55C\uAD6D \uC804\uD1B5
-        \uACFC\uC790"
-      sellPrice: 1024
-      starCost: 950
-    - uid: 211
-      name: "\uD314\uBBF8\uC5D0"
-      description: "\uB098\uBE44 \uBAA8\uC591\uC73C\uB85C \uC0DD\uAE34 \uBC14\uC0AD\uD55C
-        \uD504\uB791\uC2A4 \uD398\uC774\uC2A4\uD2B8\uB9AC"
-      sellPrice: 2048
-      starCost: 1050
-    - uid: 212
-      name: "\uD06C\uB8FD\uC9C0"
-      description: "\uD06C\uB85C\uC640\uC0C1\uC744 \uB204\uB8FD\uC9C0\uCC98\uB7FC
-        \uB20C\uB7EC \uBC14\uC0AD\uD568\uC744 \uC0B4\uB9B0 \uB514\uC800\uD2B8"
-      sellPrice: 4096
-      starCost: 1150
-    - uid: 213
-      name: "\uC640\uD50C"
-      description: "\uACA9\uC790 \uBAA8\uC591\uC758 \uB2EC\uCF64\uD55C \uBC18\uC8FD\uC744
-        \uAD6C\uC6CC \uB9CC\uB4E0 \uB514\uC800\uD2B8"
-      sellPrice: 8192
-      starCost: 1250
-    - uid: 214
-      name: "\uC5D0\uADF8\uD0C0\uB974\uD2B8"
-      description: "\uBC14\uC0AD\uD55C \uD398\uC774\uC2A4\uD2B8\uB9AC \uC704\uC5D0
-        \uD06C\uB9BC \uAC19\uC740 \uB2EC\uAC40 \uD544\uB9C1\uC774 \uC62C\uB77C\uAC04
-        \uB514\uC800\uD2B8"
-      sellPrice: 16384
-      starCost: 1350
-    - uid: 215
-      name: "\uB2E4\uCFE0\uC544\uC988"
-      description: "\uC544\uBAAC\uB4DC \uBA38\uB7AD\uC73C\uB85C \uB9CC\uB4E0 \uACFC\uC790"
-      sellPrice: 32768
-      starCost: 1450
-    - uid: 216
-      name: "\uD478\uB529"
-      description: "\uBD80\uB4DC\uB7FD\uACE0 \uD06C\uB9AC\uBBF8\uD55C \uC9C8\uAC10\uC758
-        \uB514\uC800\uD2B8"
-      sellPrice: 65536
-      starCost: 1550
-    - uid: 217
-      name: "\uBABD\uBE14\uB791"
-      description: "\uBC24 \uD06C\uB9BC\uC744 \uC313\uC544 \uB9CC\uB4E0 \uD504\uB791\uC2A4
-        \uB514\uC800\uD2B8"
-      sellPrice: 131072
-      starCost: 1650
-    - uid: 218
-      name: "\uBC00\uD440\uC720"
-      description: "\uC587\uC740 \uD398\uC774\uC2A4\uD2B8\uB9AC\uC640 \uD06C\uB9BC\uC744
-        \uCE35\uCE35\uC774 \uC313\uC740 \uB514\uC800\uD2B8"
-      sellPrice: 262144
-      starCost: 1750
-    - uid: 219
-      name: "\uB864\uCF00\uC774\uD06C"
-      description: "\uC587\uC740 \uCF00\uC774\uD06C\uC5D0 \uD06C\uB9BC\uC744 \uB123\uC5B4
-        \uB9D0\uC544 \uB9CC\uB4E0 \uB514\uC800\uD2B8"
-      sellPrice: 524288
-      starCost: 1850
-    - uid: 220
-      name: "\uD0D5\uD6C4\uB8E8"
-      description: "\uACFC\uC77C\uC744 \uC124\uD0D5 \uC2DC\uB7FD\uC73C\uB85C \uCF54\uD305\uD55C
-        \uC911\uAD6D\uC2DD \uAC04\uC2DD"
-      sellPrice: 1048576
-      starCost: 1950
-    - uid: 221
-      name: "\uCEF5\uCF00\uC774\uD06C"
-      description: "\uD06C\uB9BC\uC73C\uB85C \uC7A5\uC2DD\uD55C \uC791\uC740 \uCEF5
-        \uBAA8\uC591\uC758 \uCF00\uC774\uD06C"
-      sellPrice: 2097152
-      starCost: 2050
-    - uid: 222
-      name: "\uB538\uAE30\uCF00\uC774\uD06C"
-      description: "\uB538\uAE30\uB97C \uC62C\uB9B0 \uD06C\uB9BC \uCF00\uC774\uD06C"
-      sellPrice: 4194304
-      starCost: 2150
-    - uid: 223
-      name: "\uD2F0\uB77C\uBBF8\uC218"
-      description: "\uCEE4\uD53C\uC640 \uB9C8\uC2A4\uCE74\uD3EC\uB124 \uCE58\uC988\uB85C
-        \uB9CC\uB4E0 \uC774\uD0C8\uB9AC\uC544 \uB514\uC800\uD2B8"
-      sellPrice: 8388608
-      starCost: 2250
-    - uid: 224
-      name: "\uCD08\uCF54\uCF00\uC774\uD06C"
-      description: "\uCD08\uCF5C\uB9BF\uC744 \uC0AC\uC6A9\uD55C \uCF00\uC774\uD06C"
-      sellPrice: 16777216
-      starCost: 2350
-    - uid: 225
-      name: "\uBC14\uC2A4\uD06C \uCE58\uC988\uAC8C\uC774\uD06C"
-      description: "\uAC89\uC774 \uADF8\uC744\uB824\uC9C4 \uAC83\uC774 \uD2B9\uC9D5\uC778
-        \uC2A4\uD398\uC778\uC2DD \uCE58\uC988\uCF00\uC774\uD06C"
-      sellPrice: 33554432
-      starCost: 2450
-    - uid: 226
-      name: "\uD06C\uB808\uC774\uD504"
-      description: "\uC587\uAC8C \uAD6C\uC6B4 \uD32C\uCF00\uC774\uD06C\uB97C \uD06C\uB9BC\uACFC
-        \uACB9\uACB9\uC774 \uC313\uC544 \uB9CC\uB4E0 \uCF00\uC774\uD06C"
-      sellPrice: 67108864
-      starCost: 2550
-    - uid: 227
-      name: "\uD06C\uB808\uD398"
-      description: "\uC544\uC774\uC2A4\uD06C\uB9BC\uC774\uB098 \uACFC\uC77C \uB4F1\uC744
-        \uD06C\uB808\uC774\uD504\uB85C \uB9D0\uC544 \uB9CC\uB4E0 \uB514\uC800\uD2B8"
-      sellPrice: 134217730
-      starCost: 2650
-  expandUpgradeCost: 32000000fa000000e20400006a180000127a00005a620200c2eb0b00ca9a3b00f2052a01ba1dd205a2941a1dffffff7fffffff7fffffff7fffffff7fffffff7fffffff7fffffff7fffffff7fffffff7fffffff7fffffff7fffffff7fffffff7fffffff7f
 --- !u!1 &251460567
 GameObject:
   m_ObjectHideFlags: 0
@@ -2755,7 +2036,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 78656a2e78c89884d83e1ca727dc01ae, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.7
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5264,7 +4545,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4638468339853429148, guid: 4648af9b739bc4d4789ec37288c6f0c4, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1410
+      value: 1383.279
       objectReference: {fileID: 0}
     - target: {fileID: 4638468339853429148, guid: 4648af9b739bc4d4789ec37288c6f0c4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6734,7 +6015,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9104cee3deb87534d868fb2753e4b456, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -7461,7 +6742,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 23464850bba645841949230b48893ea3, type: 3}
-  m_Type: 3
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
@@ -10431,6 +9712,894 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 928745888}
   m_CullTransparentMesh: 1
+--- !u!1 &965238628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 965238629}
+  - component: {fileID: 965238630}
+  m_Layer: 0
+  m_Name: GameDataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &965238629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965238628}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 218041913}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &965238630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965238628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f1f969ce93aaba4982677571de97cc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wealthSaveData:
+    haveMoney: 0
+    upgradeItemCount: 2
+    throwOutItemCount: 2
+    sortItemCount: 2
+  beverageSaveData:
+    maxValue: 0
+    expandLevel: 2
+    recipeItemDatas:
+    - isUnlock: 1
+      isSpawnMaterial: 1
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+  bakerySaveData:
+    maxValue: 0
+    expandLevel: 2
+    recipeItemDatas:
+    - isUnlock: 1
+      isSpawnMaterial: 1
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+  desertSaveData:
+    maxValue: 0
+    expandLevel: 2
+    recipeItemDatas:
+    - isUnlock: 1
+      isSpawnMaterial: 1
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+    - isUnlock: 0
+      isSpawnMaterial: 0
+      level: 0
+  beverageSpriteList:
+  - {fileID: 21300000, guid: 97648e1377f964948801270e1ae43fd8, type: 3}
+  - {fileID: 21300000, guid: 52d286c68a7460d409587b10f7c11684, type: 3}
+  - {fileID: 21300000, guid: 308ba816af3794448b5fb33364466ecf, type: 3}
+  - {fileID: 21300000, guid: 2e8bface0306ff34bb4349eb9f364657, type: 3}
+  - {fileID: 21300000, guid: ca8ed0b219c852f49a499d1c037b24b9, type: 3}
+  - {fileID: 21300000, guid: 307fb50ff826d1c44b9feba2cb50a64f, type: 3}
+  - {fileID: 21300000, guid: 8cb517034243bd34e86559dc6cbf4f3a, type: 3}
+  - {fileID: 21300000, guid: 7588c622c5f1b414aac4991e964de44c, type: 3}
+  - {fileID: 21300000, guid: 1eecaa5eef4ab4549a78e9e0b610de2d, type: 3}
+  - {fileID: 21300000, guid: eb8018ca5c8bbcd40913c80f7607c721, type: 3}
+  - {fileID: 21300000, guid: eb9dfd3aee42c984894cd88e6a91cd10, type: 3}
+  - {fileID: 21300000, guid: e744478d458172e499bb623a66de9484, type: 3}
+  - {fileID: 21300000, guid: 415d6a926dce7b14a85c47244bbe2cdd, type: 3}
+  - {fileID: 21300000, guid: ed49cc3e7bfefaf4a9ba62ff951d4ced, type: 3}
+  - {fileID: 21300000, guid: b067e5f8699ce8647a5a61ac1846afbb, type: 3}
+  - {fileID: 21300000, guid: 3ec59aaf55b45864f85eef047012a5ca, type: 3}
+  - {fileID: 21300000, guid: 280da033105620142828a74d19292abe, type: 3}
+  - {fileID: 21300000, guid: 2b31b8472c44fd04b9a55cebe0566224, type: 3}
+  - {fileID: 21300000, guid: 236b02fa57ef71d40a5631ff8a542979, type: 3}
+  - {fileID: 21300000, guid: d34317ca4fb44934e9c9ac173d741622, type: 3}
+  - {fileID: 21300000, guid: 922cf2a2383fa8f46ba4424d87cd9385, type: 3}
+  - {fileID: 21300000, guid: a71fabb3464f82448ab52b383674fc4a, type: 3}
+  - {fileID: 21300000, guid: ddddc994bb4afb743995229810dcd9a3, type: 3}
+  - {fileID: 21300000, guid: 2b01480739a1d414487d4fe0208a0b63, type: 3}
+  - {fileID: 21300000, guid: bb22a4a1f28dacf40be7aa605d251bb2, type: 3}
+  - {fileID: 21300000, guid: 55796ec6fdefcbd499e0a62afa44bec8, type: 3}
+  - {fileID: 21300000, guid: 2a04e8153b3378a48a351bd6d90eece9, type: 3}
+  bakerySpriteList:
+  - {fileID: 21300000, guid: 268a84b71ec80114fb168c1592256a21, type: 3}
+  - {fileID: 21300000, guid: c82482a0aa59a1649bd913e85b04ce36, type: 3}
+  - {fileID: 21300000, guid: 8509b6f905549204cbed2e20d2547558, type: 3}
+  - {fileID: 21300000, guid: d2f4456aa2244e74bb118ed79ec1b927, type: 3}
+  - {fileID: 21300000, guid: d585769ab8f018243acc48d573f56ece, type: 3}
+  - {fileID: 21300000, guid: 090541daedf53cd489b9c36cd77176f6, type: 3}
+  - {fileID: 21300000, guid: 750cfdd312d593840b69dd16c8ec20d2, type: 3}
+  - {fileID: 21300000, guid: 3636b488d1e9b0f42813af5436df2462, type: 3}
+  - {fileID: 21300000, guid: b7c9e986ea5c9224d98fc5ae8170a5f9, type: 3}
+  - {fileID: 21300000, guid: ff51e756f0d11bd4e8b136b485d00d32, type: 3}
+  - {fileID: 21300000, guid: 9be7354782eeafa48a6f17d3b63d5bcf, type: 3}
+  - {fileID: 21300000, guid: 13e16e7648776ee49900b96fdd981a9a, type: 3}
+  - {fileID: 21300000, guid: 318945b49f3bc214b91edcdee5ec9803, type: 3}
+  - {fileID: 21300000, guid: 945941f7846f5c546a0085ca95357114, type: 3}
+  - {fileID: 21300000, guid: c4003da7895d9b94eade1c2e75657005, type: 3}
+  - {fileID: 21300000, guid: 619fa25135714a74d907e29458892729, type: 3}
+  - {fileID: 21300000, guid: b56d9d7bead292b4a943439aac27dbd7, type: 3}
+  - {fileID: 21300000, guid: 4b6c66e3677fb7743b64b1eb663b904e, type: 3}
+  - {fileID: 21300000, guid: 5a8778c30b362c141a081ffe5cbcefb5, type: 3}
+  - {fileID: 21300000, guid: 9abfee5b064672e43967517bfda5a871, type: 3}
+  - {fileID: 21300000, guid: 925f72f340a525f46bdbc9cd077f2d5c, type: 3}
+  - {fileID: 21300000, guid: 982efce0264443b4ab15d4843d7e1bdd, type: 3}
+  - {fileID: 21300000, guid: 51edf7e7049c52a468d9b01c6daf4f0d, type: 3}
+  - {fileID: 21300000, guid: af10118efd2c9a7478b58d834e3f5879, type: 3}
+  - {fileID: 21300000, guid: fecb474de36fd244d858d9b7cbe0d19b, type: 3}
+  - {fileID: 21300000, guid: 6b230f3d94151134ba8f004f5be5c26c, type: 3}
+  - {fileID: 21300000, guid: 5530f76bdbfdbba439a467b1afbab927, type: 3}
+  desertSpriteList:
+  - {fileID: 21300000, guid: 23f9e1a7d783f3c45ba74df2fa7e8203, type: 3}
+  - {fileID: 21300000, guid: 22c316f2e917f434d8f07edc3fefb057, type: 3}
+  - {fileID: 21300000, guid: 48fe690517789e8489638eea9c900c2a, type: 3}
+  - {fileID: 21300000, guid: ee51017d345b9fb44ab81bffa8188c78, type: 3}
+  - {fileID: 21300000, guid: 619995925d00f1b4da28adba76a48b19, type: 3}
+  - {fileID: 21300000, guid: 0c414af56e560f046b71c4fcc226e5ed, type: 3}
+  - {fileID: 21300000, guid: 4e07e4ec7bb766f49bc04d3cc7d2e3eb, type: 3}
+  - {fileID: 21300000, guid: 0a66592fcf79bac498d611747eae036a, type: 3}
+  - {fileID: 21300000, guid: a79bc1402a0e0084ba897d992ddc9a6a, type: 3}
+  - {fileID: 21300000, guid: c57a7f549313fdc4683a153db6cefb55, type: 3}
+  - {fileID: 21300000, guid: f040e6b7303dcfe419f11852550b0c14, type: 3}
+  - {fileID: 21300000, guid: 40dc4e33f94834c49ab5a574ba516eaf, type: 3}
+  - {fileID: 21300000, guid: 2c59055e58be8b3438bcf27f008773d9, type: 3}
+  - {fileID: 21300000, guid: 7376935efe4588f408b596c2c9f87556, type: 3}
+  - {fileID: 21300000, guid: 385dbc6997f44f1409c38d049d8f9818, type: 3}
+  - {fileID: 21300000, guid: a82023cb977ac28459a003a4328a2135, type: 3}
+  - {fileID: 21300000, guid: 92f8a79617555a34ba41adf10265d342, type: 3}
+  - {fileID: 21300000, guid: 23684dbaada3b0943b30d6a0f3aca005, type: 3}
+  - {fileID: 21300000, guid: 880ce50608e84014bac8836f01e2d863, type: 3}
+  - {fileID: 21300000, guid: 876c6f0c27e5dc54c92d5e19cf3b64fd, type: 3}
+  - {fileID: 21300000, guid: bad04c7c16bc2744594a9adb41f00116, type: 3}
+  - {fileID: 21300000, guid: 48decea62e958a34ca1cd19df87558ae, type: 3}
+  - {fileID: 21300000, guid: e56fd02aa02d0244092701d58d9fd772, type: 3}
+  - {fileID: 21300000, guid: 1135130b3e527df4db071df83a47dda9, type: 3}
+  - {fileID: 21300000, guid: 04f1e030adf98f944a9f44a26cc9d75e, type: 3}
+  - {fileID: 21300000, guid: 990e8df3ebcf6694dac946ce4aabeea2, type: 3}
+  - {fileID: 21300000, guid: 0cf424513169641408ede08ade755d92, type: 3}
+  NPCSpriteList: []
+  beverageInfoData: {fileID: 4900000, guid: 5b57637be0a8ef843bfd22f1ee253a46, type: 3}
+  bakeryInfoData: {fileID: 4900000, guid: 236b22552391ef74f9b76568f6f06963, type: 3}
+  desertInfoData: {fileID: 4900000, guid: 6075a9e18163aa74f8a32b15828eaeb1, type: 3}
+  beverageInfoBundle:
+    foodDataList:
+    - uid: 1
+      name: "\uC5D0\uC2A4\uD504\uB808\uC18C"
+      description: "\uAC15\uD55C \uD48D\uBBF8\uC640 \uC9C4\uD55C \uB18D\uB3C4\uB97C
+        \uC790\uB791\uD558\uB294 \uCEE4\uD53C\uC758 \uAE30\uBCF8\uC774 \uB418\uB294
+        \uC74C\uB8CC"
+      sellPrice: 2
+      starCost: 50
+    - uid: 2
+      name: "\uC544\uBA54\uB9AC\uCE74\uB178"
+      description: "\uC5D0\uC2A4\uD504\uB808\uC18C\uC5D0 \uBB3C\uC744 \uCD94\uAC00\uD574
+        \uBD80\uB4DC\uB7FD\uAC8C \uC990\uAE38 \uC218 \uC788\uB294 \uCEE4\uD53C"
+      sellPrice: 4
+      starCost: 150
+    - uid: 3
+      name: "\uCE74\uD398\uB77C\uB5BC"
+      description: "\uC5D0\uC2A4\uD504\uB808\uC18C\uC5D0 \uC6B0\uC720\uB97C \uB354\uD574
+        \uBD80\uB4DC\uB7FD\uACE0 \uD06C\uB9AC\uBBF8\uD55C \uB9DB\uC774 \uB098\uB294
+        \uCEE4\uD53C"
+      sellPrice: 8
+      starCost: 250
+    - uid: 4
+      name: "\uCE74\uD398\uBAA8\uCE74"
+      description: "\uC5D0\uC2A4\uD504\uB808\uC18C\uC5D0 \uCD08\uCF5C\uB9BF \uC2DC\uB7FD\uACFC
+        \uC6B0\uC720\uB97C \uB354\uD574 \uBD80\uB4DC\uB7FD\uACE0 \uB2EC\uCF64\uD55C
+        \uB9DB\uC744 \uB0B4\uB294 \uCEE4\uD53C \uC74C\uB8CC"
+      sellPrice: 16
+      starCost: 350
+    - uid: 5
+      name: "\uCEAC\uB77C\uBA5C \uB9C8\uB07C\uC544\uD1A0"
+      description: "\uC5D0\uC2A4\uD504\uB808\uC18C\uC640 \uC6B0\uC720 \uC704\uC5D0
+        \uCEAC\uB77C\uBA5C \uC2DC\uB7FD\uC744 \uC5B9\uC740 \uB2EC\uCF64\uD55C \uCEE4\uD53C"
+      sellPrice: 32
+      starCost: 450
+    - uid: 6
+      name: "\uCF5C\uB4DC\uBE0C\uB8E8"
+      description: "\uCC28\uAC00\uC6B4 \uBB3C\uC5D0 \uC624\uB79C \uC2DC\uAC04 \uC6B0\uB824\uB0B4\uC5B4
+        \uB9CC\uB4E0 \uAE54\uB054\uD558\uACE0 \uC0C1\uCF8C\uD55C \uCEE4\uD53C"
+      sellPrice: 64
+      starCost: 550
+    - uid: 7
+      name: "\uD2B8\uB85C\uD53C\uCE7C \uC5D0\uC774\uB4DC"
+      description: "\uB2E4\uC591\uD55C \uC5F4\uB300 \uACFC\uC77C\uC758 \uD48D\uBBF8\uAC00
+        \uB2F4\uAE34 \uC5D0\uC774\uB4DC"
+      sellPrice: 128
+      starCost: 650
+    - uid: 8
+      name: "\uC624\uB80C\uC9C0 \uC5D0\uC774\uB4DC"
+      description: "\uC624\uB80C\uC9C0\uC758 \uC0C1\uD07C\uD568\uACFC \uCCAD\uB7C9\uAC10\uC744
+        \uC990\uAE38 \uC218 \uC788\uB294 \uC5D0\uC774\uB4DC"
+      sellPrice: 256
+      starCost: 750
+    - uid: 9
+      name: "\uB808\uBAAC \uC5D0\uC774\uB4DC"
+      description: "\uB808\uBAAC\uC758 \uC2E0\uC120\uD55C \uB9DB\uC744 \uC0B4\uB9B0
+        \uC0C1\uCF8C\uD55C \uC74C\uB8CC"
+      sellPrice: 512
+      starCost: 850
+    - uid: 10
+      name: "\uBE14\uB8E8\uBCA0\uB9AC \uC5D0\uC774\uB4DC"
+      description: "\uBE14\uB8E8\uBCA0\uB9AC\uC758 \uB2EC\uCF64\uD568\uACFC \uD0C4\uC0B0\uC774
+        \uC5B4\uC6B0\uB7EC\uC9C4 \uC5D0\uC774\uB4DC"
+      sellPrice: 1024
+      starCost: 950
+    - uid: 11
+      name: "\uBA54\uB860 \uC18C\uB2E4"
+      description: "\uB2EC\uCF64\uD55C \uBA54\uB860 \uB9DB\uC774 \uB098\uB294 \uD0C4\uC0B0
+        \uC74C\uB8CC"
+      sellPrice: 2048
+      starCost: 1050
+    - uid: 12
+      name: "\uBE14\uB8E8\uB808\uBAAC \uC5D0\uC774\uB4DC"
+      description: "\uBE14\uB8E8\uD050\uB77C\uC18C\uC640 \uB808\uBAAC\uC774 \uC870\uD654\uB97C
+        \uC774\uB8E8\uC5B4 \uC0C9\uAC10\uC774 \uB3C5\uD2B9\uD558\uACE0 \uC0C1\uD07C\uD55C
+        \uC5D0\uC774\uB4DC"
+      sellPrice: 4096
+      starCost: 1150
+    - uid: 13
+      name: "\uC790\uBC14\uCE69 \uD478\uB77C\uD478\uCE58\uB178"
+      description: "\uCD08\uCF5C\uB9BF \uCE69\uACFC \uCEE4\uD53C\uAC00 \uC5B4\uC6B0\uB7EC\uC9C4
+        \uC2DC\uC6D0\uD55C \uBE14\uB80C\uB514\uB4DC \uC74C\uB8CC"
+      sellPrice: 8192
+      starCost: 1250
+    - uid: 14
+      name: "\uB538\uAE30 \uD478\uB77C\uD478\uCE58\uB178"
+      description: "\uB538\uAE30\uC758 \uB2EC\uCF64\uD55C \uB9DB\uC744 \uB2F4\uC740
+        \uBE14\uB80C\uB514\uB4DC \uC74C\uB8CC"
+      sellPrice: 16384
+      starCost: 1350
+    - uid: 15
+      name: "\uB9DD\uACE0 \uD478\uB77C\uD478\uCE58\uB178"
+      description: "\uB9DD\uACE0\uC758 \uC9C4\uD55C \uB9DB\uC774 \uC0B4\uC544\uC788\uB294
+        \uBE14\uB80C\uB514\uB4DC \uC74C\uB8CC"
+      sellPrice: 32768
+      starCost: 1450
+    - uid: 16
+      name: "\uB179\uCC28 \uD478\uB77C\uD478\uCE58\uB178"
+      description: "\uB179\uCC28\uC758 \uC309\uC2F8\uB984\uD568\uACFC \uC2DC\uC6D0\uD568\uC744
+        \uD568\uAED8 \uB290\uB084 \uC218 \uC788\uB294 \uC74C\uB8CC"
+      sellPrice: 65536
+      starCost: 1550
+    - uid: 17
+      name: "\uC624\uB808\uC624 \uD478\uB77C\uD478\uCE58\uB178"
+      description: "\uC624\uB808\uC624\uC640 \uCEE4\uD53C\uAC00 \uC870\uD654\uB97C
+        \uC774\uB8E8\uB294 \uB2EC\uCF64\uD55C \uBE14\uB80C\uB514\uB4DC \uC74C\uB8CC"
+      sellPrice: 131072
+      starCost: 1650
+    - uid: 18
+      name: "\uD1A0\uB9C8\uD1A0 \uC8FC\uC2A4"
+      description: "\uC2E0\uC120\uD55C \uD1A0\uB9C8\uD1A0\uB85C \uB9CC\uB4E0 \uAC74\uAC15\uD55C
+        \uC8FC\uC2A4"
+      sellPrice: 262144
+      starCost: 1750
+    - uid: 19
+      name: "\uC218\uBC15 \uC8FC\uC2A4"
+      description: "\uC5EC\uB984\uCCA0 \uC778\uAE30 \uC788\uB294 \uC218\uBC15\uC758
+        \uC2DC\uC6D0\uD55C \uB9DB\uC744 \uC0B4\uB9B0 \uC8FC\uC2A4"
+      sellPrice: 524288
+      starCost: 1850
+    - uid: 20
+      name: "\uD0A4\uC704 \uC8FC\uC2A4"
+      description: "\uD0A4\uC704\uC758 \uC0C8\uCF64\uB2EC\uCF64\uD55C \uB9DB\uC774
+        \uD2B9\uC9D5\uC778 \uC8FC\uC2A4"
+      sellPrice: 1048576
+      starCost: 1950
+    - uid: 21
+      name: "\uBE14\uB8E8\uBCA0\uB9AC \uC2A4\uBB34\uB514"
+      description: "\uBE14\uB8E8\uBCA0\uB9AC\uB97C \uC5BC\uC74C\uACFC \uD568\uAED8
+        \uAC08\uC544 \uB9CC\uB4E0 \uC2DC\uC6D0\uD55C \uC2A4\uBB34\uB514"
+      sellPrice: 2097152
+      starCost: 2050
+    - uid: 22
+      name: "\uCD08\uCF54 \uBC14\uB098\uB098 \uC2A4\uBB34\uB514"
+      description: "\uCD08\uCF5C\uB9BF\uACFC \uBC14\uB098\uB098\uAC00 \uC5B4\uC6B0\uB7EC\uC9C4
+        \uB2EC\uCF64\uD55C \uC2A4\uBB34\uB514"
+      sellPrice: 4194304
+      starCost: 2150
+    - uid: 23
+      name: "\uD0C0\uB85C \uBC00\uD06C\uD2F0"
+      description: "\uCAC4\uAE43\uD55C \uD384\uC774 \uB4E4\uC5B4\uAC04 \uD0C0\uB85C
+        \uBC00\uD06C\uD2F0"
+      sellPrice: 8388608
+      starCost: 2250
+    - uid: 24
+      name: "\uBAA8\uD788\uB610"
+      description: "\uB77C\uC784\uACFC \uBBFC\uD2B8\uC758 \uC0C1\uCF8C\uD55C \uC870\uD569\uC744
+        \uC990\uAE38 \uC218 \uC788\uB294 \uC74C\uB8CC"
+      sellPrice: 16777216
+      starCost: 2350
+    - uid: 25
+      name: "\uBC45\uC1FC"
+      description: "\uC640\uC778\uC5D0 \uACFC\uC77C\uACFC \uD5A5\uC2E0\uB8CC\uB97C
+        \uB123\uC5B4 \uB053\uC5EC \uB9C8\uC2DC\uB294 \uB530\uB73B\uD55C \uC74C\uB8CC"
+      sellPrice: 33554432
+      starCost: 2450
+    - uid: 26
+      name: "\uD751\uC784\uC790 \uB77C\uB5BC"
+      description: "\uACE0\uC18C\uD55C \uD751\uC784\uC790\uC758 \uAE4A\uC740 \uD48D\uBBF8\uAC00
+        \uC6B0\uC720\uC640 \uC870\uD654\uB97C \uC774\uB8EC \uC74C\uB8CC"
+      sellPrice: 67108864
+      starCost: 2550
+    - uid: 27
+      name: "\uCCB4\uB9AC \uBE14\uB77C\uC378"
+      description: "\uBC9A\uAF43 \uC2DC\uB7FD\uACFC \uB77C\uB5BC\uAC00 \uC5B4\uC6B0\uB7EC\uC838
+        \uB2EC\uCF64\uD558\uACE0 \uC740\uC740\uD55C \uBC9A\uAF43 \uD5A5\uC744 \uB290\uB084
+        \uC218 \uC788\uB294 \uC74C\uB8CC"
+      sellPrice: 134217730
+      starCost: 2650
+  bakeryInfoBundle:
+    foodDataList:
+    - uid: 101
+      name: "\uBAA8\uB2DD\uBE75"
+      description: "\uC544\uCE68 \uC2DD\uC0AC\uC5D0 \uC790\uC8FC \uBA39\uB294 \uBD80\uB4DC\uB7FD\uACE0
+        \uB2EC\uCF64\uD55C \uC791\uC740 \uBE75"
+      sellPrice: 2
+      starCost: 50
+    - uid: 102
+      name: "\uD584\uCE58\uC988\uB864\uBE75"
+      description: "\uD584\uACFC \uCE58\uC988\uAC00 \uB9D0\uB9B0 \uD615\uD0DC\uB85C
+        \uC18D\uC5D0 \uB4E4\uC5B4\uAC04 \uB864\uBE75"
+      sellPrice: 4
+      starCost: 150
+    - uid: 103
+      name: "\uC2DD\uBE75"
+      description: "\uD1A0\uC2A4\uD2B8\uB098 \uC0CC\uB4DC\uC704\uCE58\uB85C \uB9CE\uC774
+        \uC0AC\uC6A9\uD558\uB294 \uB124\uBAA8\uB09C \uD770\uBE75"
+      sellPrice: 8
+      starCost: 250
+    - uid: 104
+      name: "\uAF48\uBC30\uAE30"
+      description: "\uAF2C\uC778 \uBAA8\uC591\uC758 \uD280\uAE34 \uB2EC\uCF64\uD55C
+        \uB3C4\uB11B \uD615\uD0DC\uC758 \uBE75"
+      sellPrice: 16
+      starCost: 350
+    - uid: 105
+      name: "\uBC14\uAC8C\uD2B8"
+      description: "\uAE38\uACE0 \uBC14\uC0AD\uD55C \uD504\uB791\uC2A4\uC2DD \uD770
+        \uBE75"
+      sellPrice: 32
+      starCost: 450
+    - uid: 106
+      name: "\uBCA0\uC774\uAE00"
+      description: "\uAC89\uC740 \uBC14\uC0AD\uD558\uACE0 \uC18D\uC740 \uCAC4\uAE43\uD55C
+        \uB3D9\uADF8\uB780 \uBE75"
+      sellPrice: 64
+      starCost: 550
+    - uid: 107
+      name: "\uD504\uB808\uC990"
+      description: "\uC18C\uAE08\uC774 \uBFCC\uB824\uC9C4 \uAF2C\uC778 \uBAA8\uC591\uC758
+        \uC9ED\uC9E4\uD55C \uBE75"
+      sellPrice: 128
+      starCost: 650
+    - uid: 108
+      name: "\uC18C\uAE08\uBE75"
+      description: "\uBC84\uD130\uB97C \uBCA0\uC774\uC2A4\uB85C \uC18C\uAE08\uC774
+        \uBFCC\uB824\uC9C4 \uBC14\uC0AD\uD558\uACE0 \uACE0\uC18C\uD55C \uBE75"
+      sellPrice: 256
+      starCost: 750
+    - uid: 109
+      name: "\uD06C\uB85C\uC640\uC0C1"
+      description: "\uBC84\uD130\uAC00 \uB9CE\uC774 \uB4E4\uC5B4\uAC04 \uBC14\uC0AD\uD558\uACE0
+        \uACB0\uC774 \uC788\uB294 \uD398\uC774\uC2A4\uD2B8\uB9AC"
+      sellPrice: 512
+      starCost: 850
+    - uid: 110
+      name: "\uCE74\uC2A4\uD14C\uB77C"
+      description: "\uCD09\uCD09\uD558\uACE0 \uBD80\uB4DC\uB7EC\uC6B4 \uB2EC\uAC40\uC744
+        \uB9CE\uC774 \uC0AC\uC6A9\uD55C \uC2A4\uD3F0\uC9C0 \uCF00\uC774\uD06C"
+      sellPrice: 1024
+      starCost: 950
+    - uid: 111
+      name: "\uB2E8\uD325\uBE75"
+      description: "\uB2EC\uCF64\uD55C \uD325\uC18C\uB97C \uC18D\uC5D0 \uB123\uC740
+        \uBE75"
+      sellPrice: 2048
+      starCost: 1050
+    - uid: 112
+      name: "\uCEE4\uD53C\uBC88"
+      description: "\uB2EC\uCF64\uD558\uACE0 \uBC14\uC0AD\uD55C \uCEE4\uD53C \uB9DB
+        \uD06C\uB7EC\uC2A4\uD2B8\uAC00 \uC5B9\uD78C \uBE75"
+      sellPrice: 4096
+      starCost: 1150
+    - uid: 113
+      name: "\uACE0\uB85C\uCF00"
+      description: "\uC18D\uC5D0 \uB2E4\uC591\uD55C \uC7AC\uB8CC\uAC00 \uB4E4\uC5B4\uAC04
+        \uBE75\uAC00\uB8E8\uB97C \uC785\uD78C \uD280\uAE34 \uBE75"
+      sellPrice: 8192
+      starCost: 1250
+    - uid: 114
+      name: "\uBA54\uB860\uBE75"
+      description: "\uAC89\uC774 \uBC14\uC0AD\uD558\uACE0 \uB2EC\uCF64\uD55C \uBA54\uB860
+        \uBAA8\uC591\uC758 \uC77C\uBCF8\uC2DD \uBE75"
+      sellPrice: 16384
+      starCost: 1350
+    - uid: 115
+      name: "\uCD08\uCF54\uC18C\uB77C\uBE75"
+      description: "\uCD08\uCF54 \uD06C\uB9BC\uC774 \uB4E4\uC5B4\uAC04 \uC18C\uB77C
+        \uBAA8\uC591\uC758 \uB2EC\uCF64\uD55C \uBE75"
+      sellPrice: 32768
+      starCost: 1450
+    - uid: 116
+      name: "\uBE91\uC624\uC1FC\uCF5C\uB77C"
+      description: "\uCD08\uCF5C\uB9BF\uC774 \uB4E4\uC5B4\uAC04 \uD398\uC774\uC2A4\uD2B8\uB9AC
+        \uBE75"
+      sellPrice: 65536
+      starCost: 1550
+    - uid: 117
+      name: "\uB9C8\uB298\uC721\uCABD\uBE75"
+      description: "6\uAC1C\uB85C \uB098\uB220\uC9C4 \uBE75 \uC0AC\uC774 \uB9C8\uB298\uACFC
+        \uBC84\uD130\uAC00 \uB4E4\uC5B4\uAC04 \uBE75"
+      sellPrice: 131072
+      starCost: 1650
+    - uid: 118
+      name: "\uC18C\uC2DC\uC9C0\uBE75"
+      description: "\uC18C\uC2DC\uC9C0\uAC00 \uB4E4\uC5B4\uAC04 \uBBF8\uAD6D\uC2DD
+        \uD56B\uB3C4\uADF8 \uBE75"
+      sellPrice: 262144
+      starCost: 1750
+    - uid: 119
+      name: "\uD53C\uC790\uBE75"
+      description: "\uD56B\uB3C4\uADF8\uC640 \uD53C\uC790\uAC00 \uC11E\uC778 \uB3C5\uD2B9\uD55C
+        \uD55C\uAD6D\uC2DD \uBE75"
+      sellPrice: 524288
+      starCost: 1850
+    - uid: 120
+      name: "\uACC4\uB780\uC0CC\uB4DC\uC704\uCE58"
+      description: "\uC0B6\uC740 \uB2EC\uAC40\uACFC \uB9C8\uC694\uB124\uC988\uB97C
+        \uC11E\uC5B4 \uB123\uC740 \uC0CC\uB4DC\uC704\uCE58"
+      sellPrice: 1048576
+      starCost: 1950
+    - uid: 121
+      name: "\uD584\uBC84\uAC70"
+      description: "\uBC88 \uC0AC\uC774\uC5D0 \uACE0\uAE30 \uD328\uD2F0\uC640 \uCC44\uC18C\uB97C
+        \uB123\uC740 \uC0CC\uB4DC\uC704\uCE58"
+      sellPrice: 2097152
+      starCost: 2050
+    - uid: 122
+      name: "\uD30C\uB2C8\uB2C8\uC0CC\uB4DC"
+      description: "\uD584\uACFC \uCE58\uC988\uAC00 \uB4E4\uC5B4\uAC04 \uADF8\uB9B4\uC5D0
+        \uAD6C\uC6B4 \uC0CC\uB4DC\uC704\uCE58"
+      sellPrice: 4194304
+      starCost: 2150
+    - uid: 123
+      name: "\uC560\uD50C\uD30C\uC774"
+      description: "\uB2EC\uCF64\uD55C \uC0AC\uACFC \uD544\uB9C1\uC744 \uB123\uC740
+        \uD30C\uC774"
+      sellPrice: 8388608
+      starCost: 2250
+    - uid: 124
+      name: "\uBBF8\uD2B8\uD30C\uC774"
+      description: "\uACE0\uAE30\uC640 \uADF8\uB808\uC774\uBE44\uB97C \uB123\uC740
+        \uD30C\uC774"
+      sellPrice: 16777216
+      starCost: 2350
+    - uid: 125
+      name: "\uC815\uC5B4\uB9AC\uD30C\uC774"
+      description: "\uD398\uC774\uC2A4\uD2B8\uB9AC\uC5D0 \uC815\uC5B4\uB9AC\uB97C
+        \uB123\uC740 \uC601\uAD6D\uC758 \uD30C\uC774"
+      sellPrice: 33554432
+      starCost: 2450
+    - uid: 126
+      name: "\uC559\uCFE0\uB974\uD2B8 \uC2A4\uD504"
+      description: "\uC2A4\uD504 \uC704\uC5D0 \uD398\uC774\uC2A4\uD2B8\uB9AC \uBC18\uC8FD\uC744
+        \uB36E\uC5B4 \uAD6C\uC6B4 \uC694\uB9AC"
+      sellPrice: 67108864
+      starCost: 2550
+    - uid: 127
+      name: "\uD5C8\uB2C8\uBE0C\uB808\uB4DC"
+      description: "\uAD6C\uC6B4 \uC2DD\uBE75\uC5D0 \uC0DD\uD06C\uB9BC\uACFC \uCE90\uB7EC\uBA5C\uC2DC\uB7FD
+        \uC2DC\uB098\uBAAC \uD30C\uC6B0\uB354\uB85C \uD1A0\uD551\uD55C \uBE75"
+      sellPrice: 134217730
+      starCost: 2650
+  desertInfoBundle:
+    foodDataList:
+    - uid: 201
+      name: "\uB9C8\uCE74\uB871"
+      description: "\uD504\uB791\uC2A4\uC758 \uB2EC\uCF64\uD55C \uC544\uBAAC\uB4DC
+        \uBA38\uB7AD \uCFE0\uD0A4"
+      sellPrice: 2
+      starCost: 50
+    - uid: 202
+      name: "\uBA38\uB7AD"
+      description: "\uC124\uD0D5\uACFC \uACC4\uB780 \uD770\uC790\uB97C \uC11E\uC5B4
+        \uAD6C\uC6B4 \uAC00\uBCBC\uC6B4 \uCFE0\uD0A4"
+      sellPrice: 4
+      starCost: 150
+    - uid: 203
+      name: "\uB9C8\uB4E4\uB80C"
+      description: "\uC870\uAC1C \uBAA8\uC591\uC758 \uD504\uB791\uC2A4 \uC791\uC740
+        \uCF00\uC774\uD06C"
+      sellPrice: 8
+      starCost: 250
+    - uid: 204
+      name: "\uD718\uB0AD\uC2DC\uC5D0"
+      description: "\uBC84\uD130\uAC00 \uB4E4\uC5B4\uAC00 \uCD09\uCD09\uD558\uACE0
+        \uBD80\uB4DC\uB7EC\uC6B4 \uD504\uB791\uC2A4 \uBBF8\uB2C8 \uCF00\uC774\uD06C"
+      sellPrice: 16
+      starCost: 350
+    - uid: 205
+      name: "\uCFE0\uD0A4"
+      description: "\uBC00\uAC00\uB8E8\uC640 \uC124\uD0D5\uC73C\uB85C \uB9CC\uB4E0
+        \uAC04\uB2E8\uD55C \uAD6C\uC6B4 \uACFC\uC790"
+      sellPrice: 32
+      starCost: 450
+    - uid: 206
+      name: "\uC624\uBBC8\uB81B"
+      description: "\uACC4\uB780\uC73C\uB85C \uB9CC\uB4E0 \uBD80\uB4DC\uB7EC\uC6B4
+        \uBC18\uC8FD\uC5D0 \uC0DD\uD06C\uB9BC\uC744 \uB123\uC740 \uB514\uC800\uD2B8"
+      sellPrice: 64
+      starCost: 550
+    - uid: 207
+      name: "\uC57D\uACFC"
+      description: "\uAFC0\uACFC \uAE30\uB984\uC73C\uB85C \uB9CC\uB4E0 \uD55C\uAD6D\uC758
+        \uC804\uD1B5 \uACFC\uC790"
+      sellPrice: 128
+      starCost: 650
+    - uid: 208
+      name: "\uC5D0\uD074\uB808\uB974"
+      description: "\uAE38\uCB49\uD55C \uBAA8\uC591\uC758 \uD504\uB791\uC2A4 \uD06C\uB9BC\uC774
+        \uB4E4\uC5B4\uAC04 \uD398\uC774\uC2A4\uD2B8\uB9AC"
+      sellPrice: 256
+      starCost: 750
+    - uid: 209
+      name: "\uBC84\uD130\uBC14"
+      description: "\uBC84\uD130 \uD48D\uBBF8\uAC00 \uAC15\uD55C \uB2E8\uB2E8\uD55C
+        \uBC14 \uD615\uD0DC\uC758 \uACFC\uC790"
+      sellPrice: 512
+      starCost: 850
+    - uid: 210
+      name: "\uB2EC\uACE0\uB098"
+      description: "\uC124\uD0D5\uC744 \uB179\uC5EC \uB9CC\uB4E0 \uD55C\uAD6D \uC804\uD1B5
+        \uACFC\uC790"
+      sellPrice: 1024
+      starCost: 950
+    - uid: 211
+      name: "\uD314\uBBF8\uC5D0"
+      description: "\uB098\uBE44 \uBAA8\uC591\uC73C\uB85C \uC0DD\uAE34 \uBC14\uC0AD\uD55C
+        \uD504\uB791\uC2A4 \uD398\uC774\uC2A4\uD2B8\uB9AC"
+      sellPrice: 2048
+      starCost: 1050
+    - uid: 212
+      name: "\uD06C\uB8FD\uC9C0"
+      description: "\uD06C\uB85C\uC640\uC0C1\uC744 \uB204\uB8FD\uC9C0\uCC98\uB7FC
+        \uB20C\uB7EC \uBC14\uC0AD\uD568\uC744 \uC0B4\uB9B0 \uB514\uC800\uD2B8"
+      sellPrice: 4096
+      starCost: 1150
+    - uid: 213
+      name: "\uC640\uD50C"
+      description: "\uACA9\uC790 \uBAA8\uC591\uC758 \uB2EC\uCF64\uD55C \uBC18\uC8FD\uC744
+        \uAD6C\uC6CC \uB9CC\uB4E0 \uB514\uC800\uD2B8"
+      sellPrice: 8192
+      starCost: 1250
+    - uid: 214
+      name: "\uC5D0\uADF8\uD0C0\uB974\uD2B8"
+      description: "\uBC14\uC0AD\uD55C \uD398\uC774\uC2A4\uD2B8\uB9AC \uC704\uC5D0
+        \uD06C\uB9BC \uAC19\uC740 \uB2EC\uAC40 \uD544\uB9C1\uC774 \uC62C\uB77C\uAC04
+        \uB514\uC800\uD2B8"
+      sellPrice: 16384
+      starCost: 1350
+    - uid: 215
+      name: "\uB2E4\uCFE0\uC544\uC988"
+      description: "\uC544\uBAAC\uB4DC \uBA38\uB7AD\uC73C\uB85C \uB9CC\uB4E0 \uACFC\uC790"
+      sellPrice: 32768
+      starCost: 1450
+    - uid: 216
+      name: "\uD478\uB529"
+      description: "\uBD80\uB4DC\uB7FD\uACE0 \uD06C\uB9AC\uBBF8\uD55C \uC9C8\uAC10\uC758
+        \uB514\uC800\uD2B8"
+      sellPrice: 65536
+      starCost: 1550
+    - uid: 217
+      name: "\uBABD\uBE14\uB791"
+      description: "\uBC24 \uD06C\uB9BC\uC744 \uC313\uC544 \uB9CC\uB4E0 \uD504\uB791\uC2A4
+        \uB514\uC800\uD2B8"
+      sellPrice: 131072
+      starCost: 1650
+    - uid: 218
+      name: "\uBC00\uD440\uC720"
+      description: "\uC587\uC740 \uD398\uC774\uC2A4\uD2B8\uB9AC\uC640 \uD06C\uB9BC\uC744
+        \uCE35\uCE35\uC774 \uC313\uC740 \uB514\uC800\uD2B8"
+      sellPrice: 262144
+      starCost: 1750
+    - uid: 219
+      name: "\uB864\uCF00\uC774\uD06C"
+      description: "\uC587\uC740 \uCF00\uC774\uD06C\uC5D0 \uD06C\uB9BC\uC744 \uB123\uC5B4
+        \uB9D0\uC544 \uB9CC\uB4E0 \uB514\uC800\uD2B8"
+      sellPrice: 524288
+      starCost: 1850
+    - uid: 220
+      name: "\uD0D5\uD6C4\uB8E8"
+      description: "\uACFC\uC77C\uC744 \uC124\uD0D5 \uC2DC\uB7FD\uC73C\uB85C \uCF54\uD305\uD55C
+        \uC911\uAD6D\uC2DD \uAC04\uC2DD"
+      sellPrice: 1048576
+      starCost: 1950
+    - uid: 221
+      name: "\uCEF5\uCF00\uC774\uD06C"
+      description: "\uD06C\uB9BC\uC73C\uB85C \uC7A5\uC2DD\uD55C \uC791\uC740 \uCEF5
+        \uBAA8\uC591\uC758 \uCF00\uC774\uD06C"
+      sellPrice: 2097152
+      starCost: 2050
+    - uid: 222
+      name: "\uB538\uAE30\uCF00\uC774\uD06C"
+      description: "\uB538\uAE30\uB97C \uC62C\uB9B0 \uD06C\uB9BC \uCF00\uC774\uD06C"
+      sellPrice: 4194304
+      starCost: 2150
+    - uid: 223
+      name: "\uD2F0\uB77C\uBBF8\uC218"
+      description: "\uCEE4\uD53C\uC640 \uB9C8\uC2A4\uCE74\uD3EC\uB124 \uCE58\uC988\uB85C
+        \uB9CC\uB4E0 \uC774\uD0C8\uB9AC\uC544 \uB514\uC800\uD2B8"
+      sellPrice: 8388608
+      starCost: 2250
+    - uid: 224
+      name: "\uCD08\uCF54\uCF00\uC774\uD06C"
+      description: "\uCD08\uCF5C\uB9BF\uC744 \uC0AC\uC6A9\uD55C \uCF00\uC774\uD06C"
+      sellPrice: 16777216
+      starCost: 2350
+    - uid: 225
+      name: "\uBC14\uC2A4\uD06C \uCE58\uC988\uAC8C\uC774\uD06C"
+      description: "\uAC89\uC774 \uADF8\uC744\uB824\uC9C4 \uAC83\uC774 \uD2B9\uC9D5\uC778
+        \uC2A4\uD398\uC778\uC2DD \uCE58\uC988\uCF00\uC774\uD06C"
+      sellPrice: 33554432
+      starCost: 2450
+    - uid: 226
+      name: "\uD06C\uB808\uC774\uD504"
+      description: "\uC587\uAC8C \uAD6C\uC6B4 \uD32C\uCF00\uC774\uD06C\uB97C \uD06C\uB9BC\uACFC
+        \uACB9\uACB9\uC774 \uC313\uC544 \uB9CC\uB4E0 \uCF00\uC774\uD06C"
+      sellPrice: 67108864
+      starCost: 2550
+    - uid: 227
+      name: "\uD06C\uB808\uD398"
+      description: "\uC544\uC774\uC2A4\uD06C\uB9BC\uC774\uB098 \uACFC\uC77C \uB4F1\uC744
+        \uD06C\uB808\uC774\uD504\uB85C \uB9D0\uC544 \uB9CC\uB4E0 \uB514\uC800\uD2B8"
+      sellPrice: 134217730
+      starCost: 2650
+  expandUpgradeCost: 32000000fa000000e20400006a180000127a00005a620200c2eb0b00ca9a3b00f2052a01ba1dd205a2941a1dffffff7fffffff7fffffff7fffffff7fffffff7fffffff7fffffff7fffffff7fffffff7fffffff7fffffff7fffffff7fffffff7fffffff7f
 --- !u!1 &975673903
 GameObject:
   m_ObjectHideFlags: 0
@@ -10616,8 +10785,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 49.999992, y: 0}
-  m_SizeDelta: {x: -100, y: 0}
+  m_AnchoredPosition: {x: 52.574, y: 0}
+  m_SizeDelta: {x: -105.149, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1008695997
 CanvasRenderer:
@@ -10647,7 +10816,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 321
+  m_text: 100000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 158b4ef619f883143b4c6112f5ddfa50, type: 2}
   m_sharedMaterial: {fileID: 6411282798662167037, guid: 158b4ef619f883143b4c6112f5ddfa50, type: 2}
@@ -10674,12 +10843,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 50
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
@@ -11347,12 +11516,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1040571653}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 317.4547, y: 878.42847, z: -3.4449515}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 218041913}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1045197009
 GameObject:
@@ -11390,7 +11559,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 315, y: 166}
+  m_AnchoredPosition: {x: 315, y: 106}
   m_SizeDelta: {x: 392, y: 265}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1045197011
@@ -12370,8 +12539,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9d231dd066143c54a916720871170d49, type: 3}
-  m_Type: 2
+  m_Sprite: {fileID: 21300000, guid: 288e8ae8f06318147ba78e109a845d1d, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -13059,7 +13228,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1271571896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13752,9 +13921,9 @@ MonoBehaviour:
   eTileEventType: 0
   moneyPrefab: {fileID: 0}
   recipeLabBackGround: {fileID: 1330737905}
-  beverageColor: {r: 0.9960785, g: 0.7568628, b: 0.1764706, a: 1}
-  bakeryColor: {r: 0.9607844, g: 0.6509804, b: 0.52156866, a: 1}
-  desertColor: {r: 0.39607847, g: 0.76470596, b: 0.58431375, a: 1}
+  beverageColor: {r: 0.96470594, g: 0.86666673, b: 0.47058827, a: 1}
+  bakeryColor: {r: 0.9607844, g: 0.64705884, b: 0.52156866, a: 1}
+  desertColor: {r: 0.59607846, g: 0.8000001, b: 0.70980394, a: 1}
 --- !u!114 &1330737910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14058,7 +14227,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1370615855
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14789,12 +14958,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1464969936}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.268225, y: -236.98547, z: -8.345151}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 218041913}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1473793844
 GameObject:
@@ -15142,6 +15311,134 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1496570568}
   m_CullTransparentMesh: 1
+--- !u!1 &1508814774
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1508814776}
+  - component: {fileID: 1508814775}
+  m_Layer: 0
+  m_Name: SweepSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1508814775
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508814774}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 2b82440c3ea330f428fad70bf5111fa0, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.4
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1508814776
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508814774}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22512943}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1509083502
 GameObject:
   m_ObjectHideFlags: 0
@@ -15234,6 +15531,134 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1509083502}
   m_CullTransparentMesh: 1
+--- !u!1 &1511881929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1511881930}
+  - component: {fileID: 1511881931}
+  m_Layer: 0
+  m_Name: ButtonSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1511881930
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511881929}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22512943}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1511881931
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511881929}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 8d61a8beceb7a0d4c9bad7943f4ea6bd, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.7
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1538032140
 GameObject:
   m_ObjectHideFlags: 0
@@ -16262,10 +16687,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1370615855}
   - {fileID: 1663067044}
   - {fileID: 1214589897}
   - {fileID: 1067739502}
-  - {fileID: 1370615855}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -17022,7 +17447,7 @@ GameObject:
   - component: {fileID: 1736555875}
   - component: {fileID: 1736555876}
   m_Layer: 0
-  m_Name: CashRegister
+  m_Name: CashRegisterSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18352,7 +18777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4638468339853429148, guid: 4648af9b739bc4d4789ec37288c6f0c4, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1410
+      value: 1383.279
       objectReference: {fileID: 0}
     - target: {fileID: 4638468339853429148, guid: 4648af9b739bc4d4789ec37288c6f0c4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19936,8 +20361,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 207, y: -58}
-  m_SizeDelta: {x: 403.0653, y: 100}
+  m_AnchoredPosition: {x: 144.231, y: -58}
+  m_SizeDelta: {x: 277.529, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2046187506
 MonoBehaviour:
@@ -19946,7 +20371,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2046187504}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -19959,8 +20384,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 288e8ae8f06318147ba78e109a845d1d, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -21191,38 +21616,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeverageRecipeLab
       objectReference: {fileID: 0}
-    - target: {fileID: 2852791137302600307, guid: 4648af9b739bc4d4789ec37288c6f0c4, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2852791137302600307, guid: 4648af9b739bc4d4789ec37288c6f0c4, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2852791137302600307, guid: 4648af9b739bc4d4789ec37288c6f0c4, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2852791137302600307, guid: 4648af9b739bc4d4789ec37288c6f0c4, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3320606022520907468, guid: 4648af9b739bc4d4789ec37288c6f0c4, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3320606022520907468, guid: 4648af9b739bc4d4789ec37288c6f0c4, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3320606022520907468, guid: 4648af9b739bc4d4789ec37288c6f0c4, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3320606022520907468, guid: 4648af9b739bc4d4789ec37288c6f0c4, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4638468339853429148, guid: 4648af9b739bc4d4789ec37288c6f0c4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -21307,22 +21700,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7366185099218751955, guid: 4648af9b739bc4d4789ec37288c6f0c4, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7366185099218751955, guid: 4648af9b739bc4d4789ec37288c6f0c4, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7366185099218751955, guid: 4648af9b739bc4d4789ec37288c6f0c4, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7366185099218751955, guid: 4648af9b739bc4d4789ec37288c6f0c4, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21336,9 +21713,6 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 1646881134}
   - {fileID: 1196433497}
-  - {fileID: 1040571655}
   - {fileID: 218041913}
   - {fileID: 691726821}
-  - {fileID: 22512943}
-  - {fileID: 1464969938}
   - {fileID: 1271571898}

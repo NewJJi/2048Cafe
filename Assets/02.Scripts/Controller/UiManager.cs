@@ -8,6 +8,13 @@ using static Define;
 
 public class UiManager : MonoBehaviour
 {
+    #region UI Info Update Event
+
+    public Action UpdateMoneyEvent;
+    public Action UpdateItemEvent;
+
+    #endregion
+
     public PopupController popupController;
 
     public TMP_Text moneyText;
@@ -157,6 +164,7 @@ public class UiManager : MonoBehaviour
 
     public void ClickRecipeLabButton(ERecipeLabType eRecipeLabType)
     {
+        GameManager.Instance.Sound.PlayEffectSound(EEffectSoundType.Button);
         DeSelectAllRecipeLabButton();
         switch (eRecipeLabType)
         {
@@ -220,7 +228,7 @@ public class UiManager : MonoBehaviour
 
     public void ShowHaveMoney(int haveMoney)
     {
-        moneyText.text = $"{haveMoney} ¿ø";
+        moneyText.text = $"{NumberTranslator.FormatNumber(haveMoney)}";
     }
 
     public void ShowItemData(EItemType eItemType, int count)
@@ -312,6 +320,8 @@ public class UiManager : MonoBehaviour
         var money = PopMoney();
         money.transform.position = npcObject.transform.position;
         money.Init(tipMoney, 300);
+
+        GameManager.Instance.Sound.PlayEffectSound(EEffectSoundType.CashRegister);
     }
 
     public IEnumerator LeaveVisitor()
