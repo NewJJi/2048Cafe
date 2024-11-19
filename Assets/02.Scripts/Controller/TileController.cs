@@ -184,7 +184,7 @@ public class TileController : MonoBehaviour
 
         if (!IsCanSwap())
         {
-            Debug.Log("Can't Move");
+            //Debug.Log("Can't Move");
         }
         else
         {
@@ -219,10 +219,10 @@ public class TileController : MonoBehaviour
         tile.SetGrid(x, y);
         int value = num == 0 ? 0 : (int)Mathf.Log(num, 2);
         tile.Change(num, GameManager.Instance.Data.GetFoodSprite(eRecipeType, value-1));
-        if (!IsCanSwap())
-        {
-            Debug.Log("Can't Move!");
-        }
+        //if (!IsCanSwap())
+        //{
+        //    Debug.Log("Can't Move!");
+        //}
 
         ConvertSaveData();
     }

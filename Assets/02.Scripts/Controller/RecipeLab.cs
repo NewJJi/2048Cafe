@@ -26,11 +26,10 @@ public class RecipeLab : MonoBehaviour
         recipeViewer.Init(recipeItems, eRecipeType);
 
         recipeLabSaveData = GameManager.Instance.GetRecipeLabData(eRecipeType);
-        //tileController.Init(recipeLabSaveData,eRecipeType);
         tileController.Init(recipeLabSaveData.expandLevel, recipeLabSaveData.gridList, eRecipeType);
 
         int costIndex = recipeLabSaveData.expandLevel - defaultRecipeLabGridSize;
-        expandButtonText.text = $"{NumberTranslator.FormatNumber(GameManager.Instance.Data.expandUpgradeCost[costIndex])}";
+        expandButtonText.text = $"{NumberTranslator.FormatNumber(GameManager.Instance.Data.CalculateExpandCost(costIndex))}";
 
         ActiveExpandButton(GameManager.Instance.GameMoney);
     }
@@ -57,7 +56,7 @@ public class RecipeLab : MonoBehaviour
     {
         int costIndex = recipeLabSaveData.expandLevel - defaultRecipeLabGridSize;
 
-        if (GameManager.Instance.Data.expandUpgradeCost[costIndex] > money)
+        if (GameManager.Instance.Data.CalculateExpandCost(costIndex) > money)
         {
             expandButton.enabled = false;
         }
@@ -65,7 +64,7 @@ public class RecipeLab : MonoBehaviour
         {
             expandButton.enabled = true;
         }
-        expandButtonText.text = $"{NumberTranslator.FormatNumber(GameManager.Instance.Data.expandUpgradeCost[costIndex])}";
+        expandButtonText.text = $"{NumberTranslator.FormatNumber(GameManager.Instance.Data.CalculateExpandCost(costIndex))}";
 
         //expandButtonText.text = $"{GameManager.Instance.Data.expandUpgradeCost[costIndex]} ¿ø";
     }
@@ -76,7 +75,7 @@ public class RecipeLab : MonoBehaviour
         recipeLabSaveData.expandLevel++;
         tileController.ExpandLaboratory();
 
-        GameManager.Instance.SpendMoney(GameManager.Instance.Data.expandUpgradeCost[costIndex]);
+        GameManager.Instance.SpendMoney(GameManager.Instance.Data.CalculateExpandCost(costIndex));
         GameManager.Instance.Sound.PlayEffectSound(EEffectSoundType.ItemButton);
     }
 

@@ -19,30 +19,13 @@ public class Shop : MonoBehaviour
 
     public Button closeButton;
 
-    //GoogleMobileAdsController googleMobileAdsController;
-
-    //광고 무한 시청 막기
-    float moneyAdTimer;
-    
-
     public void Init()
     {
-        //googleMobileAdsController = new GoogleMobileAdsController();
-        //googleMobileAdsController.Init();
-
         BindEvnet();
     }
 
     public void BindEvnet()
     {
-        //adButton.onClick.AddListener(() =>
-        //{
-        //    googleMobileAdsController.ShowRewardedAd(() =>
-        //    {
-        //        OnClickAdButton();
-        //    });
-        //});
-
         closeButton.onClick.AddListener(() => { CloseShopPanel(); });
 
         buyUpgradeItemButton.onPurchaseComplete.AddListener(OnClickBuyUpgradeItem);
@@ -60,6 +43,7 @@ public class Shop : MonoBehaviour
 
     private void CloseShopPanel()
     {
+        GameManager.Instance.Sound.PlayEffectSound(EEffectSoundType.Button);
         GameManager.Instance.IsCanSwap = true;
         shopPanel.SetActive(false);
     }

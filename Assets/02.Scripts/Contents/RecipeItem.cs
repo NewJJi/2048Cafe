@@ -40,7 +40,6 @@ public class RecipeItem : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         showRecipeEvent?.Invoke(recipeIndex);
-        Debug.Log("레시피 클릭");
     }
 
     public void ShowRecipeItem(ERecipeLabType recipeType, int index)

@@ -128,6 +128,7 @@ public class RecipeLabController : MonoBehaviour
         currentActiveRecipeLab.tileController.RemoveTile(tile);
         GameManager.Instance.UseItem(EItemType.ThrowOutItem);
         activeTileMaskUiEvent?.Invoke(false, currentActiveRecipeLab.tileController.poolParent.transform, currentActiveRecipeLab.tileController.parentTransform);
+        GameManager.Instance.Sound.PlayEffectSound(EEffectSoundType.Button);
         eTileEventType = ETileClickEventType.None;
     }
     public void UpgradeTile(Tile tile)
@@ -137,6 +138,7 @@ public class RecipeLabController : MonoBehaviour
         if (isFinishUpgrade == true)
         {
             GameManager.Instance.UseItem(EItemType.UpgradeItem);
+            GameManager.Instance.Sound.PlayEffectSound(EEffectSoundType.Button);
             activeTileMaskUiEvent?.Invoke(false, currentActiveRecipeLab.tileController.poolParent.transform, currentActiveRecipeLab.tileController.parentTransform);
             eTileEventType = ETileClickEventType.None;
         }

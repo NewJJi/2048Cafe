@@ -221,7 +221,6 @@ GameObject:
   - component: {fileID: 4638468339853429148}
   - component: {fileID: 6249753396011555776}
   - component: {fileID: 5153378090888980085}
-  - component: {fileID: 3846531708718375101}
   m_Layer: 5
   m_Name: BeverageRecipeLab
   m_TagString: Untagged
@@ -294,20 +293,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &3846531708718375101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2093368800525566327}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
-  m_VerticalFit: 2
 --- !u!1 &3358342740858806503
 GameObject:
   m_ObjectHideFlags: 0

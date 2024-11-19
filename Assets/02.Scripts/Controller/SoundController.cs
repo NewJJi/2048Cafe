@@ -10,7 +10,8 @@ public enum EEffectSoundType
     CashRegister,
     Sweep,
     Button,
-    ItemButton
+    ItemButton,
+    ItemUpgrade
 }
 
 public class SoundController : MonoBehaviour
@@ -22,6 +23,7 @@ public class SoundController : MonoBehaviour
     [SerializeField] private AudioSource sweepSound;
     [SerializeField] private AudioSource buttonSound;
     [SerializeField] private AudioSource itemButtonSound;
+    [SerializeField] private AudioSource itemUpgradeSound;
 
     private float bgmMaxValue = 0.6f;
     private float moneyMaxValue = 1.0f;
@@ -91,6 +93,9 @@ public class SoundController : MonoBehaviour
                 break;
             case EEffectSoundType.ItemButton:
                 itemButtonSound.Play();
+                break;
+            case EEffectSoundType.ItemUpgrade:
+                itemUpgradeSound.Play();
                 break;
         }
     }

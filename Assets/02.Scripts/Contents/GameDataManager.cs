@@ -27,7 +27,12 @@ public class GameDataManager : MonoBehaviour
     public FoodDataInfoBundle bakeryInfoBundle = new FoodDataInfoBundle();
     public FoodDataInfoBundle desertInfoBundle = new FoodDataInfoBundle();
 
-    public int[] expandUpgradeCost;
+    public int CalculateExpandCost(int expandLevel)
+    {
+        int cost = (int)(expandDefaultUpgradeCost * Mathf.Pow(5, expandLevel));
+        cost = Mathf.Min(cost, 1000000000);
+        return cost;
+    }
 
     public async Task LoadAllData()
     {

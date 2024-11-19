@@ -7,6 +7,7 @@ using static Define;
 
 public class InfoPopup : MonoBehaviour
 {
+    public GameObject starParent;
     public GameObject[] foodStarArray = new GameObject[5];
 
     public Image foodImage;
@@ -43,6 +44,7 @@ public class InfoPopup : MonoBehaviour
         {
             this.gameObject.SetActive(false);
             GameManager.Instance.IsCanSwap = true;
+            GameManager.Instance.Sound.PlayEffectSound(EEffectSoundType.Button);
         });
 
         upgradeButton.onClick.AddListener(OnClickUpgradeButton);
@@ -54,6 +56,8 @@ public class InfoPopup : MonoBehaviour
 
     public void SetInfoPopup(ERecipeLabType eRecipeType, int index)
     {
+        GameManager.Instance.Sound.PlayEffectSound(EEffectSoundType.Button);
+
         GameManager.Instance.IsCanSwap = false;
 
         recipeType = eRecipeType;
@@ -76,7 +80,8 @@ public class InfoPopup : MonoBehaviour
         addMoneyValue.text = $"+{(recipeItemData.level * 0.2) * 100}%";
         foodDescription.text = data.GetFoodInfo(eRecipeType, index).description;
 
-        upgradeCost = GameManager.Instance.Data.GetFoodInfo(eRecipeType, index).starCost * (recipeItemData.level + 1);
+        //upgradeCost = GameManager.Instance.Data.GetFoodInfo(eRecipeType, index).starCost * (recipeItemData.level + 1);
+        upgradeCost = (int)((index+1) * tileDefaultUpgradeCost * Mathf.Pow(recipeItemData.level + 1, 1.5f));
         costText.text = $"$ {upgradeCost}";
 
         upgradeButton.interactable = true;
@@ -95,14 +100,7 @@ public class InfoPopup : MonoBehaviour
             upgradeCanvasGroup.alpha = 0.8f;
         }
 
-        for (int i = 0; i < foodStarArray.Length; i++)
-        {
-            foodStarArray[i].SetActive(false);
-        }
-        for (int i = 0; i < recipeItemData.level; i++)
-        {
-            foodStarArray[i].SetActive(true);
-        }
+        ShowRecipeItem(eRecipeType, index);
 
         ShowActiveButton();
     }
@@ -112,6 +110,7 @@ public class InfoPopup : MonoBehaviour
         Debug.Log("업그레이드!!");
         GameManager.Instance.SpendMoney(upgradeCost);
         GameManager.Instance.LevelUpRecipe(recipeType, recipeIndex);
+        GameManager.Instance.Sound.PlayEffectSound(EEffectSoundType.Button);
         if (upgradeCost > GameManager.Instance.GameMoney)
         {
             upgradeButton.enabled = false;
@@ -133,6 +132,15 @@ public class InfoPopup : MonoBehaviour
     public void ShowRecipeItem(ERecipeLabType recipeType, int index)
     {
         int level = GameManager.Instance.GetRecipeLabData(recipeType).recipeItemDatas[index].level;
+
+        if(level == 0)
+        {
+            starParent.SetActive(false);
+        }
+        else
+        {
+            starParent.SetActive(true);
+        }
 
         for (int i = 0; i < foodStarArray.Length; i++)
         {
