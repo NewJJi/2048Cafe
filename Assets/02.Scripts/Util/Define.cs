@@ -27,7 +27,7 @@ public static class Define
     public const int nextCustomerMaxSwapCount = 150;
 
     public const int tileDefaultUpgradeCost = 50;
-    public const int expandDefaultUpgradeCost = 30;
+    public const int expandDefaultUpgradeCost = 20;
 
     public enum EMoveDirType
     {

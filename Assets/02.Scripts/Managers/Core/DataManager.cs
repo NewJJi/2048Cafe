@@ -64,21 +64,17 @@ public class DataManager
         }
 
         string filePath = $"{savePath}/{path}.json";
-        Debug.Log($"File Path : " + filePath);
+        Debug.Log(filePath);
         if (File.Exists(filePath))
         {
-            Debug.Log("Exist File");
             string readData = await File.ReadAllTextAsync(filePath);
             string decrpytData = Decrypt(readData);
 
-            Debug.Log(decrpytData);
             T data = JsonConvert.DeserializeObject<T>(decrpytData);
             return data;
         }
         else
         {
-            Debug.Log("File Not Exist");
-
             T data = new T();
             return data;
         }
@@ -103,7 +99,6 @@ public class DataManager
         else
         {
             T data = new T();
-            //SaveData<T>(data, name);
             return data;
         }
     }

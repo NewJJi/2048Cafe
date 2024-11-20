@@ -80,9 +80,10 @@ public class InfoPopup : MonoBehaviour
         addMoneyValue.text = $"+{(recipeItemData.level * 0.2) * 100}%";
         foodDescription.text = data.GetFoodInfo(eRecipeType, index).description;
 
-        //upgradeCost = GameManager.Instance.Data.GetFoodInfo(eRecipeType, index).starCost * (recipeItemData.level + 1);
-        upgradeCost = (int)((index+1) * tileDefaultUpgradeCost * Mathf.Pow(recipeItemData.level + 1, 1.5f));
-        costText.text = $"$ {upgradeCost}";
+        int level = recipeItemData.level + 1;
+        upgradeCost = (int)(tileDefaultUpgradeCost * Mathf.Pow(index + 1, 2) * level * level);
+
+        costText.text = $"$ {NumberTranslator.FormatNumber(upgradeCost)}";
 
         upgradeButton.interactable = true;
         upgradeCanvasGroup.alpha = 1;
@@ -111,16 +112,23 @@ public class InfoPopup : MonoBehaviour
         GameManager.Instance.SpendMoney(upgradeCost);
         GameManager.Instance.LevelUpRecipe(recipeType, recipeIndex);
         GameManager.Instance.Sound.PlayEffectSound(EEffectSoundType.Button);
-        if (upgradeCost > GameManager.Instance.GameMoney)
-        {
-            upgradeButton.enabled = false;
-            upgradeCanvasGroup.alpha = 0.8f;
-        }
         RecipeLabSaveData recipeLabSaveData = GameManager.Instance.GetRecipeLabData(recipeType);
         RecipeItemData recipeItemData = recipeLabSaveData.recipeItemDatas[recipeIndex];
-        upgradeCost = GameManager.Instance.Data.GetFoodInfo(recipeType, recipeIndex).starCost * (recipeItemData.level + 1);
-        costText.text = $"$ {upgradeCost}";
+
+        // 50  2*2 3*3 4*4 5*5  4 9 16 25
+        int index = recipeIndex + 1;
+        int level = recipeItemData.level + 1;
+
+        upgradeCost = (int)(tileDefaultUpgradeCost * Mathf.Pow(index + 1, 2) * level * level);
+
+        //upgradeCost = GameManager.Instance.Data.GetFoodInfo(recipeType, recipeIndex).starCost * (recipeItemData.level + 1);
+        costText.text = $"$ {NumberTranslator.FormatNumber(upgradeCost)}";
         addMoneyValue.text = $"+{(recipeItemData.level * 0.2) * 100}%";
+        if (upgradeCost > GameManager.Instance.GameMoney)
+        {
+            upgradeButton.interactable = false;
+            upgradeCanvasGroup.alpha = 0.8f;
+        }
         if (recipeItemData.level == 5)
         {
             costText.text = "Max";
@@ -157,7 +165,6 @@ public class InfoPopup : MonoBehaviour
     {
         recipeIndex++;
         SetInfoPopup(recipeType,recipeIndex);
-
         ShowActiveButton();
     }
     public void OnClickPreButton()
@@ -170,8 +177,6 @@ public class InfoPopup : MonoBehaviour
     public void ShowActiveButton()
     {
         RecipeLabSaveData recipeLabSaveData = GameManager.Instance.GetRecipeLabData(recipeType);
-
-        //0¿œ ∂ß
 
         if (recipeIndex == 0)
         {

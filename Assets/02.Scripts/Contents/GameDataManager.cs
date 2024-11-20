@@ -29,8 +29,9 @@ public class GameDataManager : MonoBehaviour
 
     public int CalculateExpandCost(int expandLevel)
     {
-        int cost = (int)(expandDefaultUpgradeCost * Mathf.Pow(5, expandLevel));
-        cost = Mathf.Min(cost, 1000000000);
+        int cost = (int)(expandDefaultUpgradeCost * Mathf.Pow(expandLevel,expandLevel*2));
+        cost = Mathf.Min(cost, int.MaxValue);
+        cost = cost < 0 ? int.MaxValue-150000000 : cost;
         return cost;
     }
 

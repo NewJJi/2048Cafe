@@ -28,7 +28,7 @@ public class RecipeLab : MonoBehaviour
         recipeLabSaveData = GameManager.Instance.GetRecipeLabData(eRecipeType);
         tileController.Init(recipeLabSaveData.expandLevel, recipeLabSaveData.gridList, eRecipeType);
 
-        int costIndex = recipeLabSaveData.expandLevel - defaultRecipeLabGridSize;
+        int costIndex = recipeLabSaveData.expandLevel - defaultRecipeLabGridSize+1;
         expandButtonText.text = $"{NumberTranslator.FormatNumber(GameManager.Instance.Data.CalculateExpandCost(costIndex))}";
 
         ActiveExpandButton(GameManager.Instance.GameMoney);
@@ -54,25 +54,32 @@ public class RecipeLab : MonoBehaviour
 
     public void ActiveExpandButton(int money)
     {
-        int costIndex = recipeLabSaveData.expandLevel - defaultRecipeLabGridSize;
+        int costIndex = recipeLabSaveData.expandLevel - defaultRecipeLabGridSize+1;
 
         if (GameManager.Instance.Data.CalculateExpandCost(costIndex) > money)
         {
-            expandButton.enabled = false;
+            expandButton.interactable = false;
         }
         else
         {
-            expandButton.enabled = true;
+            expandButton.interactable = true;
         }
-        expandButtonText.text = $"{NumberTranslator.FormatNumber(GameManager.Instance.Data.CalculateExpandCost(costIndex))}";
 
-        //expandButtonText.text = $"{GameManager.Instance.Data.expandUpgradeCost[costIndex]} ¿ø";
+        if(recipeLabSaveData.expandLevel >= 8)
+        {
+            expandButton.interactable = false;
+            expandButtonText.text = "Max Level";
+        }
+        else
+        {
+            expandButtonText.text = $"{NumberTranslator.FormatNumber(GameManager.Instance.Data.CalculateExpandCost(costIndex))}";
+        }
     }
 
     public void OnClickExpandButton()
     {
-        int costIndex = recipeLabSaveData.expandLevel - defaultRecipeLabGridSize;
-        recipeLabSaveData.expandLevel++;
+        int costIndex = recipeLabSaveData.expandLevel - defaultRecipeLabGridSize+1;
+        ++recipeLabSaveData.expandLevel;
         tileController.ExpandLaboratory();
 
         GameManager.Instance.SpendMoney(GameManager.Instance.Data.CalculateExpandCost(costIndex));

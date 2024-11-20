@@ -75,7 +75,7 @@ public class TileController : MonoBehaviour
             {
                 if (grid[x][y] != 0)
                 {
-                    SpawnTile(new Vector2(x, y), grid[x][y]);
+                    SpawnInitTile(new Vector2(x, y), grid[x][y]);
                     emptyGrid.Remove(new Vector2(x, y));
                 }
             }
@@ -202,8 +202,7 @@ public class TileController : MonoBehaviour
         puzzleData.tileColumn[(int)destinationGrid.x].tileRow[(int)destinationGrid.y] = tile;
     }
     
-    
-    public void SpawnTile(Vector2 pos, int num)
+    public void SpawnInitTile(Vector2 pos, int num)
     {
         Vector2 spawnPosition = GetWorldPositionFromGrid(pos);
 
@@ -217,12 +216,12 @@ public class TileController : MonoBehaviour
 
         puzzleData.tileColumn[x].tileRow[y] = tile;
         tile.SetGrid(x, y);
+
+
         int value = num == 0 ? 0 : (int)Mathf.Log(num, 2);
+        Debug.Log($"num : {num}");
+        Debug.Log($"value : {value}");
         tile.Change(num, GameManager.Instance.Data.GetFoodSprite(eRecipeType, value-1));
-        //if (!IsCanSwap())
-        //{
-        //    Debug.Log("Can't Move!");
-        //}
 
         ConvertSaveData();
     }
@@ -253,8 +252,9 @@ public class TileController : MonoBehaviour
         List<int> spawnValue = GameManager.Instance.GetSpawnValue(eRecipeType);
 
         int ranSapwnNum = UnityEngine.Random.Range(0, spawnValue.Count);
-        int logValue = Mathf.RoundToInt(Mathf.Pow(2, ranSapwnNum+1));
-        tile.Change(logValue, GameManager.Instance.Data.GetFoodSprite(eRecipeType, ranSapwnNum));
+        int value = spawnValue[ranSapwnNum] == 0 ? 1 : spawnValue[ranSapwnNum];
+        int logValue = Mathf.RoundToInt(Mathf.Pow(2, spawnValue[ranSapwnNum]+1));
+        tile.Change(logValue, GameManager.Instance.Data.GetFoodSprite(eRecipeType, spawnValue[ranSapwnNum]));
         
         if (!IsCanSwap())
         {
@@ -292,7 +292,7 @@ public class TileController : MonoBehaviour
         SwapMoney swapMoney = ShowSwapMoneyEvnet?.Invoke();
         swapMoney.transform.position = newMovedTile.transform.position;
         
-        float multiple = GameManager.Instance.GetRecipeItemData(eRecipeType)[(int)Mathf.Log(newValue, 2) - 2].level * 0.2f;
+        float multiple = GameManager.Instance.GetRecipeItemData(eRecipeType)[(int)Mathf.Log(newValue, 2) - 1].level * 0.2f;
         int getCoin = newValue + Mathf.RoundToInt(newValue * multiple);
 
         swapMoney.Init(getCoin, gridSize);

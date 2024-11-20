@@ -18225,6 +18225,7 @@ GameObject:
   - component: {fileID: 1646881131}
   - component: {fileID: 1646881138}
   - component: {fileID: 1646881139}
+  - component: {fileID: 1646881140}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -18266,7 +18267,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1080, y: 2280}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 1
+  m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -18393,6 +18394,19 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1646881140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646881130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bcea65bb2722274ba952dac42df323e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasScaler: {fileID: 1646881132}
 --- !u!1 &1665574651
 GameObject:
   m_ObjectHideFlags: 0
@@ -23778,10 +23792,6 @@ PrefabInstance:
     - target: {fileID: 2093368800525566327, guid: 4648af9b739bc4d4789ec37288c6f0c4, type: 3}
       propertyPath: m_Name
       value: BeverageRecipeLab
-      objectReference: {fileID: 0}
-    - target: {fileID: 2093368800525566327, guid: 4648af9b739bc4d4789ec37288c6f0c4, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2852791137302600307, guid: 4648af9b739bc4d4789ec37288c6f0c4, type: 3}
       propertyPath: m_AnchorMax.y
