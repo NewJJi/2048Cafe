@@ -21,15 +21,6 @@ public class Tile : MonoBehaviour
     public TMP_Text valueText;
     public RectTransform rectTransform;
 
-    private void Awake()
-    {
-        image = this.GetComponent<Image>();
-        rectTransform = this.GetComponent<RectTransform>();
-        tileValue = 2;
-        valueText.text = tileValue.ToString();
-    }
-
-
     public void SetGrid(int x, int y)
     {
         gridX = x;

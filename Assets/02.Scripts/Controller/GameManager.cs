@@ -24,7 +24,8 @@ public class GameManager : MonoBehaviour
     public NPCManager NPC { get { return NPCManager; } }
     public TutorialController Tutorial { get { return tutorialManager; } }
 
-    public bool IsCanSwap = true;
+    public bool isCanSwap = true;
+    public bool isSwapping = false;
 
     #region Money
     public int GameMoney

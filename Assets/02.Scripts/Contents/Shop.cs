@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Purchasing;
 using UnityEngine.Purchasing.Extension;
 using UnityEngine.UI;
+using static Define;
 
 public class Shop : MonoBehaviour
 {
@@ -16,12 +17,19 @@ public class Shop : MonoBehaviour
     public CodelessIAPButton buyThrowOutButton;
     public CodelessIAPButton buySortItemButton;
     public CodelessIAPButton buyItemPackageButton;
+    public CodelessIAPButton removeAdButton;
+    public GameObject removeButtonObject;
 
     public Button closeButton;
 
     public void Init()
     {
         BindEvnet();
+
+        if (PlayerPrefs.HasKey(removeAdValue))
+        {
+            removeButtonObject.SetActive(false);
+        }
     }
 
     public void BindEvnet()
@@ -32,51 +40,53 @@ public class Shop : MonoBehaviour
         buyThrowOutButton.onPurchaseComplete.AddListener(OnClickBuyThrowOutItem);
         buySortItemButton.onPurchaseComplete.AddListener(OnClickBuySortItemItem);
         buyItemPackageButton.onPurchaseComplete.AddListener(OnClickBuyPackageItem);
+        removeAdButton.onPurchaseComplete.AddListener(OnClickRemoveAdItem);
+    }
+
+    private void OnClickRemoveAdItem(Product product)
+    {
+        PlayerPrefs.SetString(removeAdValue, "Buy");
+        removeButtonObject.SetActive(false);
     }
 
     internal void ShowShopPanel()
     {
         GameManager.Instance.Sound.PlayEffectSound(EEffectSoundType.Button);
-        GameManager.Instance.IsCanSwap = false;
+        GameManager.Instance.isCanSwap = false;
         shopPanel.SetActive(true);
     }
 
     private void CloseShopPanel()
     {
         GameManager.Instance.Sound.PlayEffectSound(EEffectSoundType.Button);
-        GameManager.Instance.IsCanSwap = true;
+        GameManager.Instance.isCanSwap = true;
         shopPanel.SetActive(false);
     }
 
     public void OnClickAdButton()
     {
-        Debug.Log("광고로 돈 받았다!!");
         GameManager.Instance.EarnMoney(100);
     }
 
     public void OnClickBuyThrowOutItem(Product product)
     {
-        Debug.Log("버리기 아이템 샀다!!");
         GameManager.Instance.GetItem(Define.EItemType.ThrowOutItem, 3);
     }
 
     public void OnClickBuySortItemItem(Product product)
     {
-        Debug.Log("정렬 아이템 샀다!!");
         GameManager.Instance.GetItem(Define.EItemType.SortItem, 2);
     }
 
     public void OnClickBuyUpgradeItem(Product product)
     {
-        Debug.Log("업그레이드 아이템 샀다!!");
         GameManager.Instance.GetItem(Define.EItemType.UpgradeItem, 2);
     }
 
     public void OnClickBuyPackageItem(Product product)
     {
-        Debug.Log("패키지 플렉스 해부렀다!!");
-        GameManager.Instance.GetItem(Define.EItemType.UpgradeItem, 2);
-        GameManager.Instance.GetItem(Define.EItemType.SortItem, 2);
+        GameManager.Instance.GetItem(Define.EItemType.UpgradeItem, 3);
+        GameManager.Instance.GetItem(Define.EItemType.SortItem, 3);
         GameManager.Instance.GetItem(Define.EItemType.ThrowOutItem, 3);
     }
 }

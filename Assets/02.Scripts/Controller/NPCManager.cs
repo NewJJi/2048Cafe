@@ -22,13 +22,18 @@ public class NPCManager : MonoBehaviour
     }
     public void CountUpSwap()
     {
+        if (PlayerPrefs.HasKey(removeAdValue))
+        {
+            return;
+        }
+
         randomNextCustomerVisitSwap--;
 
         if (randomNextCustomerVisitSwap <= 0)
         {
+            GameManager.Instance.UI.ShowAdvertise();
+
             SetRandomNextSwap();
-            GameManager.Instance.Sound.PlayDoorBellSound();
-            visitEvent?.Invoke();
         }
     }
 }

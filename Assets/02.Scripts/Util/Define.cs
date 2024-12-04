@@ -21,9 +21,11 @@ public static class Define
     public const string soundSaveVolumn = "SoundVolumn";
     public const string soundOnOffKey = "soundOnOffKey";
 
+    public const string removeAdValue = "RemoveAd";
+
     public const string finishTutorialBoolKey = "isFinishTutorial";
 
-    public const int nextCustomerMinSwapCount = 30;
+    public const int nextCustomerMinSwapCount = 100;
     public const int nextCustomerMaxSwapCount = 150;
 
     public const int tileDefaultUpgradeCost = 50;

@@ -11,7 +11,7 @@ public class TutorialController : MonoBehaviour
 
     public void Init()
     {
-        GameManager.Instance.IsCanSwap = false;
+        GameManager.Instance.isCanSwap = false;
         BindInit();
 
         tutorialPanel.SetActive(true);
@@ -33,7 +33,7 @@ public class TutorialController : MonoBehaviour
         int nextIndex = index+1;
         if(nextIndex == tutorialStepPanelList.Count)
         {
-            GameManager.Instance.IsCanSwap = true;
+            GameManager.Instance.isCanSwap = true;
             tutorialPanel.SetActive(false);
             return;
         }

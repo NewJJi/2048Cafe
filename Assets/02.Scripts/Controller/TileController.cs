@@ -120,6 +120,8 @@ public class TileController : MonoBehaviour
                 break;
         }
 
+        GameManager.Instance.isSwapping = true;
+
         foreach (int x in xArrayTemp)
         {
             foreach (int y in yArrayTemp)
@@ -176,22 +178,27 @@ public class TileController : MonoBehaviour
             }
         }
 
+        
         if (isMoved == true)
         {
             StartCoroutine(CoSpawnTile());
+            GameManager.Instance.Sound.PlaySweepSound();
+            ConvertSaveData();
         }
-
+        else
+        {
+            GameManager.Instance.isSwapping = false;
+        }
 
         if (!IsCanSwap())
         {
+            //GameManager.Instance.isSwapping = false;
             //Debug.Log("Can't Move");
         }
         else
         {
             GameManager.Instance.NPC.CountUpSwap();
         }
-
-        GameManager.Instance.Sound.PlaySweepSound();
     }
     public void MoveTile(Vector2 destinationGrid, Tile tile)
     {
@@ -201,7 +208,6 @@ public class TileController : MonoBehaviour
 
         puzzleData.tileColumn[(int)destinationGrid.x].tileRow[(int)destinationGrid.y] = tile;
     }
-    
     public void SpawnInitTile(Vector2 pos, int num)
     {
         Vector2 spawnPosition = GetWorldPositionFromGrid(pos);
@@ -217,16 +223,13 @@ public class TileController : MonoBehaviour
         puzzleData.tileColumn[x].tileRow[y] = tile;
         tile.SetGrid(x, y);
 
-
         int value = num == 0 ? 0 : (int)Mathf.Log(num, 2);
-        Debug.Log($"num : {num}");
-        Debug.Log($"value : {value}");
         tile.Change(num, GameManager.Instance.Data.GetFoodSprite(eRecipeType, value-1));
-
-        ConvertSaveData();
     }
     public void SpawnTile()
     {
+        GameManager.Instance.isSwapping = false;
+
         if (emptyGrid.Count == 0)
         {
             return;
@@ -268,8 +271,6 @@ public class TileController : MonoBehaviour
         yield return new WaitForSeconds(moveSpeed);
         SpawnTile();
     }
-
-
     public IEnumerator MergeTile(Tile tile, Tile newMovedTile)
     {
         yield return new WaitForSeconds(moveSpeed);
@@ -298,7 +299,6 @@ public class TileController : MonoBehaviour
         swapMoney.Init(getCoin, gridSize);
         GameManager.Instance.EarnMoney(getCoin);
     }
-    
     public bool IsCanSwap()
     {
         for (int y = 0; y < expandGridCount; y++)
@@ -360,6 +360,7 @@ public class TileController : MonoBehaviour
         GameManager.Instance.GetRecipeLabData(eRecipeType).gridList = gridList;
         GameManager.Instance.SaveRecipeLabData(eRecipeType);
     }
+
     #endregion
 
     #region Func

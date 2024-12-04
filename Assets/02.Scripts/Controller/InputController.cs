@@ -13,14 +13,6 @@ public class InputController : MonoBehaviour
     private float height;
     private float width;
 
-    //대각선 가능 여부
-    public bool isCanDiagonal = true;
-
-    //where is the position init?
-    public RectTransform canvas;
-    private float swapMinArea;
-    private float swapMaxArea;
-
     public TileController currentTileController;
 
     public Action<EMoveDirType> swapEvent;
@@ -44,41 +36,44 @@ public class InputController : MonoBehaviour
 
     private void Update()
     {
-
-        SwipeEditor();
-        if (Input.GetMouseButtonDown(0))
+        if (GameManager.Instance.isSwapping == false)
         {
-            if (GameManager.Instance.IsCanSwap == false)
+            SwipeEditor();
+            if (Input.GetMouseButtonDown(0))
             {
-                isSwapCanSwap = false;
-            }
-            else
-            {
-                isSwapCanSwap = true;
-            }
-            startPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            //startPosition = Input.mousePosition;
-        }
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            if (IsCheckInSwapArea())
-            {
-                if (isSwapCanSwap == true)
+                if (IsCheckInSwapArea())
                 {
-                    endPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    float distance = Vector2.Distance(startPosition, endPosition);
-                    //endPosition = Input.mousePosition;
-                    if (distance >= 0.3f)
+                    if (GameManager.Instance.isCanSwap == false)
                     {
-                        Swipe(startPosition, endPosition);
+                        isSwapCanSwap = false;
+                    }
+                    else
+                    {
+                        isSwapCanSwap = true;
+                    }
+                    startPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                }
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                if (IsCheckInSwapArea())
+                {
+                    if (isSwapCanSwap == true)
+                    {
+                        endPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                        float distance = Vector2.Distance(startPosition, endPosition);
+                        //endPosition = Input.mousePosition;
+                        if (distance >= 0.3f)
+                        {
+                            Swipe(startPosition, endPosition);
+                        }
                     }
                 }
             }
 
+            ClickTile();
         }
-
-        ClickTile();
     }
 
     public void ClickTile()
@@ -151,7 +146,7 @@ public class InputController : MonoBehaviour
 
     private void Swipe(Vector2 startPosition, Vector2 endPosition)
     {
-        if (GameManager.Instance.IsCanSwap == false)
+        if (GameManager.Instance.isCanSwap == false)
         {
             return;
         }

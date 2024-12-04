@@ -104,7 +104,7 @@ public class UiManager : MonoBehaviour
             puzzleParent.parent = useItemPuzzlePanelParent;
             comebackPuzzleParent = comebackTransform;
             ShowOutLine();
-            GameManager.Instance.IsCanSwap = false;
+            GameManager.Instance.isCanSwap = false;
         }
         else
         {
@@ -112,7 +112,7 @@ public class UiManager : MonoBehaviour
             puzzleParent.parent = comebackTransform;
             comebackPuzzleParent = null;
             HideOutLine();
-            GameManager.Instance.IsCanSwap = true;
+            GameManager.Instance.isCanSwap = true;
         }
     }
 
@@ -153,17 +153,31 @@ public class UiManager : MonoBehaviour
 
         cancelUseItemButton.onClick.AddListener(() => cancelItemEvent?.Invoke());
 
-        addButton.onClick.AddListener(() =>
+        //addButton.onClick.AddListener(() =>
+        //{
+        //    googleMobileAdsController.ShowRewardedAd(() =>
+        //    {
+        //        GetTip();
+        //    });
+        //});
+    }
+
+    public void ShowAdvertise()
+    {
+        GameManager.Instance.isCanSwap = false;
+        googleMobileAdsController.ShowRewardedAd(() =>
         {
-            googleMobileAdsController.ShowRewardedAd(() =>
-            {
-                GetTip();
-            });
+            GameManager.Instance.isCanSwap = true;
         });
     }
 
     public void ClickRecipeLabButton(ERecipeLabType eRecipeLabType)
     {
+        if(GameManager.Instance.isSwapping == true)
+        {
+            return;
+        }
+
         GameManager.Instance.Sound.PlayEffectSound(EEffectSoundType.Button);
         DeSelectAllRecipeLabButton();
         switch (eRecipeLabType)

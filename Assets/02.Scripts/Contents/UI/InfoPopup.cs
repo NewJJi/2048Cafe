@@ -43,7 +43,7 @@ public class InfoPopup : MonoBehaviour
         backPanelButton.onClick.AddListener(() =>
         {
             this.gameObject.SetActive(false);
-            GameManager.Instance.IsCanSwap = true;
+            GameManager.Instance.isCanSwap = true;
             GameManager.Instance.Sound.PlayEffectSound(EEffectSoundType.Button);
         });
 
@@ -58,7 +58,7 @@ public class InfoPopup : MonoBehaviour
     {
         GameManager.Instance.Sound.PlayEffectSound(EEffectSoundType.Button);
 
-        GameManager.Instance.IsCanSwap = false;
+        GameManager.Instance.isCanSwap = false;
 
         recipeType = eRecipeType;
         this.recipeIndex = index;
