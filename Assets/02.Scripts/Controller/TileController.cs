@@ -32,6 +32,7 @@ public class TileController : MonoBehaviour
     public Action<int> GetNewRecipeEvent;
     private Func<SwapMoney> ShowSwapMoneyEvnet;
 
+    public GameObject canMovePopup;
     public Image tileBackgroundImage;
     public Transform parentTransform;
 
@@ -192,6 +193,7 @@ public class TileController : MonoBehaviour
 
         if (!IsCanSwap())
         {
+            canMovePopup.SetActive(true);
             //GameManager.Instance.isSwapping = false;
             //Debug.Log("Can't Move");
         }

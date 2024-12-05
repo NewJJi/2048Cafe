@@ -25,8 +25,8 @@ public static class Define
 
     public const string finishTutorialBoolKey = "isFinishTutorial";
 
-    public const int nextCustomerMinSwapCount = 100;
-    public const int nextCustomerMaxSwapCount = 150;
+    public const int nextCustomerMinSwapCount = 940;
+    public const int nextCustomerMaxSwapCount = 960;
 
     public const int tileDefaultUpgradeCost = 50;
     public const int expandDefaultUpgradeCost = 20;
