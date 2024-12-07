@@ -199,7 +199,7 @@ public class TileController : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.NPC.CountUpSwap();
+            GameManager.Instance.UI.CountUpSwap();
         }
     }
     public void MoveTile(Vector2 destinationGrid, Tile tile)

@@ -71,6 +71,8 @@ public class UiManager : MonoBehaviour
     public Button addButton;
     GoogleMobileAdsController googleMobileAdsController;
 
+    public int randomNextCustomerVisitSwap;
+
     #region Event
     //info 패널 이벤트
     public Action<ERecipeLabType, int> ShowRecipeInfoPopupEvent;
@@ -169,6 +171,28 @@ public class UiManager : MonoBehaviour
         {
             GameManager.Instance.isCanSwap = true;
         });
+    }
+
+    private void SetRandomNextSwap()
+    {
+        randomNextCustomerVisitSwap = UnityEngine.Random.Range(nextCustomerMinSwapCount, nextCustomerMaxSwapCount + 1);
+    }
+
+    public void CountUpSwap()
+    {
+        if (PlayerPrefs.HasKey(removeAdValue))
+        {
+            return;
+        }
+
+        randomNextCustomerVisitSwap--;
+
+        if (randomNextCustomerVisitSwap <= 0)
+        {
+            GameManager.Instance.UI.ShowAdvertise();
+
+            SetRandomNextSwap();
+        }
     }
 
     public void ClickRecipeLabButton(ERecipeLabType eRecipeLabType)

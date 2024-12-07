@@ -7,33 +7,32 @@ using static Define;
 public class NPCManager : MonoBehaviour
 {
     public NPC npc;
-    public int randomNextCustomerVisitSwap;
 
     public Action visitEvent;
+    public float visitRanTime = 0;
 
     public void Init()
     {
-        SetRandomNextSwap();
+        StartCoroutine(CoStartVisitCustomerCount());
     }
 
-    private void SetRandomNextSwap()
+    public void ShowNpc()
     {
-        randomNextCustomerVisitSwap = UnityEngine.Random.Range(nextCustomerMinSwapCount, nextCustomerMaxSwapCount+1);
+        int npcRandomNum = UnityEngine.Random.Range(0,Enum.GetValues(typeof(ENpcType)).Length);
+        npc.gameObject.SetActive(true);
+        npc.SetNpcInfo(npcRandomNum);
     }
-    public void CountUpSwap()
+    private IEnumerator CoStartVisitCustomerCount()
     {
-        if (PlayerPrefs.HasKey(removeAdValue))
+        visitRanTime = UnityEngine.Random.Range(visitMinTime, visitMaxTime);
+        while (true)
         {
-            return;
-        }
+            yield return new WaitForSeconds(visitRanTime);
 
-        randomNextCustomerVisitSwap--;
+            GameManager.Instance.Sound.PlayDoorBellSound();
 
-        if (randomNextCustomerVisitSwap <= 0)
-        {
-            GameManager.Instance.UI.ShowAdvertise();
-
-            SetRandomNextSwap();
+            yield return new WaitForSeconds(1.0f);
+            ShowNpc();
         }
     }
 }
