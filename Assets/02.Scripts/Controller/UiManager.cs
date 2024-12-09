@@ -66,11 +66,7 @@ public class UiManager : MonoBehaviour
     public Transform comebackPuzzleParent;
     public Button cancelUseItemButton;
 
-    [Header("NPC")]
-    public NPC npcObject;
-    public Button addButton;
     GoogleMobileAdsController googleMobileAdsController;
-
     public int randomNextCustomerVisitSwap;
 
     #region Event
@@ -154,14 +150,6 @@ public class UiManager : MonoBehaviour
         desertRecipeLabButton.onClick.AddListener(() => { ClickRecipeLabButton(ERecipeLabType.Desert); });
 
         cancelUseItemButton.onClick.AddListener(() => cancelItemEvent?.Invoke());
-
-        //addButton.onClick.AddListener(() =>
-        //{
-        //    googleMobileAdsController.ShowRewardedAd(() =>
-        //    {
-        //        GetTip();
-        //    });
-        //});
     }
 
     public void ShowAdvertise()
@@ -335,37 +323,5 @@ public class UiManager : MonoBehaviour
     {
         money.gameObject.SetActive(false);
         moneyPool.Push(money);
-    }
-
-    public void VisitCustomer()
-    {
-        npcObject.gameObject.SetActive(true);
-        npcObject.ShowTextBox();
-        StartCoroutine(LeaveVisitor());
-    }
-    public void GetTip()
-    {
-        npcObject.HideTextBox();
-        npcObject.gameObject.SetActive(false);
-
-        int tipMoney = 0;
-        tipMoney += GameManager.Instance.GetRecipeLabData(ERecipeLabType.Beverage).maxValue;
-        tipMoney += GameManager.Instance.GetRecipeLabData(ERecipeLabType.Bakery).maxValue;
-        tipMoney += GameManager.Instance.GetRecipeLabData(ERecipeLabType.Desert).maxValue;
-
-        GameManager.Instance.EarnMoney(tipMoney);
-
-        var money = PopMoney();
-        money.transform.position = npcObject.transform.position;
-        money.Init(tipMoney, 300);
-
-        GameManager.Instance.Sound.PlayEffectSound(EEffectSoundType.CashRegister);
-    }
-
-    public IEnumerator LeaveVisitor()
-    {
-        yield return new WaitForSeconds(7.0f);
-        npcObject.HideTextBox();
-        npcObject.gameObject.SetActive(false);
     }
 }

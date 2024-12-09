@@ -139,8 +139,6 @@ public class GameManager : MonoBehaviour
 
         inputController.swapEvent = recipeLabController.SwapPuzzle;
         inputController.clickTileEvent = recipeLabController.ClickTileEvent;
-
-        NPCManager.visitEvent = uiManager.VisitCustomer;
     }
 
     public RecipeItemData[] GetRecipeItemData(ERecipeLabType eRecipeType)

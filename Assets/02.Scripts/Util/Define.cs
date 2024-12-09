@@ -26,10 +26,10 @@ public static class Define
     public const string finishTutorialBoolKey = "isFinishTutorial";
 
     public const int nextCustomerMinSwapCount = 40;
-    public const int nextCustomerMaxSwapCount = 60;
+    public const int nextCustomerMaxSwapCount = 70;
 
-    public const float visitMinTime = 3;
-    public const float visitMaxTime = 5;
+    public const float visitMinTime = 60;
+    public const float visitMaxTime = 90;
 
     public const int tileDefaultUpgradeCost = 50;
     public const int expandDefaultUpgradeCost = 20;

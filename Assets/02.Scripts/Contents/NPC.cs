@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -5,65 +6,43 @@ using UnityEngine;
 using UnityEngine.UI;
 using static Define;
 
-[System.Serializable]
-public class NPCData
-{
-    public string npcName;
-    public Sprite npcSprite;
-    public List<string> conversationList;
-}
-
 public class NPC : MonoBehaviour
 {
     public GameObject textBox;
-    public RectTransform textRectTransform;
-    public TMP_Text conversationText;
+    public TMPTextReveal tmpTextReveal;
 
     public Image npcImage;
-    public List<NPCData> npcData;
 
-    Sprite currentSprite;
-    string currentConversation;
-    public void SetNpcInfo(int npcNum)
+    public Action leaveEvent;
+
+    public void SetNpcInfo(Sprite npcSprite, string conversation)
     {
-        NPCData currentNPCData = npcData[npcNum];
-        int ranConversationNum = Random.Range(0, currentNPCData.conversationList.Count);
-
-        currentSprite = currentNPCData.npcSprite;
-        currentConversation = currentNPCData.conversationList[ranConversationNum];
-
-        ShowNpc();
-    }
-
-    public void ShowNpc()
-    {
-        npcImage.sprite = currentSprite;
+        npcImage.sprite = npcSprite;
+        tmpTextReveal.text = conversation;
         npcImage.SetNativeSize();
-        conversationText.text = currentConversation;
-        ShowTextBox();
+        StartCoroutine(CoShowTextBox());
     }
 
-
-    public void ShowTextBox()
+    IEnumerator CoShowTextBox()
     {
+        yield return new WaitForSeconds(2.0f);
         textBox.gameObject.SetActive(true);
-        LayoutRebuilder.ForceRebuildLayoutImmediate(textRectTransform);
-        StartCoroutine(CoShowTextBox());
+        tmpTextReveal.StartShowText(LeaveCustomer);
+    }
+
+    private void LeaveCustomer()
+    {
+        StartCoroutine(CoLeave());
+    }
+    IEnumerator CoLeave()
+    {
+        yield return new WaitForSeconds(7f);
+        HideTextBox();
+        this.gameObject.SetActive(false);
+        leaveEvent?.Invoke();
     }
     public void HideTextBox()
     {
         textBox.gameObject.SetActive(false);
-    }
-    IEnumerator CoShowTextBox()
-    {
-        yield return new WaitForSeconds(2.0f);
-        CoLeave();
-    }
-
-    IEnumerator CoLeave()
-    {
-        yield return new WaitForSeconds(10f);
-        HideTextBox();
-        this.gameObject.SetActive(false);
     }
 }

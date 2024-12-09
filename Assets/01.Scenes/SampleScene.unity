@@ -2051,10 +2051,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textBox: {fileID: 1045197009}
-  textRectTransform: {fileID: 0}
-  conversationText: {fileID: 0}
+  tmpTextReveal: {fileID: 0}
   npcImage: {fileID: 0}
-  npcData: []
 --- !u!1 &289586473
 GameObject:
   m_ObjectHideFlags: 0
@@ -6453,7 +6451,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &542417608
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6496,63 +6494,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textBox: {fileID: 1185087187}
-  textRectTransform: {fileID: 1185087188}
-  conversationText: {fileID: 1428197821}
+  tmpTextReveal: {fileID: 1428197824}
   npcImage: {fileID: 1394263956}
-  npcData:
-  - npcName: "\uC544\uC90C\uB9C8"
-    npcSprite: {fileID: 21300000, guid: 4acd51b363ca80f4288f692c0f13d778, type: 3}
-    conversationList:
-    - "\uC774\uAC70 \uC6D0\uB450 \uC5B4\uB514 \uAC70 \uC4F0\uC2DC\uB294 \uAC70\uC608\uC694?"
-    - "\uC2DC\uB7FD\uC740 \uB123\uC9C0 \uB9D0\uACE0, \uC6B0\uC720\uB294 \uAF2D \uB728\uAC81\uAC8C
-      \uB370\uC6CC\uC8FC\uC138\uC694"
-    - "\uCEF5 \uC704\uC5D0 \uC774\uAC70 \uBB3B\uC740 \uAC70 \uBCF4\uC774\uC8E0? \uB2E4\uC2DC
-      \uD574\uC8FC\uC138\uC694"
-    - "\uC5BC\uC74C \uB108\uBB34 \uB9CE\uC774 \uB123\uC9C0 \uB9D0\uACE0, \uC74C\uB8CC
-      \uC880 \uC9C4\uD558\uAC8C \uB9CC\uB4E4\uC5B4\uC8FC\uC138\uC694"
-    - "\uC65C \uC8FC\uBB38\uC774 \uC774\uB807\uAC8C \uC624\uB798 \uAC78\uB824\uC694?
-      \uC55E\uC5D0 \uC0AC\uB78C\uB3C4 \uC5C6\uC5C8\uB294\uB370"
-    - "\uB2E4\uB978 \uCE74\uD398\uC5D0\uC120 \uC774\uB807\uAC8C \uC548 \uC8FC\uB358\uB370\uC694?"
-    - "\uBA38\uADF8\uC794\uC73C\uB85C \uC8FC\uC2E0\uB2E4\uB354\uB2C8 \uC65C \uD14C\uC774\uD06C\uC544\uC6C3
-      \uCEF5\uC5D0 \uC918\uC694?"
-    - "\uCFE0\uD3F0 \uC801\uB9BD \uB418\uB294\uC9C0 \uC65C \uB9D0\uC500 \uC548 \uD574\uC8FC\uC168\uC5B4\uC694?"
-    - "\uD14C\uC774\uBE14\uC5D0 \uBA3C\uC9C0\uAC00 \uC774\uB807\uAC8C \uB9CE\uC740\uB370,
-      \uCCAD\uC18C\uB294 \uC5B8\uC81C \uD558\uC138\uC694?"
-  - npcName: "\uC9C1\uC7A5\uC778"
-    npcSprite: {fileID: 21300000, guid: e049231312126cd44a1423dfce293f27, type: 3}
-    conversationList:
-    - "\uC544\uBA54\uB9AC\uCE74\uB178 \uD55C \uC794 \uC8FC\uC138\uC694. \uC624\uB298
-      \uC880 \uC9C4\uD558\uAC8C \uBD80\uD0C1\uB4DC\uB9B4\uAC8C\uC694"
-    - "\uC774\uAC70 \uD14C\uC774\uD06C\uC544\uC6C3\uC73C\uB85C \uBC14\uAFC0 \uC218
-      \uC788\uB098\uC694? \uAC11\uC790\uAE30 \uC77C\uC774 \uC0DD\uACA8\uC11C\uC694"
-    - "\uADF8\uB0E5 \uC624\uB298\uC740 \uC774\uAC70\uB85C \uD560\uAC8C\uC694. \uACE0\uBBFC\uD560
-      \uD798\uC774 \uC5C6\uB124\uC694"
-    - "\uC774\uAC70 \uC9C4\uC9DC \uCE74\uD398\uC778 \uB9DE\uC544\uC694? \uC65C \uC774\uB807\uAC8C
-      \uC7A0\uC774 \uC548 \uAE68\uC9C0"
-    - "\uC544\uBA54\uB9AC\uCE74\uB178 \uC0F7 3\uBC88 \uCD94\uAC00\uD574\uC8FC\uC138\uC694"
-    - "\uC624\uB298 \uCEE4\uD53C\uAC00 \uC815\uB9D0 \uD544\uC694\uD588\uC5B4\uC694.
-      \uD558\uB8E8\uAC00 \uB108\uBB34 \uAE38 \uAC83 \uAC19\uB124\uC694"
-    - "\uC544, \uCEE4\uD53C \uB108\uBB34 \uB9DB\uC788\uB124\uC694! \uC624\uB298 \uD558\uB8E8\uB294
-      \uC774\uAC78\uB85C \uBC84\uD168\uC57C\uACA0\uC5B4\uC694"
-    - "\uC870\uAE08 \uAE30\uC6B4\uC774 \uB098\uC694. \uC624\uB298 \uD558\uB8E8\uB3C4
-      \uC798 \uB9C8\uBB34\uB9AC\uD560 \uC218 \uC788\uC744 \uAC83 \uAC19\uB124\uC694"
-    - "\uC0AC\uC2E4 \uC624\uB298 \uC880 \uC9C0\uCCE4\uC5C8\uB294\uB370, \uCEE4\uD53C
-      \uD55C \uC794\uC73C\uB85C \uD480\uB9B0 \uAC83 \uAC19\uC544\uC694"
-  - npcName: "\uD559\uC0DD\uB0A8"
-    npcSprite: {fileID: 21300000, guid: 00e58dde0e63b0e4da5fa13480c3643b, type: 3}
-    conversationList:
-    - "\uC640\uC774\uD30C\uC774 \uBE44\uBC00\uBC88\uD638\uB294 \uC5B4\uB514\uC788\uC8E0?"
-    - "\uC804\uC6D0 \uCF58\uC13C\uD2B8 \uC5B4\uB514\uC5D0 \uC788\uB098\uC694?"
-    - "\uC74C\uC545\uC880 \uC904\uC5EC\uC8FC\uC2DC\uACA0\uC5B4\uC694? \uC9D1\uC911\uC774
-      \uC548\uB418\uC11C\uC694"
-  - npcName: "\uD559\uC0DD\uC5EC"
-    npcSprite: {fileID: 21300000, guid: 330d9efdaf603ed49922430255e1b962, type: 3}
-    conversationList:
-    - "\u3141\u3134\u3147\u313B\u3134\u3147\u3139\u313B\u31344"
-  - npcName: "\uD560\uC544\uBC84\uC9C0"
-    npcSprite: {fileID: 21300000, guid: 1de304a5fbf887242880d15f1c6a8cf6, type: 3}
-    conversationList:
-    - "\u3141\u3134\u3147\u313B\u3134\u3147\u3139\u313B\u31345"
 --- !u!1 &542780905
 GameObject:
   m_ObjectHideFlags: 0
@@ -15001,7 +14944,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1185087188
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15019,8 +14962,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -277, y: 31}
-  m_SizeDelta: {x: 291.5977, y: 0}
+  m_AnchoredPosition: {x: -252, y: 31}
+  m_SizeDelta: {x: 291.5977, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1185087189
 MonoBehaviour:
@@ -15076,8 +15019,8 @@ MonoBehaviour:
     m_Left: 0
     m_Right: 0
     m_Top: 20
-    m_Bottom: 20
-  m_ChildAlignment: 4
+    m_Bottom: 30
+  m_ChildAlignment: 1
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
@@ -17257,7 +17200,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -16}
-  m_SizeDelta: {x: 214, y: 370}
+  m_SizeDelta: {x: 362, y: 376}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1394263956
 MonoBehaviour:
@@ -17279,7 +17222,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1de304a5fbf887242880d15f1c6a8cf6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 00e58dde0e63b0e4da5fa13480c3643b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -17446,6 +17389,7 @@ GameObject:
   - component: {fileID: 1428197822}
   - component: {fileID: 1428197821}
   - component: {fileID: 1428197823}
+  - component: {fileID: 1428197824}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -17469,7 +17413,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 145.79884, y: -93.445}
+  m_AnchoredPosition: {x: 145.79884, y: -20}
   m_SizeDelta: {x: 252, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1428197821
@@ -17492,7 +17436,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uCEE4\uD53C \uC124\uD0D5 \uD504\uB9BC 222\uB85C \u3134\u3147\u3139\u3134\u3139\u3147\u3134\u3139\u3147\u3134\u3147\u3139\u3134\u3139\u3147\u3134\u3139\u3147\u3134\u3147\u3139\u3134\u3147\u3139\u3139\u3147\u3134\u3139\u3134\u3147\u3134\u3147"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6bb79820ca545c44e88b8dd75a1ca9be, type: 2}
   m_sharedMaterial: {fileID: 3062059651406817602, guid: 6bb79820ca545c44e88b8dd75a1ca9be, type: 2}
@@ -17519,8 +17463,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -17531,7 +17475,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 5
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -17583,6 +17527,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!114 &1428197824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428197819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66887596d5055d94d89eb0016f3fb62a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textRectTransform: {fileID: 0}
+  tmpText: {fileID: 1428197821}
+  revealSpeed: 0.08
+  text: 
 --- !u!1 &1437114739
 GameObject:
   m_ObjectHideFlags: 0
@@ -17915,7 +17875,149 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npc: {fileID: 542417611}
-  visitRanTime: 0
+  npcDataList:
+  - npcName: "\uC544\uC90C\uB9C8"
+    npcSprite: {fileID: 21300000, guid: 4acd51b363ca80f4288f692c0f13d778, type: 3}
+    conversationList:
+    - "\uC6D0\uB450 \uBC14\uAFB8\uC168\uB098\uC694? \uC804\uBCF4\uB2E4 \uB9DB\uC774
+      \uC5C6\uC5B4\uC9C4 \uAC83 \uAC19\uC740\uB370"
+    - "\uC2DC\uB7FD\uC740 \uB123\uC9C0 \uB9D0\uACE0, \uC6B0\uC720\uB294 \uAF2D \uB728\uAC81\uAC8C
+      \uB370\uC6CC\uC8FC\uC138\uC694"
+    - "\uCEF5 \uC704\uC5D0 \uC774\uAC70 \uBB3B\uC740 \uAC70 \uBCF4\uC774\uC8E0? \uB2E4\uC2DC
+      \uB9CC\uB4E4\uC5B4 \uC8FC\uC138\uC694"
+    - "\uC5BC\uC74C \uB108\uBB34 \uB9CE\uC774 \uB123\uC9C0 \uB9D0\uACE0, \uC74C\uB8CC
+      \uC880 \uC9C4\uD558\uAC8C \uB9CC\uB4E4\uC5B4\uC8FC\uC138\uC694"
+    - "\uC65C \uC8FC\uBB38\uC774 \uC774\uB807\uAC8C \uC624\uB798 \uAC78\uB824\uC694?
+      \uC55E\uC5D0 \uC0AC\uB78C\uB3C4 \uC5C6\uC5C8\uB294\uB370"
+    - "\uAC00\uACA9\uC774 \uC65C \uC774\uB807\uAC8C \uBE44\uC2F8\uC694? \uB2E4\uB978
+      \uACF3\uC740 \uB354 \uC2F8\uB358\uB370"
+    - "\uD14C\uC774\uBE14\uC5D0 \uBA3C\uC9C0\uAC00 \uC774\uB807\uAC8C \uB9CE\uC740\uB370,
+      \uCCAD\uC18C\uB294 \uC5B8\uC81C \uD558\uC138\uC694?"
+    - "\uC774\uAC70 \uB9AC\uD544 \uC548 \uB418\uB098\uC694? \uB2E4\uB978 \uCE74\uD398\uC5D0\uC11C\uB294
+      \uB2E4 \uD574\uC8FC\uB358\uB370"
+    - "\uB108\uBB34 \uB728\uAC81\uAC8C \uC8FC\uC9C0 \uB9D0\uACE0, \uC880 \uBBF8\uC9C0\uADFC\uD558\uAC8C
+      \uD574\uC8FC\uC138\uC694"
+    - "\uCEF5\uC774 \uC65C \uC774\uB807\uAC8C \uC791\uC544\uC694? \uD070 \uCEF5\uC73C\uB85C
+      \uBC14\uAFD4\uC8FC\uC138\uC694"
+  - npcName: "\uC9C1\uC7A5\uC778"
+    npcSprite: {fileID: 21300000, guid: e049231312126cd44a1423dfce293f27, type: 3}
+    conversationList:
+    - "\uC544\uBA54\uB9AC\uCE74\uB178 \uD55C \uC794 \uC8FC\uC138\uC694. \uC624\uB298
+      \uC880 \uC9C4\uD558\uAC8C \uBD80\uD0C1\uB4DC\uB9B4\uAC8C\uC694"
+    - "\uC8FC\uBB38\uC774 \uC880 \uBC00\uB838\uB098 \uBD10\uC694. \uC870\uAE08\uB9CC
+      \uBE68\uB9AC \uBD80\uD0C1\uB4DC\uB9B4\uAC8C\uC694"
+    - "\uC624\uB298 \uD558\uB8E8\uAC00 \uD798\uB4E4\uAE34 \uD588\uB294\uB370, \uC774
+      \uCEE4\uD53C\uAC00 \uC880 \uB3C4\uC640\uC904 \uAC83 \uAC19\uC544\uC694"
+    - "\uC774\uAC70 \uC9C4\uC9DC \uCE74\uD398\uC778 \uB9DE\uC544\uC694? \uC65C \uC774\uB807\uAC8C
+      \uC548 \uAE68\uC9C0"
+    - "\uC774\uAC70 \uD14C\uC774\uD06C\uC544\uC6C3\uC73C\uB85C \uBC14\uAFC0 \uC218
+      \uC788\uB098\uC694? \uAC11\uC790\uAE30 \uC77C\uC774 \uC0DD\uACA8\uC11C\uC694"
+    - "\uADF8\uB0E5\u2026 \uADF8\uAC70 \uC8FC\uC138\uC694. \uC54C\uC544\uC11C \uD574\uC8FC\uC138\uC694"
+    - "\uC624\uB298 \uB0A0\uC528\uAC00 \uBCC4\uB85C\uB77C \uADF8\uB7F0\uAC00, \uAD1C\uD788
+      \uB354 \uD53C\uACE4\uD558\uB124\uC694"
+    - "\uC544\uBA54\uB9AC\uCE74\uB178 \uD55C \uC794 \uB354 \uC8FC\uBB38\uD560\uAC8C\uC694.
+      \uC624\uB298\uC740 \uCEE4\uD53C\uB85C \uBC84\uD168\uC57C \uD558\uB2C8\uAE4C\uC694"
+    - "\uC624\uB298 \uCEE4\uD53C\uAC00 \uC815\uB9D0 \uD544\uC694\uD588\uC5B4\uC694.
+      \uD558\uB8E8\uAC00 \uB108\uBB34 \uAE38 \uAC83 \uAC19\uB124\uC694"
+    - "\uBC29\uAE08 \uC81C \uC774\uB984 \uBD88\uB800\uB098\uC694? \uC81C\uAC00 \uC880
+      \uBA4D\uD574 \uC788\uC5C8\uB098 \uBD10\uC694"
+  - npcName: "\uB0A8\uD559\uC0DD"
+    npcSprite: {fileID: 21300000, guid: 00e58dde0e63b0e4da5fa13480c3643b, type: 3}
+    conversationList:
+    - "\uC5EC\uAE30 \uC640\uC774\uD30C\uC774 \uBE44\uBC00\uBC88\uD638\uAC00 \uBB50\uC5D0\uC694?"
+    - "\uC640\uC774\uD30C\uC774 \uC18D\uB3C4\uAC00 \uB108\uBB34 \uB290\uB9B0 \uAC83
+      \uAC19\uC544\uC694"
+    - "\uCF58\uC13C\uD2B8 \uC788\uB294 \uC790\uB9AC\uAC00 \uC5B4\uB514\uC5D0\uC694?"
+    - "\uC74C\uC545\uC18C\uB9AC\uAC00 \uB108\uBB34 \uC2DC\uB044\uB7EC\uC6CC\uC11C
+      \uC9D1\uC911\uC774 \uC548\uB418\uB124\uC694. \uBCFC\uB968\uC880 \uC904\uC5EC\uC8FC\uC2DC\uACA0\uC5B4\uC694?"
+    - "\uC606 \uD14C\uC774\uBE14\uC774 \uB108\uBB34 \uC2DC\uB044\uB7EC\uC6B4\uB370
+      \uB9D0 \uD574\uC8FC\uC154\uC57C \uD558\uB294\uAC70 \uC544\uB2CC\uAC00\uC694?"
+    - "\uC544, \uCC3D\uAC00 \uCABD \uC790\uB9AC\uB9CC \uC549\uC73C\uB824\uACE0 \uD588\uB294\uB370,
+      \uC774\uAC74 \uC81C\uAC00 \uB2A6\uC5C8\uC73C\uB2C8\uAE4C \uC774\uD574\uD574\uC57C\uC8E0.
+      \uADF8\uCD78?"
+    - "\uC5EC\uAE30 \uCEE4\uD53C\uB294 \uC9C4\uC9DC \uAD1C\uCC2E\uB124\uC694. \uC0AC\uC2E4
+      \uC800\uB3C4 \uCEE4\uD53C \uB9C8\uC2DC\uBA74\uC11C \uD074\uB77C\uC6B0\uB4DC
+      \uC11C\uBC84 \uC810\uAC80\uD558\uB294\uB370\uC694. \uC694\uC998 \uC11C\uBC84\uB9AC\uC2A4
+      \uC544\uD0A4\uD14D\uCC98\uAC00 \uB300\uC138\uB2C8\uAE4C AWS Lambda\uB791 DynamoDB
+      \uC5F0\uACB0\uD574\uC11C... \uB300\uB2E8\uD558\uC8E0?"
+    - "\uC774 \uCE74\uD398\uC5D0\uC11C \uACF5\uBD80\uD558\uB294 \uAC74 \uC9C4\uC9DC
+      \uC88B\uB124\uC694. \uC0AC\uC2E4 \uC800 \uC774\uBC88\uC5D0 AI \uBAA8\uB378\uC744
+      \uD6C8\uB828\uC2DC\uD0A4\uACE0 \uC788\uB294\uB370, \uADF8\uAC70\uB791 \uB611\uAC19\uC544\uC694.
+      \uBAA8\uB378\uC744 \uD6C8\uB828\uC2DC\uD0A4\uB294 \uAC8C \uAC70\uC758 \uCEE4\uD53C\uC758
+      '\uB514\uBCA8\uB86D'\uACFC \uBE44\uC2B7\uD558\uC8E0"
+    - "\uCEE4\uD53C \uD55C \uC794 \uB354 \uC2DC\uD0AC\uAC8C\uC694. \uADFC\uB370 \uC81C\uAC00
+      \uCF54\uB529\uD558\uBA74\uC11C, \uC774 \uCEE4\uD53C \uC591\uC5D0 \uB9DE\uCDB0\uC11C
+      '\uC2DC\uAC04 \uC81C\uD55C' \uAE30\uB2A5\uB3C4 \uB9CC\uB4E4\uC5B4\uBCFC\uAE4C
+      \uC0DD\uAC01 \uC911\uC774\uC5D0\uC694. \uC9C4\uC9DC \uAC04\uB2E8\uD558\uAC8C
+      \uD574\uACB0\uB420 \uC218 \uC788\uAC70\uB4E0\uC694"
+  - npcName: "\uC5EC\uD559\uC0DD"
+    npcSprite: {fileID: 21300000, guid: 330d9efdaf603ed49922430255e1b962, type: 3}
+    conversationList:
+    - "\uC5EC\uAE30 \uC62C \uB54C\uB9C8\uB2E4 \uAE30\uBD84 \uC88B\uAC8C \uB098\uAC00\uAC8C
+      \uB418\uB124\uC694. \uC815\uB9D0 \uAC10\uC0AC\uD574\uC694!"
+    - "\uD53C \uD55C \uC794 \uB9C8\uC2DC\uBA74\uC11C \uC774\uB807\uAC8C \uC5EC\uC720\uB86D\uAC8C
+      \uC549\uC544 \uC788\uC73C\uBA74 \uC815\uB9D0 \uC88B\uC740 \uD558\uB8E8\uAC00
+      \uB418\uB294 \uB290\uB08C\uC774\uC5D0\uC694"
+    - "\uC544, \uC624\uB298 \uAE30\uBD84\uC774 \uB108\uBB34 \uC88B\uC544\uC694! \uC774
+      \uC74C\uB8CC \uB54C\uBB38\uC5D0 \uB354 \uAE30\uBD84\uC774 \uC88B\uC744 \uAC83
+      \uAC19\uB124\uC694!"
+    - "\uC624\uB298 \uD558\uB8E8\uAC00 \uC870\uAE08 \uAE38\uC5C8\uB294\uB370, \uC774\uB807\uAC8C
+      \uCEE4\uD53C \uD55C \uC794\uC73C\uB85C \uD798\uC774 \uB098\uB124\uC694. \uAC10\uC0AC\uD569\uB2C8\uB2E4!"
+    - "\uC5EC\uAE30 \uC640\uC11C \uC774\uB807\uAC8C \uCEE4\uD53C \uB9C8\uC2DC\uBA74\uC11C
+      \uC274 \uC218 \uC788\uB294 \uC2DC\uAC04\uC774 \uC788\uC5B4\uC11C \uB108\uBB34
+      \uC88B\uC544\uC694. \uC774\uAC8C \uC77C\uC0C1\uC5D0\uC11C \uAF2D \uD544\uC694\uD55C
+      \uC2DC\uAC04\uC774\uC8E0"
+    - "\uB108\uBB34 \uC608\uC058\uAC8C \uB9CC\uB4E4\uC5B4\uC8FC\uC154\uC11C \uAC10\uC0AC\uD574\uC694.
+      \uC774 \uCE74\uD398\uB294 \uC74C\uB8CC\uB3C4 \uC608\uC058\uAC8C \uB098\uC640\uC11C
+      \uC88B\uC544\uC694!"
+    - "\uC774 \uCE74\uD398\uB294 \uBD84\uC704\uAE30\uAC00 \uB108\uBB34 \uC88B\uC544\uC11C
+      \uC790\uC8FC \uC624\uAC8C \uB3FC\uC694. \uC624\uB298\uC740 \uD2B9\uBCC4\uD788
+      \uC5EC\uC720\uB86D\uAC8C \uC2DC\uAC04\uC744 \uBCF4\uB0B4\uB824\uACE0\uC694"
+    - "\uC800\uBC88\uC5D0 \uC5EC\uAE30\uC11C \uB9C8\uC2E0 \uC74C\uB8CC\uAC00 \uB108\uBB34
+      \uB9DB\uC788\uC5C8\uC5B4\uC694. \uADF8\uAC70\uB791 \uBE44\uC2B7\uD55C \uAC70
+      \uCD94\uCC9C\uD574 \uC8FC\uC2E4 \uC218 \uC788\uB098\uC694?"
+    - "\uC774 \uCE74\uD398 \uC624\uBA74 \uD56D\uC0C1 \uAE30\uBD84\uC774 \uC88B\uC544\uC838\uC694.
+      \uC9C1\uC6D0\uBD84\uB4E4\uC774 \uB2E4 \uCE5C\uC808\uD558\uC2DC\uACE0 \uBD84\uC704\uAE30\uB3C4
+      \uB108\uBB34 \uC88B\uC544\uC11C\uC694"
+    - "\uACE0\uB9D9\uC2B5\uB2C8\uB2E4! \uB355\uBD84\uC5D0 \uAE30\uBD84 \uC88B\uC740
+      \uD558\uB8E8\uAC00 \uB420 \uAC83 \uAC19\uC544\uC694"
+  - npcName: "\uB178\uC778"
+    npcSprite: {fileID: 21300000, guid: 1de304a5fbf887242880d15f1c6a8cf6, type: 3}
+    conversationList:
+    - "\uCEE4\uD53C \uD55C \uC794 \uB9C8\uC2DC\uBA74\uC11C \uC774\uB807\uAC8C \uC0DD\uAC01\uD558\uB294
+      \uC2DC\uAC04\uC774 \uC788\uB2E4\uB294 \uAC8C \uC88B\uB124\uC694. \uC608\uC804\uC5D0\uB294
+      \uADF8\uB7F0 \uC2DC\uAC04\uC774 \uC544\uAE4C\uC6B4 \uC904 \uC54C\uC558\uAC70\uB4E0\uC694"
+    - "\uD558\uB8E8\uD558\uB8E8\uAC00 \uC18C\uC911\uD55C \uAC8C \uB290\uAEF4\uC838\uC694.
+      \uC80A\uC744 \uB54C\uB294 \uADF8\uB7F0 \uC0DD\uAC01\uC744 \uD558\uC9C0 \uBABB\uD588\uC5B4\uC694.
+      \uB098\uC774\uAC00 \uB4E4\uACE0 \uB098\uB2C8, \uC2DC\uAC04\uC774 \uC5BC\uB9C8\uB098
+      \uC911\uC694\uD55C\uC9C0 \uC54C\uACA0\uB354\uAD70\uC694"
+    - "\uB098\uC774 \uB4E4\uBA74 \uC774\uB7F0 \uC5EC\uC720\uAC00 \uC88B\uB2E4\uB294
+      \uAC78 \uC54C\uAC8C \uB418\uC8E0. \uADF8\uB54C\uB294 \uC77C\uB9CC \uD558\uB290\uB77C
+      \uADF8\uAC78 \uBAB0\uB790\uC5B4\uC694"
+    - "\uC804\uC5D0\uB294 \uB108\uBB34 \uBC14\uC058\uAC8C\uB9CC \uC0B4\uC558\uC8E0.
+      \uC9C0\uAE08\uC740 \uC77C\uC744 \uC548 \uD558\uB2C8\uAE4C \uC2DC\uAC04\uC774
+      \uB9CE\uC544\uC11C, \uADF8\uB54C \uB193\uCE5C \uAC83\uB4E4\uC774 \uB9CE\uC558\uB2E4\uACE0
+      \uC0DD\uAC01\uD574\uC694"
+    - "\uC9C0\uAE08\uC740 \uC138\uC0C1\uC774 \uB108\uBB34 \uBE60\uB974\uAC8C \uB3CC\uC544\uAC00\uB2C8\uAE4C,
+      \uAC00\uB054 \uC774\uB807\uAC8C \uCC9C\uCC9C\uD788 \uCEE4\uD53C \uD55C \uC794
+      \uB9C8\uC2DC\uBA70 \uC274 \uC2DC\uAC04\uC774 \uD544\uC694\uD558\uC8E0"
+    - "\uC77C\uB9CC \uD558\uBA74\uC11C \uC0B4\uC9C0 \uB9C8\uC138\uC694. \uAC00\uB054\uC740
+      \uC774\uB807\uAC8C \uCEE4\uD53C \uD55C \uC794 \uB9C8\uC2DC\uBA74\uC11C \uC26C\uC5B4\uAC00\uC138\uC694.
+      \uADF8\uAC8C \uB354 \uC911\uC694\uD558\uB2E4\uACE0 \uC0DD\uAC01\uD574\uC694"
+    - "\uC80A\uC744 \uB54C\uB294 \uB2E4\uB4E4 \uBE68\uB9AC\uBE68\uB9AC \uC0B4\uB824\uACE0
+      \uD558\uC8E0. \uB098\uC774\uAC00 \uB4E4\uACE0 \uB098\uB2C8, \uCC9C\uCC9C\uD788
+      \uAC00\uB294 \uAC8C \uB354 \uC88B\uB2E4\uB294 \uAC78 \uC54C\uAC8C \uB418\uB354\uAD70\uC694"
+    - "\uD558\uB8E8 \uC885\uC77C \uC544\uBB34\uAC83\uB3C4 \uC548 \uD574\uB3C4 \uAD1C\uCC2E\uC740
+      \uB0A0\uC774 \uC788\uC5B4\uC57C \uD574\uC694. \uADF8\uB807\uAC8C \uC0B4\uC544\uB3C4
+      \uAD1C\uCC2E\uB2E4\uB294 \uAC78 \uC774\uC81C \uC54C\uAC8C \uB410\uC5B4\uC694"
+    - "\uC608\uC804\uC5D0\uB294 \uCEE4\uD53C \uB9C8\uC2DC\uBA74\uC11C \uC0AC\uB78C\uB4E4\uD558\uACE0
+      \uB300\uD654\uD558\uB294 \uAC8C \uC77C\uC0C1 \uAC19\uC558\uC5B4\uC694. \uADF8\uB7F0\uB370
+      \uC694\uC998\uC740 \uC0AC\uB78C\uB4E4\uC774 \uB2E4 \uAC01\uC790 \uC2A4\uB9C8\uD2B8\uD3F0\uB9CC
+      \uB4E4\uC5EC\uB2E4\uBCF4\uB294 \uAC83 \uAC19\uC544 \uC544\uC27D\uB124\uC694"
+    - "\uC800\uB294 \uC774\uC81C \uB354 \uC774\uC0C1 \uAE09\uD558\uAC8C \uC0B4\uC9C0
+      \uC54A\uC544\uC694. \uCEE4\uD53C \uD55C \uC794 \uB9C8\uC2DC\uBA74\uC11C \uCC9C\uCC9C\uD788
+      \uC0DD\uAC01\uD558\uB294 \uAC8C \uB354 \uC911\uC694\uD558\uB354\uB77C\uACE0\uC694.
+      \uC2DC\uAC04\uC774 \uAC00\uBA74 \uADF8\uB7F0 \uAC78 \uC54C\uAC8C \uB418\uC8E0"
 --- !u!4 &1464969938
 Transform:
   m_ObjectHideFlags: 0
@@ -18685,7 +18787,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1528147527
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20091,8 +20193,6 @@ MonoBehaviour:
   useItemPuzzlePanelParent: {fileID: 900230364}
   comebackPuzzleParent: {fileID: 900230364}
   cancelUseItemButton: {fileID: 1353179853}
-  npcObject: {fileID: 282711420}
-  addButton: {fileID: 1182173203}
   randomNextCustomerVisitSwap: 0
 --- !u!114 &1646881139
 MonoBehaviour:
